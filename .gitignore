@@ -16,3 +16,4 @@ build/
 *.vcxproj
 *.filters
 *.user
+main

@@ -1,8 +1,9 @@
 #include <SFML/Graphics.hpp>
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Teste");
     window.setFramerateLimit(60);
+
 
     sf::CircleShape jogador(75.f);
     jogador.setFillColor(sf::Color::Red);

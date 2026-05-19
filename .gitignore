@@ -12,3 +12,7 @@ Release/
 *.out
 bin/
 build/
+*.slnx
+*.vcxproj
+*.filters
+*.user

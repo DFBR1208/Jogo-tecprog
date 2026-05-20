@@ -4,10 +4,17 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Teste");
     window.setFramerateLimit(60);
 
+    sf::RectangleShape ceu(sf::Vector2f(800.f, 600.f)); 
+    ceu.setFillColor(sf::Color::Cyan);
+    ceu.setPosition(0.f, 0.f);
 
-    sf::CircleShape jogador(75.f);
+    sf::RectangleShape chao(sf::Vector2f(800.f, 50.f));
+    chao.setFillColor(sf::Color::Green);
+    chao.setPosition(0.f, 550.f);
+
+    sf::RectangleShape jogador(sf::Vector2f(30.f, 50.f));
     jogador.setFillColor(sf::Color::Red);
-    jogador.setPosition(275.f, 275.f); 
+    jogador.setPosition(375.f, 0.f); 
 
     while (window.isOpen()) {
         sf::Event event;
@@ -16,23 +23,30 @@ int main() {
                 window.close();
             }
         }
-        float velocidade = 5.0f; 
+        float velocidadeX = 5.0f; 
+        float velocidadeY = 3.0f;
+        float gravidade = 1.5f;
 
+        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            jogador.move(velocidade, 0.f); 
+            jogador.move(velocidadeX, 0.f); 
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            jogador.move(-velocidade, 0.f); 
+            jogador.move(-velocidadeX, 0.f); 
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-            jogador.move(0.f, -velocidade); 
+            jogador.move(0.f, -velocidadeY); 
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-            jogador.move(0.f, velocidade);
+        jogador.move(0.f, gravidade);
+
+        if (jogador.getGlobalBounds().intersects(chao.getGlobalBounds())) {
+            jogador.setPosition(jogador.getPosition().x, chao.getPosition().y - jogador.getSize().y);
         }
 
         window.clear();
+        window.draw(ceu);
         window.draw(jogador);
+        window.draw(chao);
         window.display();
     }
     return 0;

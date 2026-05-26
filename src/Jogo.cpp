@@ -1,12 +1,26 @@
 #include "Jogo.h"
-#include "Gerenciador_Grafico.h"
-#include <iostream>
+#include "Ente.h"
 
-Jogo::Jogo() {}
+Jogo::Jogo() {
+    pGrafico = new Gerenciador_Grafico();
+    Ente::setGerenciadorGrafico(pGrafico);
+    pFase = new FasePrimeira();
+}
 
-Jogo::~Jogo() {}
+Jogo::~Jogo() {
+    delete pFase;
+    delete pGrafico;
+}
 
 void Jogo::executar() {
-	Gerenciador_Grafico gerenciador;
-	gerenciador.desenharEnte();
+    while (pGrafico->verificaJanelaAberta()) {
+
+        pGrafico->limpar();
+
+        pFase->executar();
+
+        pFase->desenhar(); 
+
+        pGrafico->mostrar();
+    }
 }

@@ -24,6 +24,8 @@ void Inimigo::mover() {
 
 void Inimigo::danificar(Jogador* p) {
 	if (p != nullptr) {
-		p->tomarDano();
+		float xJogador=p->getForma().getPosition().x;
+		bool knockback_direita = (xJogador>forma.getPosition().x);
+		p->tomarDano(knockback_direita);
 	}
 }

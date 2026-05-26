@@ -15,7 +15,7 @@ public:
     void executar();
     void mover();
     void pararNoChao(float y_chao);
-    void tomarDano();
+    void tomarDano(bool knockback_direita);
     float getVelocidadeY() const;
     void baterCabeca(float base_plataforma);
 };

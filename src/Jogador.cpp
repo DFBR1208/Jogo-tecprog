@@ -5,14 +5,29 @@ Jogador::Jogador() : Personagem() {
     pontos = 0;
 
     forma.setSize(sf::Vector2f(30.f, 50.f));
-    forma.setFillColor(sf::Color::Blue);
+    forma.setFillColor(sf::Color::Transparent); // hitbox invisivel
     forma.setPosition(375.f, 0.f);
 
     velocidadeX = 5.0f;
     velocidadeY = 0.0f;
-    gravidade = 1.0f;
-    pulo = -15.0f;
-    noChao = false;
+    gravidade   = 1.0f;
+    pulo        = -15.0f;
+    noChao      = false;
+
+    frameAtual      = 0;
+    totalFrames     = 11;
+    temporizador    = 0;
+    duracaoFrame    = 7;
+    viradoEsquerda  = false;
+    estadoAnim      = IDLE;
+
+    texIdle.loadFromFile("assests/player/Idle (32x32).png");
+    texRun .loadFromFile("assests/player/Run (32x32).png");
+    texJump.loadFromFile("assests/player/Jump (32x32).png");
+    texFall.loadFromFile("assests/player/Fall (32x32).png");
+
+    spriteAnim.setTexture(texIdle);
+    spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
 }
 
 Jogador::~Jogador() {
@@ -76,6 +91,66 @@ float Jogador::getVelocidadeY() const {
 }
 
 void Jogador::baterCabeca(float base_plataforma) {
-	forma.setPosition(forma.getPosition().x, base_plataforma);
+    forma.setPosition(forma.getPosition().x, base_plataforma);
     velocidadeY = 0.0f;
+}
+
+void Jogador::atualizarAnimacao() {
+    bool movendo = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
+                   sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+
+    EstadoAnim novoEstado;
+    if (!noChao)
+        novoEstado = (velocidadeY < 0) ? JUMP : FALL;
+    else if (movendo)
+        novoEstado = RUN;
+    else
+        novoEstado = IDLE;
+
+    if (novoEstado != estadoAnim) {
+        estadoAnim = novoEstado;
+        frameAtual = 0;
+        temporizador = 0;
+        switch (estadoAnim) {
+            case IDLE: spriteAnim.setTexture(texIdle); totalFrames = 11; duracaoFrame = 7; break;
+            case RUN:  spriteAnim.setTexture(texRun);  totalFrames = 12; duracaoFrame = 5; break;
+            case JUMP: spriteAnim.setTexture(texJump); totalFrames = 1;  duracaoFrame = 1; break;
+            case FALL: spriteAnim.setTexture(texFall); totalFrames = 1;  duracaoFrame = 1; break;
+        }
+    }
+
+    temporizador++;
+    if (temporizador >= duracaoFrame) {
+        temporizador = 0;
+        frameAtual = (frameAtual + 1) % totalFrames;
+    }
+    spriteAnim.setTextureRect(sf::IntRect(frameAtual * FRAME_SIZE, 0, FRAME_SIZE, FRAME_SIZE));
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) viradoEsquerda = false;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))  viradoEsquerda = true;
+}
+
+void Jogador::desenhar() {
+    if (pGG == nullptr) return;
+    atualizarAnimacao();
+
+    sf::Vector2f pos  = forma.getPosition();
+    sf::Vector2f size = forma.getSize();
+    float sx = size.x / FRAME_SIZE;
+    float sy = size.y / FRAME_SIZE;
+
+    if (viradoEsquerda) {
+        spriteAnim.setScale(-sx, sy);
+        spriteAnim.setPosition(pos.x + size.x, pos.y);
+    } else {
+        spriteAnim.setScale(sx, sy);
+        spriteAnim.setPosition(pos.x, pos.y);
+    }
+
+    pGG->desenhar(spriteAnim);
+
+
+}
+sf::FloatRect Jogador::getBounds() const {
+    return spriteAnim.getGlobalBounds();
 }

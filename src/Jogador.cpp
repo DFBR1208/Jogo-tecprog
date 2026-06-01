@@ -74,7 +74,7 @@ void Jogador::pararNoChao(float y_chao) {
     noChao = true;     
 }
 
-void Jogador::tomarDano() {
+void Jogador::tomarDano(bool knockback_direita) {
     num_vidas--;
     
 
@@ -82,7 +82,11 @@ void Jogador::tomarDano() {
         exit(0); 
     }
     else {
+        if(knockback_direita){
+            forma.move(50.f, -50.f);
+        } else {
         forma.move(-50.f, -50.f);
+        }
     }
 }
 
@@ -153,4 +157,8 @@ void Jogador::desenhar() {
 }
 sf::FloatRect Jogador::getBounds() const {
     return spriteAnim.getGlobalBounds();
+}
+
+sf::RectangleShape Jogador::getForma() {
+    return forma;
 }

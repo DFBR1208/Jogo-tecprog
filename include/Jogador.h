@@ -31,8 +31,9 @@ public:
     void mover();
     void desenhar() override;
     void pararNoChao(float y_chao);
-    void tomarDano();
+    void tomarDano(bool knockback_direita);
     float getVelocidadeY() const;
     void baterCabeca(float base_plataforma);
     sf::FloatRect getBounds() const;
+    sf::RectangleShape getForma();
 };

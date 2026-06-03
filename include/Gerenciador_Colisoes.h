@@ -1,18 +1,30 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "Lista.h"
 #include "Jogador.h"
 #include "Inimigo.h"
-#include "Plataforma.h"
+#include "Obstaculo.h"
 #include "Entidade.h"
+#include <vector>
+#include <list>
+#include <set>
 
 class Gerenciador_Colisoes {
 private:
-	Jogador* pJogador;
-	Inimigo* pInimigo;
-	Plataforma* pPlataforma;
+    Jogador*          pJogador;
+    std::vector<Inimigo*>   LIs;
+    std::list<Obstaculo*> LOs;
+    //std::set<Projetil*> LPs;
+
+    const bool verificarColisao(Entidade* pe1, Entidade* pe2);
+    void tratarColisoesJogsObstacs();
+    void tratarColisoesJogsInimgs();
+    //void tratarColicoesJogsProjeteis();
 public:
-	Gerenciador_Colisoes(Jogador* jogador, Inimigo* inimigo, Plataforma* plataforma);
-	~Gerenciador_Colisoes();
-	const bool verificarColisao(Entidade* pe1, Entidade* pe2);
-	void tratarColisoes();
+    Gerenciador_Colisoes(Jogador* pJog);
+    ~Gerenciador_Colisoes();
+    void incluirInimigo(Inimigo* pi);
+    void incluirObstaculo(Obstaculo* po);
+    //void incluirProjetil(Projetil* pj);
+    void executar();
 };

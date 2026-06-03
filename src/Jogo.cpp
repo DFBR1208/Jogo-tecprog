@@ -1,26 +1,25 @@
 #include "Jogo.h"
 #include "Ente.h"
 
-Jogo::Jogo() {
-    pGrafico = new Gerenciador_Grafico();
-    Ente::setGerenciadorGrafico(pGrafico);
-    pFase = new FasePrimeira();
+Jogo::Jogo() : GG(new Gerenciador_Grafico()), pJog1(new Jogador()), pFase(new FasePrimeira(pJog1))  {
+    Ente::setGerenciadorGrafico(GG);
 }
 
 Jogo::~Jogo() {
     delete pFase;
-    delete pGrafico;
+    delete GG;
+    delete pJog1;
 }
 
 void Jogo::executar() {
-    while (pGrafico->verificaJanelaAberta()) {
+    while (GG->verificaJanelaAberta()) {
 
-        pGrafico->limpar();
+        GG->limpar();
 
         pFase->executar();
 
         pFase->desenhar(); 
 
-        pGrafico->mostrar();
+        GG->mostrar();
     }
 }

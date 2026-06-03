@@ -1,20 +1,25 @@
 #pragma once
 #include "Fase.h"
-#include <SFML/Graphics.hpp>
-#include "Inimigo.h"
+#include "Inim_Facil.h"
 #include "Plataforma.h"
-#include "Gerenciador_Colisoes.h"
+
+class Jogador;
 
 class FasePrimeira : public Fase {
 private:
-    sf::RectangleShape ceu;
+    sf::Texture texturaBg;
+    sf::Sprite  spriteBg;
     sf::RectangleShape chao;
-	Inimigo* pInimigo;
-	Plataforma* pPlataforma;
-	Gerenciador_Colisoes* pGerenciadorColisoes;
+
+    static const int maxInimMedios = 0;
+
+    void criarInimMedios();
+    void criarObstMedios();
+    void criarInimigos()  override;
+    void criarObstaculo() override;
 public:
-    FasePrimeira();
+    FasePrimeira(Jogador* pJog);
     ~FasePrimeira();
-    void executar();
-    void desenhar();
+    void executar() override;
+    void desenhar() override;
 };

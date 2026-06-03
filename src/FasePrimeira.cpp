@@ -1,33 +1,45 @@
 #include "FasePrimeira.h"
 
-FasePrimeira::FasePrimeira() : Fase() {
-    pJogador = new Jogador();
-	pInimigo = new Inimigo();
-	pPlataforma = new Plataforma();
-	pGerenciadorColisoes = new Gerenciador_Colisoes(pJogador, pInimigo, pPlataforma);
+FasePrimeira::FasePrimeira(Jogador* pJog) : Fase(pJog) {
+    criarInimigos();
+    criarObstaculo();
 
-    ceu.setSize(sf::Vector2f(800.f, 600.f));
-    ceu.setFillColor(sf::Color::Cyan);
-    ceu.setPosition(0.f, 0.f);
+    texturaBg.loadFromFile("assests/bg/Pink.png");
+    texturaBg.setRepeated(true);
+    spriteBg.setTexture(texturaBg);
+    spriteBg.setTextureRect(sf::IntRect(0, 0, 800, 600));
 
     chao.setSize(sf::Vector2f(800.f, 50.f));
-    chao.setFillColor(sf::Color::Green);
+    chao.setFillColor(sf::Color(101, 67, 33));
     chao.setPosition(0.f, 550.f);
 }
 
 FasePrimeira::~FasePrimeira() {}
 
+void FasePrimeira::criarInimigos() {
+    criarInimFaceis();
+    criarInimMedios();
+}
+
+void FasePrimeira::criarInimMedios() {
+    // Inim_Medio ainda nao implementado
+}
+
+void FasePrimeira::criarObstaculo() {
+    criarObstMedios();
+}
+
+void FasePrimeira::criarObstMedios() {
+    // Obst_Medio ainda nao implementado
+}
+
 void FasePrimeira::executar() {
-    pJogador->executar();
-	pInimigo->executar();
-	pGerenciadorColisoes->tratarColisoes();
+    lista_enti.percorrer();
+    GC.executar();
 }
 
 void FasePrimeira::desenhar() {
-    Ente::getGerenciadorGrafico()->desenhar(ceu);
-    Ente::getGerenciadorGrafico()->desenhar(chao);
-
-    pJogador->desenhar();
-	pInimigo->desenhar();
-	pPlataforma->desenhar();
+    pGG->desenhar(spriteBg);
+    pGG->desenhar(chao);
+    lista_enti.desenhar();
 }

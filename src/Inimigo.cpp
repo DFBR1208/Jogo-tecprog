@@ -1,12 +1,24 @@
 #include "Inimigo.h"
 
-Inimigo::Inimigo() : Personagem() {
-	nivel_maldade = 1;
-	velocidadeX = -2.0f;
 
-	forma.setSize(sf::Vector2f(30.f, 50.f));
-	forma.setFillColor(sf::Color::Red);
-	forma.setPosition(700.f, 500.f);
+Inimigo::Inimigo() : Personagem() {
+    nivel_maldade = 1;
+    velocidadeX   = -2.0f;
+    frameAtual    = 0;
+    temporizador  = 0;
+    forma.setSize(sf::Vector2f(42.f, 42.f));
+    forma.setFillColor(sf::Color::Transparent);
+    forma.setPosition(700.f, 508.f);
+}
+
+Inimigo::Inimigo(float px, float py) : Personagem() {
+    nivel_maldade = 1;
+    velocidadeX   = -2.0f;
+    frameAtual    = 0;
+    temporizador  = 0;
+    forma.setSize(sf::Vector2f(42.f, 42.f));
+    forma.setFillColor(sf::Color::Transparent);
+    forma.setPosition(px, py);
 }
 
 Inimigo::~Inimigo() {}
@@ -23,6 +35,15 @@ void Inimigo::mover() {
 }
 
 void Inimigo::danificar(Jogador* p) {
+    if (p != nullptr){
+        float xJogador=p->getForma().getPosition().x;
+        bool knockback_direita = (bool)(xJogador>forma.getPosition().x);
+        p->tomarDano(knockback_direita);
+    }
+}
+
+sf::FloatRect Inimigo::getBounds() const {
+    return forma.getGlobalBounds();
 	if (p != nullptr) {
 		float xJogador=p->getForma().getPosition().x;
 		bool knockback_direita = (xJogador>forma.getPosition().x);

@@ -3,6 +3,8 @@
 #include "Inim_Facil.h"
 #include "Plataforma.h"
 
+class Jogador;
+
 class FasePrimeira : public Fase {
 private:
     sf::Texture texturaBg;
@@ -16,7 +18,7 @@ private:
     void criarInimigos()  override;
     void criarObstaculo() override;
 public:
-    FasePrimeira();
+    FasePrimeira(Jogador* pJog);
     ~FasePrimeira();
     void executar() override;
     void desenhar() override;

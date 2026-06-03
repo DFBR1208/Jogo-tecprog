@@ -2,14 +2,15 @@
 #include "Plataforma.h"
 #include "Inim_Facil.h"
 
-Fase::Fase() : Ente(), pJogador(new Jogador()), GC(pJogador) {
+Fase::Fase(Jogador* pJog) : Ente(), GC(pJog) {
     criarPlataformas();
     criarCenario();
+	lista_enti.incluir(pJog);
 }
 
 
 Fase::~Fase() {
-    delete pJogador;
+  
 }
 
 void Fase::criarInimFaceis() {

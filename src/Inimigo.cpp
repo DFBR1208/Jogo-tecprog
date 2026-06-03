@@ -44,4 +44,9 @@ void Inimigo::danificar(Jogador* p) {
 
 sf::FloatRect Inimigo::getBounds() const {
     return forma.getGlobalBounds();
+	if (p != nullptr) {
+		float xJogador=p->getForma().getPosition().x;
+		bool knockback_direita = (xJogador>forma.getPosition().x);
+		p->tomarDano(knockback_direita);
+	}
 }

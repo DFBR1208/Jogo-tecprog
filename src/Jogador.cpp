@@ -87,6 +87,10 @@ void Jogador::tomarDano(bool knockback_direita) {
         } else {
         forma.move(-50.f, -50.f);
         }
+        if (knockback_direita)
+            forma.move(50.f, -50.f);
+        else
+            forma.move(-50.f, -50.f);
     }
 }
 

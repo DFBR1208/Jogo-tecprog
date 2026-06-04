@@ -35,4 +35,8 @@ public:
     float getVelocidadeY() const;
     void baterCabeca(float base_plataforma);
     sf::FloatRect getBounds() const;
+    sf::Vector2f  getPosicao() const;
+    int  getNumVidas() const;
+    int  getPontos() const;
+    void adicionarPontos(int n);
 };

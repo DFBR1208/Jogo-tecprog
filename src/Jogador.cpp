@@ -6,7 +6,7 @@ Jogador::Jogador() : Personagem() {
 
     forma.setSize(sf::Vector2f(30.f, 50.f));
     forma.setFillColor(sf::Color::Transparent); // hitbox invisivel
-    forma.setPosition(375.f, 0.f);
+    forma.setPosition(50.f, 0.f);
 
     velocidadeX = 5.0f;
     velocidadeY = 0.0f;
@@ -45,12 +45,8 @@ void Jogador::mover() {
         forma.move(-velocidadeX, 0.f);
     }
     float pos_x = forma.getPosition().x;
-    float largura = forma.getSize().x; 
     if (pos_x < 0.f) {
         forma.setPosition(0.f, forma.getPosition().y);
-    }
-    else if (pos_x + largura > 800.f) {
-        forma.setPosition(800.f - largura, forma.getPosition().y);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && noChao) {
         velocidadeY = pulo;
@@ -82,7 +78,7 @@ void Jogador::tomarDano() {
         exit(0); 
     }
     else {
-        forma.move(-50.f, -50.f);
+        forma.setPosition(50.f, 0.f);
     }
 }
 
@@ -153,4 +149,20 @@ void Jogador::desenhar() {
 }
 sf::FloatRect Jogador::getBounds() const {
     return spriteAnim.getGlobalBounds();
+}
+
+sf::Vector2f Jogador::getPosicao() const {
+    return forma.getPosition();
+}
+
+int Jogador::getNumVidas() const {
+    return num_vidas;
+}
+
+int Jogador::getPontos() const {
+    return pontos;
+}
+
+void Jogador::adicionarPontos(int n) {
+    pontos += n;
 }

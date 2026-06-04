@@ -1,17 +1,16 @@
 #pragma once
 #include "Inimigo.h"
 
-class Inim_Facil : public Inimigo {
+class Inim_Medio : public Inimigo {
 private:
-    float       raio;
-    sf::Texture texBlink;
-    sf::Sprite  spriteAnim;
+    int tamanho;
 public:
     using Inimigo::operator=;
-    Inim_Facil();
-    Inim_Facil(float px, float py);
-    ~Inim_Facil();
+    Inim_Medio();
+    Inim_Medio(float px, float py);
+    ~Inim_Medio();
     void desenhar()         override;
+    void danificar(Jogador* p) override;
     void salvarDataBuffer() override;
     void salva()            override;
 };

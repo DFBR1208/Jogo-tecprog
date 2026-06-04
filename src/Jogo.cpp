@@ -1,7 +1,7 @@
 #include "Jogo.h"
 #include "Ente.h"
 
-Jogo::Jogo() : GG(new Gerenciador_Grafico()), pJog1(new Jogador()), pFase(new FasePrimeira(pJog1))  {
+Jogo::Jogo() : GG(new Gerenciador_Grafico()), pJog1(new Jogador()), pFase(new FasePrimeira(pJog1)), pMenu(new Menu(this))  {
     Ente::setGerenciadorGrafico(GG);
 }
 
@@ -9,6 +9,7 @@ Jogo::~Jogo() {
     delete pFase;
     delete GG;
     delete pJog1;
+    delete pMenu;
 }
 
 void Jogo::executar() {
@@ -16,10 +17,19 @@ void Jogo::executar() {
 
         GG->limpar();
 
-        pFase->executar();
+        pMenu->executar();
 
-        pFase->desenhar(); 
+        pMenu->desenhar(); 
 
         GG->mostrar();
     }
+}
+
+void Jogo::iniciarFase1() {
+	while (GG->verificaJanelaAberta()) {
+		GG->limpar();
+		pFase->executar();
+		pFase->desenhar();
+		GG->mostrar();
+	}
 }

@@ -5,7 +5,7 @@ Jogador::Jogador() : Personagem() {
     pontos = 0;
 
     forma.setSize(sf::Vector2f(30.f, 50.f));
-    forma.setFillColor(sf::Color::Transparent); // hitbox invisivel
+    forma.setFillColor(sf::Color::Transparent);
     forma.setPosition(50.f, 0.f);
 
     velocidadeX = 5.0f;
@@ -56,29 +56,30 @@ void Jogador::mover() {
     velocidadeY += gravidade;
     forma.move(0.f, velocidadeY);
 
-
     if (forma.getPosition().y >= 700.f) {
-        forma.setPosition(forma.getPosition().x, 700.f); 
-        velocidadeY = 0.0f; 
-        noChao = true;    
+        forma.setPosition(forma.getPosition().x, 700.f);
+        velocidadeY = 0.0f;
+        noChao = true;
     }
 }
 
 void Jogador::pararNoChao(float y_chao) {
     forma.setPosition(forma.getPosition().x, y_chao - forma.getSize().y);
-    velocidadeY = 0.0f; 
-    noChao = true;     
+    velocidadeY = 0.0f;
+    noChao = true;
 }
 
-void Jogador::tomarDano() {
+void Jogador::tomarDano(bool knockback_direita) {
     num_vidas--;
-    
 
     if (num_vidas <= 0) {
-        exit(0); 
+        exit(0);
     }
     else {
-        forma.setPosition(50.f, 0.f);
+        if (knockback_direita)
+            forma.move(50.f, -50.f);
+        else
+            forma.move(-50.f, -50.f);
     }
 }
 
@@ -145,7 +146,6 @@ void Jogador::desenhar() {
 
     pGG->desenhar(spriteAnim);
 
-
 }
 sf::FloatRect Jogador::getBounds() const {
     return spriteAnim.getGlobalBounds();
@@ -153,6 +153,10 @@ sf::FloatRect Jogador::getBounds() const {
 
 sf::Vector2f Jogador::getPosicao() const {
     return forma.getPosition();
+}
+
+sf::RectangleShape Jogador::getForma() {
+    return forma;
 }
 
 int Jogador::getNumVidas() const {

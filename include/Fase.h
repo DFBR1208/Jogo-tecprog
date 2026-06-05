@@ -8,7 +8,6 @@ class Plataforma;
 
 class Fase : public Ente {
 protected:
-    Jogador*         pJogador;
     ListaEntidades   lista_enti;
     Gerenciador_Colisoes GC;
 
@@ -23,7 +22,7 @@ protected:
     void criarCenario();
     
 public:
-    Fase();
+    Fase(Jogador* pJog);
     virtual ~Fase();
     virtual void executar() = 0;
     int getVidas()  const;

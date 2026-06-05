@@ -1,7 +1,7 @@
 #include "FasePrimeira.h"
 #include <cstdlib>
 
-FasePrimeira::FasePrimeira() : Fase() {
+FasePrimeira::FasePrimeira(Jogador* pJog) : Fase(pJog) {
     criarInimigos();
     criarObstaculo();
 
@@ -49,7 +49,6 @@ void FasePrimeira::criarObstMedios() {
 }
 
 void FasePrimeira::executar() {
-    pJogador->executar();
     lista_enti.percorrer();
     GC.executar();
     pGG->atualizarCamera(pJogador->getPosicao(), MUNDO_LARGURA, MUNDO_ALTURA);
@@ -59,5 +58,4 @@ void FasePrimeira::desenhar() {
     pGG->desenhar(spriteBg);
     pGG->desenhar(chao);
     lista_enti.desenhar();
-    pJogador->desenhar();
 }

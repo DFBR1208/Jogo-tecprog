@@ -12,7 +12,6 @@ private:
 
     sf::RectangleShape forma;
 
-    // animacao
     sf::Texture texIdle, texRun, texJump, texFall;
     sf::Sprite  spriteAnim;
     int   frameAtual;
@@ -31,12 +30,13 @@ public:
     void mover();
     void desenhar() override;
     void pararNoChao(float y_chao);
-    void tomarDano();
+    void tomarDano(bool knockback_direita = false);
     float getVelocidadeY() const;
     void baterCabeca(float base_plataforma);
-    sf::FloatRect getBounds() const;
-    sf::Vector2f  getPosicao() const;
-    int  getNumVidas() const;
-    int  getPontos() const;
+    sf::FloatRect      getBounds()   const;
+    sf::Vector2f       getPosicao()  const;
+    sf::RectangleShape getForma();
+    int  getNumVidas()       const;
+    int  getPontos()         const;
     void adicionarPontos(int n);
 };

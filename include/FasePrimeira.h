@@ -6,7 +6,7 @@
 #include "Plataforma.h"
 class FasePrimeira : public Fase {
 public:
-    static constexpr float MUNDO_LARGURA = 3200.f;
+    static constexpr float MUNDO_LARGURA = 1600.f;
     static constexpr float MUNDO_ALTURA  = 3200.f;
 private:
     sf::Texture texturaBg;
@@ -20,7 +20,7 @@ private:
     void criarInimigos()  override;
     void criarObstaculo() override;
 public:
-    FasePrimeira();
+    FasePrimeira(Jogador* pJog);
     ~FasePrimeira();
     void executar() override;
     void desenhar() override;

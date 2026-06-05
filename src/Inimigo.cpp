@@ -91,8 +91,11 @@ std::ostream& operator<<(std::ostream& os, const Inimigo& ini) {
 }
 
 void Inimigo::danificar(Jogador* p) {
-    if (p != nullptr)
-        p->tomarDano();
+    if (p != nullptr){
+        float xJogador=p->getForma().getPosition().x;
+        bool knockback_direita = (bool)(xJogador>forma.getPosition().x);
+        p->tomarDano(knockback_direita);
+    }
 }
 
 sf::FloatRect Inimigo::getBounds() const {

@@ -9,8 +9,8 @@ public:
     Inim_Medio();
     Inim_Medio(float px, float py);
     ~Inim_Medio();
-    void desenhar()         override;
-    void danificar(Jogador* p) override;
+    void danificar(Jogador* p);
+    void salvar();
     void salvarDataBuffer() override;
     void salva()            override;
 };

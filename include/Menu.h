@@ -14,6 +14,6 @@ private:
 public:
     Menu(Jogo* pJ);
     ~Menu();
-    void executar() override;
-    void desenhar() override;
+    void executar();
+    void desenhar();
 };

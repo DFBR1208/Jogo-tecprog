@@ -32,10 +32,9 @@ void Gerenciador_Grafico::atualizarCamera(sf::Vector2f posJogador, float mundoLa
     float halfW = camera.getSize().x / 2.f;
     float halfH = camera.getSize().y / 2.f;
 
-    float cx = posJogador.x + 15.f; 
-    float cy = posJogador.y + 25.f; 
+    float cx = posJogador.x + 15.f;
+    float cy = posJogador.y + 25.f;
 
-    // impede a câmera de sair dos limites do mundo
     if (cx - halfW < 0.f)          cx = halfW;
     if (cx + halfW > mundoLargura) cx = mundoLargura - halfW;
     if (cy - halfH < 0.f)          cy = halfH;

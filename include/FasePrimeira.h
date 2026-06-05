@@ -23,5 +23,5 @@ public:
     FasePrimeira(Jogador* pJog);
     ~FasePrimeira();
     void executar() override;
-    void desenhar() override;
+    void desenhar();
 };

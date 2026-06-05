@@ -28,6 +28,7 @@ Jogador::Jogador() : Personagem() {
 
     spriteAnim.setTexture(texIdle);
     spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
+    pFig = new Figura(&spriteAnim);
 }
 
 Jogador::~Jogador() {
@@ -35,6 +36,19 @@ Jogador::~Jogador() {
 
 void Jogador::executar() {
     mover();
+    atualizarAnimacao();
+
+    sf::Vector2f pos  = forma.getPosition();
+    sf::Vector2f size = forma.getSize();
+    float sx = size.x / FRAME_SIZE;
+    float sy = size.y / FRAME_SIZE;
+    if (viradoEsquerda) {
+        spriteAnim.setScale(-sx, sy);
+        spriteAnim.setPosition(pos.x + size.x, pos.y);
+    } else {
+        spriteAnim.setScale(sx, sy);
+        spriteAnim.setPosition(pos.x, pos.y);
+    }
 }
 
 void Jogador::mover() {
@@ -127,26 +141,8 @@ void Jogador::atualizarAnimacao() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))  viradoEsquerda = true;
 }
 
-void Jogador::desenhar() {
-    if (pGG == nullptr) return;
-    atualizarAnimacao();
+void Jogador::salvar() {}
 
-    sf::Vector2f pos  = forma.getPosition();
-    sf::Vector2f size = forma.getSize();
-    float sx = size.x / FRAME_SIZE;
-    float sy = size.y / FRAME_SIZE;
-
-    if (viradoEsquerda) {
-        spriteAnim.setScale(-sx, sy);
-        spriteAnim.setPosition(pos.x + size.x, pos.y);
-    } else {
-        spriteAnim.setScale(sx, sy);
-        spriteAnim.setPosition(pos.x, pos.y);
-    }
-
-    pGG->desenhar(spriteAnim);
-
-}
 sf::FloatRect Jogador::getBounds() const {
     return spriteAnim.getGlobalBounds();
 }

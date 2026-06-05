@@ -28,10 +28,10 @@ public:
 
     void executar()                override;
     void mover()                   override;
-    void mover(Plataforma* p);              // sobrecarga: patrulha sobre plataforma
+    void mover(Plataforma* p);
     sf::FloatRect getBounds() const override;
 
-    Inimigo& operator=(Plataforma* p);      // posiciona na plataforma e guarda referencia
+    Inimigo& operator=(Plataforma* p);
     friend std::ostream& operator<<(std::ostream& os, const Inimigo& ini);
 
     virtual void danificar(Jogador* p);

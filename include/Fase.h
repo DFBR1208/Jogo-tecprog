@@ -8,7 +8,8 @@ class Plataforma;
 
 class Fase : public Ente {
 protected:
-    ListaEntidades   lista_enti;
+    Jogador*             pJogador;
+    ListaEntidades       lista_enti;
     Gerenciador_Colisoes GC;
 
     static const int maxInimFaceis = 6;
@@ -20,7 +21,7 @@ protected:
     virtual void criarInimigos() = 0;
     virtual void criarObstaculo() = 0;
     void criarCenario();
-    
+
 public:
     Fase(Jogador* pJog);
     virtual ~Fase();

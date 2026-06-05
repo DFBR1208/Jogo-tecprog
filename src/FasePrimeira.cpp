@@ -23,10 +23,10 @@ void FasePrimeira::criarInimigos() {
 }
 
 void FasePrimeira::criarInimMedios() {
-    int total = rand() % (maxInimMedios - 3 + 1) + 3; // [3, maxInimMedios]
+    int total = rand() % (maxInimMedios - 3 + 1) + 3;
     for (int i = 0; i < total; i++) {
         Inim_Medio* im = new Inim_Medio(0.f, 0.f);
-        (*im) = plats[1 + (i % (NUM_PLATS - 1))]; // posiciona em plats[1] ou plats[2]
+        (*im) = plats[1 + (i % (NUM_PLATS - 1))];
         lista_enti.incluir(im);
         GC.incluirInimigo(im);
     }

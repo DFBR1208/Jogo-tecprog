@@ -38,7 +38,6 @@ void Inimigo::executar() {
         mover();
 }
 
-// patrulha no chao com gravidade
 void Inimigo::mover() {
     forma.move(velocidadeX, 0.f);
     if (forma.getPosition().x <= 100.f || forma.getPosition().x >= 760.f)
@@ -55,7 +54,6 @@ void Inimigo::mover() {
     }
 }
 
-// sobrecarga: patrulha dentro dos limites da plataforma
 void Inimigo::mover(Plataforma* p) {
     sf::FloatRect b = p->getBounds();
     float limEsq = b.left;
@@ -67,11 +65,9 @@ void Inimigo::mover(Plataforma* p) {
     if (px <= limEsq || px >= limDir)
         velocidadeX = -velocidadeX;
 
-    // mantém colado ao topo da plataforma
     forma.setPosition(forma.getPosition().x, b.top - forma.getSize().y);
 }
 
-// posiciona o inimigo na plataforma e guarda a referencia
 Inimigo& Inimigo::operator=(Plataforma* p) {
     pPlataforma = p;
     if (p) {

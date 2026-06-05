@@ -8,11 +8,9 @@ private:
     sf::RenderWindow* window;
     sf::View camera;
 
-    // Texturas do background
     sf::Texture texBg;
     sf::Texture texTerrain;
 
-    // Texturas do player
     sf::Texture texPlayerIdle;
     sf::Texture texPlayerRun;
     sf::Texture texPlayerJump;
@@ -21,7 +19,6 @@ private:
     sf::Texture texPlayerDoubleJump;
     sf::Texture texPlayerWallJump;
 
-    // Texturas do inimigo
     sf::Texture texEnemyIdle;
     sf::Texture texEnemyBlink;
     sf::Texture texEnemyTopHit;
@@ -45,12 +42,11 @@ public:
     sf::RenderWindow* getWindow();
 
     void atualizarCamera(sf::Vector2f posJogador, float mundoLargura, float mundoAltura);
-    void resetarViewUI(); 
-    // Getters de texturas - background
+    void resetarViewUI();
+
     const sf::Texture& getTexBg()      const { return texBg; }
     const sf::Texture& getTexTerrain() const { return texTerrain; }
 
-    // Getters de texturas - player
     const sf::Texture& getTexPlayerIdle()       const { return texPlayerIdle; }
     const sf::Texture& getTexPlayerRun()        const { return texPlayerRun; }
     const sf::Texture& getTexPlayerJump()       const { return texPlayerJump; }
@@ -59,7 +55,6 @@ public:
     const sf::Texture& getTexPlayerDoubleJump() const { return texPlayerDoubleJump; }
     const sf::Texture& getTexPlayerWallJump()   const { return texPlayerWallJump; }
 
-    // Getters de texturas - inimigo
     const sf::Texture& getTexEnemyIdle()      const { return texEnemyIdle; }
     const sf::Texture& getTexEnemyBlink()     const { return texEnemyBlink; }
     const sf::Texture& getTexEnemyTopHit()    const { return texEnemyTopHit; }

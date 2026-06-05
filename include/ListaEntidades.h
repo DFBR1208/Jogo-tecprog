@@ -4,7 +4,7 @@
 
 class ListaEntidades
 {
-    private: 
+    private:
     Lista<Entidade> LEs;
 
     public:

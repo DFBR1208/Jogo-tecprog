@@ -11,7 +11,8 @@ public:
     Inim_Facil();
     Inim_Facil(float px, float py);
     ~Inim_Facil();
-    void desenhar()         override;
+    void executar();
+    void salvar();
     void salvarDataBuffer() override;
     void salva()            override;
 };

@@ -5,6 +5,7 @@ Inim_Facil::Inim_Facil() : Inimigo() {
     texBlink.loadFromFile("assests/enemy/Blink (42x42).png");
     spriteAnim.setTexture(texBlink);
     spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
+    pFig = new Figura(&spriteAnim);
 }
 
 Inim_Facil::Inim_Facil(float px, float py) : Inimigo(px, py) {
@@ -12,12 +13,13 @@ Inim_Facil::Inim_Facil(float px, float py) : Inimigo(px, py) {
     texBlink.loadFromFile("assests/enemy/Blink (42x42).png");
     spriteAnim.setTexture(texBlink);
     spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
+    pFig = new Figura(&spriteAnim);
 }
 
 Inim_Facil::~Inim_Facil() {}
 
-void Inim_Facil::desenhar() {
-    if (!pGG) return;
+void Inim_Facil::executar() {
+    Inimigo::executar();
 
     temporizador++;
     if (temporizador >= DURACAO_FRAME) {
@@ -35,10 +37,8 @@ void Inim_Facil::desenhar() {
         spriteAnim.setScale(1.f, 1.f);
         spriteAnim.setPosition(pos.x, pos.y);
     }
-
-    pGG->desenhar(spriteAnim);
 }
 
+void Inim_Facil::salvar() {}
 void Inim_Facil::salvarDataBuffer() {}
-
 void Inim_Facil::salva() {}

@@ -28,11 +28,11 @@ public:
     ~Jogador();
     void executar();
     void mover();
-    void desenhar() override;
     void pararNoChao(float y_chao);
     void tomarDano(bool knockback_direita = false);
     float getVelocidadeY() const;
     void baterCabeca(float base_plataforma);
+    void salvar();
     sf::FloatRect      getBounds()   const;
     sf::Vector2f       getPosicao()  const;
     sf::RectangleShape getForma();

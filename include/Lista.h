@@ -1,6 +1,6 @@
 #pragma once
 
-
+//template das aulas 
 template <class TL>
 class Lista {
     public:
@@ -17,11 +17,11 @@ class Lista {
         Elemento<TE>* getProx()  const { return pProx; }
         void setProx(Elemento<TE>* p) { pProx = p; }
     };
-    private:    
+    private:
     Elemento<TL>* pPrimeiro;
     Elemento<TL>* pUltimo;
     public:
-    
+
     Lista() : pPrimeiro(nullptr), pUltimo(nullptr) {}
 
     ~Lista() {

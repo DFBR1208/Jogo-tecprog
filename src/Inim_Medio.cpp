@@ -6,6 +6,7 @@ Inim_Medio::Inim_Medio() : Inimigo() {
     velocidadeX   = -3.5f;
     forma.setSize(sf::Vector2f((float)tamanho, (float)tamanho));
     forma.setFillColor(sf::Color(210, 80, 30));
+    pFig = new Figura(&forma);
 }
 
 Inim_Medio::Inim_Medio(float px, float py) : Inimigo(px, py) {
@@ -14,14 +15,10 @@ Inim_Medio::Inim_Medio(float px, float py) : Inimigo(px, py) {
     velocidadeX   = -3.5f;
     forma.setSize(sf::Vector2f((float)tamanho, (float)tamanho));
     forma.setFillColor(sf::Color(210, 80, 30));
+    pFig = new Figura(&forma);
 }
 
 Inim_Medio::~Inim_Medio() {}
-
-void Inim_Medio::desenhar() {
-    if (!pGG) return;
-    pGG->desenhar(forma);
-}
 
 void Inim_Medio::danificar(Jogador* p) {
     if (!p) return;
@@ -29,5 +26,6 @@ void Inim_Medio::danificar(Jogador* p) {
     p->tomarDano();
 }
 
+void Inim_Medio::salvar() {}
 void Inim_Medio::salvarDataBuffer() {}
 void Inim_Medio::salva() {}

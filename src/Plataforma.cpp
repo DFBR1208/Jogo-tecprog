@@ -18,9 +18,8 @@ Plataforma::Plataforma(float px, float py, float largura) : Obstaculo() {
 
 Plataforma::~Plataforma() {}
 
-void Plataforma::executar() {
-
-}
+void Plataforma::executar() {}
+void Plataforma::salvar() {}
 
 void Plataforma::obstaculizar(Jogador* p) {
     if (p == nullptr) return;

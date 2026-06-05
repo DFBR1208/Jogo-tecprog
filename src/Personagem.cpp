@@ -1,6 +1,6 @@
 #include "Personagem.h"
 
-Personagem::Personagem() : Entidade() { 
+Personagem::Personagem() : Entidade() {
     num_vidas = 3;
 }
 

@@ -11,6 +11,6 @@ public:
 	~Obstaculo();
 	virtual void executar() = 0;
 	virtual void obstaculizar(Jogador* p) = 0;
-	void desenhar() override;
-	sf::FloatRect getBounds() const override;
+	sf::FloatRect getBounds() const;
+	virtual void salvar() = 0;
 };

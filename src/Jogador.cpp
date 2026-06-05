@@ -57,8 +57,8 @@ void Jogador::mover() {
     forma.move(0.f, velocidadeY);
 
 
-    if (forma.getPosition().y >= 500.f) {
-        forma.setPosition(forma.getPosition().x, 500.f); 
+    if (forma.getPosition().y >= 700.f) {
+        forma.setPosition(forma.getPosition().x, 700.f); 
         velocidadeY = 0.0f; 
         noChao = true;    
     }

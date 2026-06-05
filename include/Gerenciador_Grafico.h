@@ -6,6 +6,7 @@ class Ente;
 class Gerenciador_Grafico {
 private:
     sf::RenderWindow* window;
+    sf::View camera;
 
     // Texturas do background
     sf::Texture texBg;
@@ -43,6 +44,8 @@ public:
     bool verificaJanelaAberta();
     sf::RenderWindow* getWindow();
 
+    void atualizarCamera(sf::Vector2f posJogador, float mundoLargura, float mundoAltura);
+    void resetarViewUI(); 
     // Getters de texturas - background
     const sf::Texture& getTexBg()      const { return texBg; }
     const sf::Texture& getTexTerrain() const { return texTerrain; }

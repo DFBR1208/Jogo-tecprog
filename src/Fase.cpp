@@ -15,9 +15,9 @@ Fase::~Fase() {
 
 void Fase::criarInimFaceis() {
     int total = rand() % (maxInimFaceis - 3 + 1) + 3; // [3, maxInimFaceis]
-    for (int i = 0; i < total; i++) {
+    for (int i = 1; i < total+1; i++) {
         Inim_Facil* ini = new Inim_Facil(0.f, 0.f);
-        (*ini) = plats[i % NUM_PLATS]; // posiciona na plataforma via operator=
+        (*ini) = plats[1 + (i % (NUM_PLATS - 1))]; // posiciona em plats[1] ou plats[2]
         lista_enti.incluir(ini);
         GC.incluirInimigo(ini);
     }

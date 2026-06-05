@@ -10,9 +10,9 @@ FasePrimeira::FasePrimeira() : Fase() {
     spriteBg.setTexture(texturaBg);
     spriteBg.setTextureRect(sf::IntRect(0, 0, (int)MUNDO_LARGURA, (int)MUNDO_ALTURA));
 
-    chao.setSize(sf::Vector2f(MUNDO_LARGURA, 500.f));
+    chao.setSize(sf::Vector2f(MUNDO_LARGURA, 700.f));
     chao.setFillColor(sf::Color(101, 67, 33));
-    chao.setPosition(0.f, 550.f);
+    chao.setPosition(0.f, 700.f);
 }
 
 FasePrimeira::~FasePrimeira() {}
@@ -26,7 +26,7 @@ void FasePrimeira::criarInimMedios() {
     int total = rand() % (maxInimMedios - 3 + 1) + 3; // [3, maxInimMedios]
     for (int i = 0; i < total; i++) {
         Inim_Medio* im = new Inim_Medio(0.f, 0.f);
-        (*im) = plats[i % NUM_PLATS]; // posiciona na plataforma via operator=
+        (*im) = plats[1 + (i % (NUM_PLATS - 1))]; // posiciona em plats[1] ou plats[2]
         lista_enti.incluir(im);
         GC.incluirInimigo(im);
     }

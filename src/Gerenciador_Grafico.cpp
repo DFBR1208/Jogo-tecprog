@@ -24,7 +24,29 @@ void Gerenciador_Grafico::carregarTexturas() {
 Gerenciador_Grafico::Gerenciador_Grafico() {
     window = new sf::RenderWindow(sf::VideoMode(800, 600), "Jogo");
     window->setFramerateLimit(60);
+    camera = sf::View(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
     carregarTexturas();
+}
+
+void Gerenciador_Grafico::atualizarCamera(sf::Vector2f posJogador, float mundoLargura, float mundoAltura) {
+    float halfW = camera.getSize().x / 2.f;
+    float halfH = camera.getSize().y / 2.f;
+
+    float cx = posJogador.x + 15.f; 
+    float cy = posJogador.y + 25.f; 
+
+    // impede a câmera de sair dos limites do mundo
+    if (cx - halfW < 0.f)          cx = halfW;
+    if (cx + halfW > mundoLargura) cx = mundoLargura - halfW;
+    if (cy - halfH < 0.f)          cy = halfH;
+    if (cy + halfH > mundoAltura)  cy = mundoAltura - halfH;
+
+    camera.setCenter(cx, cy);
+    window->setView(camera);
+}
+
+void Gerenciador_Grafico::resetarViewUI() {
+    window->setView(window->getDefaultView());
 }
 
 Gerenciador_Grafico::~Gerenciador_Grafico() {

@@ -47,7 +47,7 @@ void Inimigo::mover() {
     velocidadeY += gravidade;
     forma.move(0.f, velocidadeY);
 
-    float chao_y = 500.f - forma.getSize().y;
+    float chao_y = 700.f - forma.getSize().y;
     if (forma.getPosition().y >= chao_y) {
         forma.setPosition(forma.getPosition().x, chao_y);
         velocidadeY = 0.f;

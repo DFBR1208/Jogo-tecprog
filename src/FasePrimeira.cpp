@@ -1,7 +1,7 @@
 #include "FasePrimeira.h"
 #include <cstdlib>
 
-FasePrimeira::FasePrimeira(Jogador* pJog) : Fase(pJog) {
+FasePrimeira::FasePrimeira(Jogador* pJog1, Jogador* pJog2) : Fase(pJog1, pJog2) {
     criarInimigos();
     criarObstaculo();
 
@@ -51,7 +51,7 @@ void FasePrimeira::criarObstMedios() {
 void FasePrimeira::executar() {
     lista_enti.percorrer();
     GC.executar();
-    pGG->atualizarCamera(pJogador->getPosicao(), MUNDO_LARGURA, MUNDO_ALTURA);
+    pGG->atualizarCamera(pJog1->getPosicao(), MUNDO_LARGURA, MUNDO_ALTURA);
 }
 
 void FasePrimeira::desenhar() {

@@ -3,11 +3,14 @@
 #include "Inim_Facil.h"
 #include <cstdlib>
 
-Fase::Fase(Jogador* pJog) : Ente(), pJogador(pJog), GC(pJog) {
+Fase::Fase(Jogador* pJo1, Jogador* pJo2) : Ente(), GC(pJo1, pJog2), pJog1(pJo1), pJog2(pJo2) {
     for (int i = 0; i < NUM_PLATS; i++) plats[i] = nullptr;
     criarPlataformas();
     criarCenario();
-    lista_enti.incluir(pJog); 
+	if(pJog1)
+		lista_enti.incluir(pJog1);
+    if(pJog2)
+		lista_enti.incluir(pJog2);
 }
 
 Fase::~Fase() {}
@@ -36,5 +39,5 @@ void Fase::criarPlataformas() {
 
 void Fase::criarCenario() {}
 
-int Fase::getVidas()  const { return pJogador->getNumVidas(); }
-int Fase::getPontos() const { return pJogador->getPontos(); }
+int Fase::getVidas()  const { return pJog1->getNumVidas(); }
+int Fase::getPontos() const { return pJog1->getPontos(); }

@@ -20,7 +20,7 @@ private:
     void criarInimigos()  override;
     void criarObstaculo() override;
 public:
-    FasePrimeira(Jogador* pJog);
+    FasePrimeira(Jogador* pJog1, Jogador* pJog2);
     ~FasePrimeira();
     void executar() override;
     void desenhar();

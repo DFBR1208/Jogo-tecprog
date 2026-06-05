@@ -1,9 +1,8 @@
-#include "Menu.h"
+#include "HUD.h"
 #include "Jogo.h"
-#include <string>
 
-Menu::Menu(Jogo* pJ) : Ente(), pJogo(pJ), fonteCarregada(false) {
-    fonteCarregada = fonte.loadFromFile("C:/Windows/Fonts/arial.ttf");
+HUD::HUD(Jogo* pJ) : MenuBase(pJ) {
+    fonteCarregada = fonte.loadFromFile("fonts/arial.ttf");
 
     if (fonteCarregada) {
         textoPontos.setFont(fonte);
@@ -22,15 +21,15 @@ Menu::Menu(Jogo* pJ) : Ente(), pJogo(pJ), fonteCarregada(false) {
     }
 }
 
-Menu::~Menu() {}
+HUD::~HUD() {}
 
-void Menu::executar() {}
+void HUD::executar() {}
 
-void Menu::desenhar() {
+void HUD::desenhar() {
     if (!pGG) return;
     pGG->resetarViewUI();
 
-    int vidas  = pJogo->getVidas();
+    int vidas = pJogo->getVidas();
     int pontos = pJogo->getPontos();
 
     for (int i = 0; i < 3; i++) {

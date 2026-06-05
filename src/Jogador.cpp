@@ -1,60 +1,98 @@
 #include "Jogador.h"
 #include <SFML/Window/Keyboard.hpp>
 
-Jogador::Jogador() : Personagem() {
+Jogador::Jogador(bool flag) : Personagem(), j1(flag) {
     pontos = 0;
+    if (j1) {
+        forma.setSize(sf::Vector2f(30.f, 50.f));
+        forma.setFillColor(sf::Color::Transparent); // hitbox invisivel
+        forma.setPosition(375.f, 0.f);
 
-    forma.setSize(sf::Vector2f(30.f, 50.f));
-    forma.setFillColor(sf::Color::Transparent); // hitbox invisivel
-    forma.setPosition(375.f, 0.f);
+        velocidadeX = 5.0f;
+        velocidadeY = 0.0f;
+        gravidade = 1.0f;
+        pulo = -15.0f;
+        noChao = false;
 
-    velocidadeX = 5.0f;
-    velocidadeY = 0.0f;
-    gravidade   = 1.0f;
-    pulo        = -15.0f;
-    noChao      = false;
+        frameAtual = 0;
+        totalFrames = 11;
+        temporizador = 0;
+        duracaoFrame = 7;
+        viradoEsquerda = false;
+        estadoAnim = IDLE;
 
-    frameAtual      = 0;
-    totalFrames     = 11;
-    temporizador    = 0;
-    duracaoFrame    = 7;
-    viradoEsquerda  = false;
-    estadoAnim      = IDLE;
+        texIdle.loadFromFile("assests/player/Idle (32x32).png");
+        texRun.loadFromFile("assests/player/Run (32x32).png");
+        texJump.loadFromFile("assests/player/Jump (32x32).png");
+        texFall.loadFromFile("assests/player/Fall (32x32).png");
 
-    texIdle.loadFromFile("assests/player/Idle (32x32).png");
-    texRun .loadFromFile("assests/player/Run (32x32).png");
-    texJump.loadFromFile("assests/player/Jump (32x32).png");
-    texFall.loadFromFile("assests/player/Fall (32x32).png");
-
-    spriteAnim.setTexture(texIdle);
-    spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
+        spriteAnim.setTexture(texIdle);
+        spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
+    }
+    else {
+        forma.setSize(sf::Vector2f(30.f, 50.f));
+        forma.setFillColor(sf::Color::Blue);
+        forma.setPosition(425.f, 0.f);
+        velocidadeX = 5.0f;
+        velocidadeY = 0.0f;
+        gravidade = 1.0f;
+        pulo = -15.0f;
+        noChao = false;
+        frameAtual = 0;
+        totalFrames = 11;
+        temporizador = 0;
+        duracaoFrame = 7;
+        viradoEsquerda = false;
+        estadoAnim = IDLE;
+    }
 }
 
-Jogador::~Jogador() {
-}
+Jogador::~Jogador() {}
 
 void Jogador::executar() {
     mover();
 }
 
 void Jogador::mover() {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        forma.move(velocidadeX, 0.f);
+    if (j1) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+            forma.move(velocidadeX, 0.f);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+            forma.move(-velocidadeX, 0.f);
+        }
+        float pos_x = forma.getPosition().x;
+        float largura = forma.getSize().x;
+        if (pos_x < 0.f) {
+            forma.setPosition(0.f, forma.getPosition().y);
+        }
+        else if (pos_x + largura > 800.f) {
+            forma.setPosition(800.f - largura, forma.getPosition().y);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && noChao) {
+            velocidadeY = pulo;
+            noChao = false;
+        }
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        forma.move(-velocidadeX, 0.f);
-    }
-    float pos_x = forma.getPosition().x;
-    float largura = forma.getSize().x; 
-    if (pos_x < 0.f) {
-        forma.setPosition(0.f, forma.getPosition().y);
-    }
-    else if (pos_x + largura > 800.f) {
-        forma.setPosition(800.f - largura, forma.getPosition().y);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && noChao) {
-        velocidadeY = pulo;
-        noChao = false;
+    else {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+            forma.move(velocidadeX, 0.f);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+            forma.move(-velocidadeX, 0.f);
+        }
+        float pos_x = forma.getPosition().x;
+        float largura = forma.getSize().x;
+        if (pos_x < 0.f) {
+            forma.setPosition(0.f, forma.getPosition().y);
+        }
+        else if (pos_x + largura > 800.f) {
+            forma.setPosition(800.f - largura, forma.getPosition().y);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && noChao) {
+            velocidadeY = pulo;
+            noChao = false;
+        }
     }
 
     velocidadeY += gravidade;

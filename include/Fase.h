@@ -16,7 +16,7 @@ protected:
     void criarCenario();
     
 public:
-    Fase(Jogador* pJog);
+    Fase(Jogador* pJog1, Jogador* pJog2);
     virtual ~Fase();
     virtual void executar() = 0;
 

@@ -11,7 +11,8 @@
 
 class Gerenciador_Colisoes {
 private:
-    Jogador*          pJogador;
+    Jogador* pJog1;
+	Jogador* pJog2; 
     std::vector<Inimigo*>   LIs;
     std::list<Obstaculo*> LOs;
     //std::set<Projetil*> LPs;
@@ -21,7 +22,7 @@ private:
     void tratarColisoesJogsInimgs();
     //void tratarColicoesJogsProjeteis();
 public:
-    Gerenciador_Colisoes(Jogador* pJog);
+    Gerenciador_Colisoes(Jogador* pJogo1, Jogador* pJogo2);
     ~Gerenciador_Colisoes();
     void incluirInimigo(Inimigo* pi);
     void incluirObstaculo(Obstaculo* po);

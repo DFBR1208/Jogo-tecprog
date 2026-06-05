@@ -9,6 +9,7 @@ private:
     float gravidade;
     float pulo;
     bool noChao;
+	bool j1; // true para jogador 1, false para jogador 2
 
     sf::RectangleShape forma;
 
@@ -25,7 +26,7 @@ private:
 
     void atualizarAnimacao();
 public:
-    Jogador();
+    Jogador(bool flag);
     ~Jogador();
     void executar();
     void mover();

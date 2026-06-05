@@ -1,6 +1,6 @@
 #include "FasePrimeira.h"
 
-FasePrimeira::FasePrimeira(Jogador* pJog) : Fase(pJog) {
+FasePrimeira::FasePrimeira(Jogador* pJog1, Jogador* pJog2) : Fase(pJog1, pJog2) {
     criarInimigos();
     criarObstaculo();
 

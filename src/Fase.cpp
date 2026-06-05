@@ -2,10 +2,13 @@
 #include "Plataforma.h"
 #include "Inim_Facil.h"
 
-Fase::Fase(Jogador* pJog) : Ente(), GC(pJog) {
+Fase::Fase(Jogador* pJog1, Jogador* pJog2) : Ente(), GC(pJog1, pJog2) {
     criarPlataformas();
     criarCenario();
-	lista_enti.incluir(pJog);
+	if(pJog1)
+		lista_enti.incluir(pJog1);
+    if(pJog2)
+		lista_enti.incluir(pJog2);
 }
 
 

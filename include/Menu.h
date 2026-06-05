@@ -13,6 +13,7 @@ private:
 	Jogo* pJogo;
 	int opcaoSelecionada;
 	bool pressed; // Para evitar múltiplas detecções de uma única tecla pressionada
+	int n_jogadores;
 public:
 	Menu(Jogo* pJog);
 	~Menu();

@@ -1,6 +1,6 @@
 #include "Gerenciador_Colisoes.h"
 
-Gerenciador_Colisoes::Gerenciador_Colisoes(Jogador* pJog) : pJogador(pJog) {}
+Gerenciador_Colisoes::Gerenciador_Colisoes(Jogador* pJogo1, Jogador* pJogo2) : pJog1(pJogo1), pJog2(pJogo2) {}
 
 Gerenciador_Colisoes::~Gerenciador_Colisoes() {}
 
@@ -18,20 +18,24 @@ const bool Gerenciador_Colisoes::verificarColisao(Entidade* pe1, Entidade* pe2) 
 
 void Gerenciador_Colisoes::tratarColisoesJogsInimgs() {
     for (Inimigo* ini : LIs) {
-        if (ini && verificarColisao(pJogador, ini))
-            ini->danificar(pJogador);
+        if (ini && verificarColisao(pJog1, ini))
+            ini->danificar(pJog1);
+		if (ini && pJog2 && verificarColisao(pJog2, ini))
+			ini->danificar(pJog2);
     }
 }
 
 void Gerenciador_Colisoes::tratarColisoesJogsObstacs() {
     for (Obstaculo* obs : LOs) {
-        if (obs && verificarColisao(pJogador, obs))
-            obs->obstaculizar(pJogador);
+        if (obs && verificarColisao(pJog1, obs))
+            obs->obstaculizar(pJog1);
+		if (obs && pJog2 && verificarColisao(pJog2, obs))
+			obs->obstaculizar(pJog2);
     }
 }
 
 void Gerenciador_Colisoes::executar() {
-    if (!pJogador) return;
+    if (!pJog1) return;
     tratarColisoesJogsInimgs();
     tratarColisoesJogsObstacs();
 }

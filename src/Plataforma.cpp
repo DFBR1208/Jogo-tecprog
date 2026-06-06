@@ -12,8 +12,11 @@ Plataforma::Plataforma() : Obstaculo() {
 Plataforma::Plataforma(float px, float py, float largura) : Obstaculo() {
     danoso = false;
     forma.setSize(sf::Vector2f(largura, 30.f));
-    forma.setFillColor(sf::Color::White);
     forma.setPosition(px, py);
+    if (pGG) {
+        forma.setTexture(&pGG->getTexPlataforma());
+        forma.setTextureRect(sf::IntRect(0, 0, (int)largura, 30));
+    }
 }
 
 Plataforma::~Plataforma() {}

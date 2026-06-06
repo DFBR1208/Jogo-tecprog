@@ -4,6 +4,10 @@
 void Gerenciador_Grafico::carregarTexturas() {
     texBg.loadFromFile("assests/bg/Pink.png");
     texTerrain.loadFromFile("assests/bg/Terrain (16x16).png");
+    texPlataforma.loadFromFile("assests/plataforma/testePlataforma.png");
+    texPlataforma.setRepeated(true);
+    texPlataforma.setSmooth(false);
+    texObstaculo.loadFromFile("assests/Obstaculo/Idle.png");
 
     texPlayerIdle.loadFromFile("assests/player/Idle (32x32).png");
     texPlayerRun.loadFromFile("assests/player/Run (32x32).png");

@@ -10,6 +10,7 @@ private:
 
     sf::Texture texBg;
     sf::Texture texTerrain;
+    sf::Texture texPlataforma;
 
     sf::Texture texPlayerIdle;
     sf::Texture texPlayerRun;
@@ -25,6 +26,8 @@ private:
     sf::Texture texEnemyBottomHit;
     sf::Texture texEnemyLeftHit;
     sf::Texture texEnemyRightHit;
+
+    sf::Texture texObstaculo;
 
     void carregarTexturas();
 
@@ -44,8 +47,10 @@ public:
     void atualizarCamera(sf::Vector2f posJogador, float mundoLargura, float mundoAltura);
     void resetarViewUI();
 
-    const sf::Texture& getTexBg()      const { return texBg; }
-    const sf::Texture& getTexTerrain() const { return texTerrain; }
+    const sf::Texture& getTexBg()         const { return texBg; }
+    const sf::Texture& getTexTerrain()    const { return texTerrain; }
+    const sf::Texture& getTexPlataforma() const { return texPlataforma; }
+    const sf::Texture& getTexObstaculo() const { return texObstaculo; }
 
     const sf::Texture& getTexPlayerIdle()       const { return texPlayerIdle; }
     const sf::Texture& getTexPlayerRun()        const { return texPlayerRun; }

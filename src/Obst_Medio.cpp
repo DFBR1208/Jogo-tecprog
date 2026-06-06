@@ -11,7 +11,8 @@ Obst_Medio::Obst_Medio(float px, float py, float larg) : Obstaculo() {
     largura = larg;
     danoso  = true;
     forma.setSize(sf::Vector2f(largura, 20.f));
-    forma.setFillColor(sf::Color(220, 50, 50));
+    if(pGG)
+        forma.setTexture(&pGG->getTexObstaculo());
     forma.setPosition(px, py);
 }
 

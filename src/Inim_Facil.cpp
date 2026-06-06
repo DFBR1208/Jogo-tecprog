@@ -39,6 +39,14 @@ void Inim_Facil::executar() {
     }
 }
 
+void Inim_Facil::danificar(Jogador* p) {
+    if (p) {
+        float xJogador = p->getForma().getPosition().x;
+        bool knockback_direita = (xJogador > forma.getPosition().x);
+        p->tomarDano(knockback_direita);
+    }
+}
+
 void Inim_Facil::salvar() {}
 void Inim_Facil::salvarDataBuffer() {}
 void Inim_Facil::salva() {}

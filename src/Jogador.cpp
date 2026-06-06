@@ -38,7 +38,7 @@ Jogador::Jogador(bool flag) : Personagem(), j1(flag) {
         velocidadeX = 5.0f;
         velocidadeY = 0.0f;
         gravidade = 1.0f;
-        pulo = -15.0f;
+        pulo = -30.0f;
         noChao = false;
 
         frameAtual = 0;

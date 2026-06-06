@@ -8,14 +8,14 @@ class Plataforma;
 
 class Fase : public Ente {
 protected:
-    Jogador*             pJog1;
+    Jogador* pJog1;
 	Jogador* pJog2; 
-    ListaEntidades       lista_enti;
+    ListaEntidades lista_enti;
     Gerenciador_Colisoes GC;
 
     static const int maxInimFaceis = 6;
-    static const int NUM_PLATS     = 3;
-    Plataforma*      plats[NUM_PLATS];
+    static const int NUM_PLATS     = 8;
+    Plataforma* plats[NUM_PLATS];
 
     void criarInimFaceis();
     void criarPlataformas();

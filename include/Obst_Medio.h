@@ -8,7 +8,7 @@ public:
     Obst_Medio();
     Obst_Medio(float px, float py, float larg = 40.f);
     ~Obst_Medio();
-    void obstaculizar(Jogador* p) override;
-    void executar() override;
+    void obstaculizar(Jogador* p);
+    void executar();
     void salvar();
 };

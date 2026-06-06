@@ -10,9 +10,9 @@ FasePrimeira::FasePrimeira(Jogador* pJog1, Jogador* pJog2) : Fase(pJog1, pJog2) 
     spriteBg.setTexture(texturaBg);
     spriteBg.setTextureRect(sf::IntRect(0, 0, (int)MUNDO_LARGURA, (int)MUNDO_ALTURA));
 
-    chao.setSize(sf::Vector2f(MUNDO_LARGURA, 700.f));
+    chao.setSize(sf::Vector2f(MUNDO_LARGURA, 750.f));
     chao.setFillColor(sf::Color(101, 67, 33));
-    chao.setPosition(0.f, 700.f);
+    chao.setPosition(0.f, 750.f);
 }
 
 FasePrimeira::~FasePrimeira() {}
@@ -23,14 +23,17 @@ void FasePrimeira::criarInimigos() {
 }
 
 void FasePrimeira::criarInimMedios() {
-    int total = rand() % (maxInimMedios - 3 + 1) + 3;
-    for (int i = 0; i < total; i++) {
+    auto addIniM = [&](Plataforma* plat) {
         Inim_Medio* im = new Inim_Medio(0.f, 0.f);
-        (*im) = plats[1 + (i % (NUM_PLATS - 1))];
+        (*im) = plat;
         lista_enti.incluir(im);
         GC.incluirInimigo(im);
-    }
+    };
+
+    
+    addIniM(plats[2]);
 }
+
 
 void FasePrimeira::criarObstaculo() {
     criarObstMedios();
@@ -42,9 +45,8 @@ void FasePrimeira::criarObstMedios() {
         lista_enti.incluir(ob);
         GC.incluirObstaculo(ob);
     };
-    addObst(120.f, 350.f);
-    addObst(600.f, 530.f);
-    addObst(590.f, 370.f);
+    addObst(410.f, 230.f);
+    addObst(1300.f, 430.f);
     if (rand() % 2) { addObst(790.f, 370.f); }
 }
 

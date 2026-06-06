@@ -12,6 +12,7 @@ public:
     Inim_Facil(float px, float py);
     ~Inim_Facil();
     void executar();
+    void danificar(Jogador* p);
     void salvar();
     void salvarDataBuffer() override;
     void salva()            override;

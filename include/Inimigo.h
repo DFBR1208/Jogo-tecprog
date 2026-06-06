@@ -32,9 +32,10 @@ public:
     sf::FloatRect getBounds() const override;
 
     Inimigo& operator=(Plataforma* p);
+    void     setPlataforma(Plataforma* p);
     friend std::ostream& operator<<(std::ostream& os, const Inimigo& ini);
 
-    virtual void danificar(Jogador* p);
+    virtual void danificar(Jogador* p) = 0;
     virtual void salvarDataBuffer() = 0;
     virtual void salva()            = 0;
 };

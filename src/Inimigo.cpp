@@ -47,7 +47,7 @@ void Inimigo::mover() {
     forma.move(0.f, velocidadeY);
 
     float chao_y = 700.f - forma.getSize().y;
-    if (forma.getPosition().y >= chao_y) {
+    if (forma.getPosition().y > chao_y) {
         forma.setPosition(forma.getPosition().x, chao_y);
         velocidadeY = 0.f;
         noChao = true;
@@ -68,7 +68,7 @@ void Inimigo::mover(Plataforma* p) {
     forma.setPosition(forma.getPosition().x, b.top - forma.getSize().y);
 }
 
-Inimigo& Inimigo::operator=(Plataforma* p) {
+void Inimigo::setPlataforma(Plataforma* p) {
     pPlataforma = p;
     if (p) {
         sf::FloatRect b = p->getBounds();
@@ -76,6 +76,10 @@ Inimigo& Inimigo::operator=(Plataforma* p) {
         float offsetX = (rangeX > 1.f) ? static_cast<float>(rand() % static_cast<int>(rangeX)) : 0.f;
         forma.setPosition(b.left + offsetX, b.top - forma.getSize().y);
     }
+}
+
+Inimigo& Inimigo::operator=(Plataforma* p) {
+    setPlataforma(p);
     return *this;
 }
 

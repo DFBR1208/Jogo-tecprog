@@ -16,14 +16,19 @@ Fase::Fase(Jogador* pJo1, Jogador* pJo2) : Ente(), GC(pJo1, pJog2), pJog1(pJo1),
 Fase::~Fase() {}
 
 void Fase::criarInimFaceis() {
-    int total = rand() % (maxInimFaceis - 3 + 1) + 3;
-    for (int i = 1; i < total + 1; i++) {
+    auto addIniF = [&](Plataforma* plat) {
         Inim_Facil* ini = new Inim_Facil(0.f, 0.f);
-        (*ini) = plats[1 + (i % (NUM_PLATS - 1))];
+        (*ini) = plat;
         lista_enti.incluir(ini);
         GC.incluirInimigo(ini);
-    }
+    };
+
+    addIniF(plats[1]);
+    addIniF(plats[3]);
+    if (rand()%10 == 1) {addIniF(plats[3]);}
+
 }
+
 
 void Fase::criarPlataformas() {
     auto addPlat = [&](int idx, float x, float y, float w) {
@@ -32,9 +37,12 @@ void Fase::criarPlataformas() {
         lista_enti.incluir(p);
         GC.incluirObstaculo(p);
     };
-    addPlat(0, 100.f, 250.f, 400.f);
-    addPlat(1, 300.f, 450.f, 200.f);
-    addPlat(2, 520.f, 370.f, 200.f);
+    addPlat(0, 100.f, 650.f, 200.f);
+    addPlat(1, 350.f, 550.f, 450.f);
+    addPlat(2, 880.f, 470.f, 500.f);
+    addPlat(3, 410.f, 370.f, 600.f);
+    addPlat(4, 410.f, 270.f, 100.f);
+    addPlat(5, 660.f, 270.f, 100.f);
 }
 
 void Fase::criarCenario() {}

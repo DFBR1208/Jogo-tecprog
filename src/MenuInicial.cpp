@@ -3,9 +3,9 @@
 #include <iostream>
 
 MenuInicial::MenuInicial(Jogo* pJ) : MenuBase(pJ), titulo(), opcoes(), opcaoSelecionada(0), pressed(false), n_jogadores(1) {
-	fonteCarregada = fonte.loadFromFile("fonts/ARIAL.ttf");
+	fonteCarregada = fonte.loadFromFile("fonts/arial.ttf");
 	if (!fonteCarregada) {
-		std::cerr << "Erro ao carregar a fonte ARIAL.ttf" << std::endl;
+		std::cout << "Erro ao carregar a fonte arial.ttf" << std::endl;
 	}
 	titulo.setFont(fonte);
 	titulo.setString("Jogo");

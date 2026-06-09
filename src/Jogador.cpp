@@ -38,7 +38,7 @@ Jogador::Jogador(bool flag) : Personagem(), j1(flag) {
         velocidadeX = 5.0f;
         velocidadeY = 0.0f;
         gravidade = 1.0f;
-        pulo = -30.0f;
+        pulo = -15.0f;
         noChao = false;
 
         frameAtual = 0;
@@ -153,8 +153,15 @@ void Jogador::baterCabeca(float base_plataforma) {
 }
 
 void Jogador::atualizarAnimacao() {
-    bool movendo = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
-                   sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+    bool movendo = false;
+	if (j1) {
+		movendo = sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+		viradoEsquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+	}
+	else {
+		movendo = sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::A);
+		viradoEsquerda = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
+	}
 
     EstadoAnim novoEstado;
     if (!noChao)
@@ -183,8 +190,14 @@ void Jogador::atualizarAnimacao() {
     }
     spriteAnim.setTextureRect(sf::IntRect(frameAtual * FRAME_SIZE, 0, FRAME_SIZE, FRAME_SIZE));
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) viradoEsquerda = false;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))  viradoEsquerda = true;
+	if (j1) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) viradoEsquerda = false;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))  viradoEsquerda = true;
+	}
+	else {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) viradoEsquerda = false;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))  viradoEsquerda = true;
+	}
 }
 
 void Jogador::salvar() {}

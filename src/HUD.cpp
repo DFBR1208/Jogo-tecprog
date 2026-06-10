@@ -1,7 +1,7 @@
 #include "HUD.h"
-#include "Jogo.h"
+#include "Jogador.h"
 
-HUD::HUD(Jogo* pJ) : MenuBase(pJ) {
+HUD::HUD(Jogador* pJo1) : Ente(), pJog1(pJo1), fonteCarregada(false) {
     fonteCarregada = fonte.loadFromFile("fonts/arial.ttf");
 
     if (fonteCarregada) {
@@ -29,8 +29,8 @@ void HUD::desenhar() {
     if (!pGG) return;
     pGG->resetarViewUI();
 
-    int vidas = pJogo->getVidas();
-    int pontos = pJogo->getPontos();
+    int vidas = pJog1->getNumVidas();
+    int pontos = pJog1->getPontos();
 
     for (int i = 0; i < 3; i++) {
         coracoes[i].setFillColor(i < vidas ? sf::Color::Red : sf::Color(60, 60, 60));

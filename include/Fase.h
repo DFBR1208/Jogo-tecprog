@@ -27,7 +27,5 @@ public:
     Fase(Jogador* pJo1, Jogador* pJo2);
     virtual ~Fase();
     virtual void executar() = 0;
-    int getVidas()  const;
-    int getPontos() const;
 
 };

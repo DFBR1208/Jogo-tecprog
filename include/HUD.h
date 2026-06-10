@@ -1,13 +1,18 @@
 #pragma once
-#include "MenuBase.h"
+#include "Ente.h"
 
-class HUD : public MenuBase {
+class Jogador;
+
+class HUD : public Ente {
 private:
     sf::Text textoPontos;
     sf::RectangleShape coracoes[3];
+	sf::Font fonte;
+	bool fonteCarregada;
+	Jogador* pJog1;
 public:
-    HUD(Jogo* pJ);
+    HUD(Jogador* pJo1);
     ~HUD();
-    void executar() override; 
-    void desenhar() override;
+    void executar(); 
+    void desenhar();
 };

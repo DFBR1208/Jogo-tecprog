@@ -47,5 +47,4 @@ void Fase::criarPlataformas() {
 
 void Fase::criarCenario() {}
 
-int Fase::getVidas()  const { return pJog1->getNumVidas(); }
-int Fase::getPontos() const { return pJog1->getPontos(); }
+

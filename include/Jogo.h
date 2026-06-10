@@ -2,7 +2,7 @@
 #include "Gerenciador_Grafico.h"
 #include "FasePrimeira.h"
 #include "Jogador.h"
-#include "MenuInicial.h"
+#include "Menu.h"
 #include "HUD.h"
 
 class Menu;
@@ -13,13 +13,11 @@ private:
 	Jogador* pJog1;
 	Jogador* pJog2;
     FasePrimeira* pFase;
-    MenuInicial* pMenuIni;
+    Menu* pMenu;
 	HUD* pHUD;
 public:
     Jogo();
     ~Jogo();
     void executar();
 	void iniciarFase1(int n_jogs);
-    int getVidas()  const;
-    int getPontos() const;
 };

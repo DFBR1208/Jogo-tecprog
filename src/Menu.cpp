@@ -1,12 +1,9 @@
-#include "MenuInicial.h"
+#include "Menu.h"
 #include "Jogo.h"
 #include <iostream>
 
-MenuInicial::MenuInicial(Jogo* pJ) : MenuBase(pJ), titulo(), opcoes(), opcaoSelecionada(0), pressed(false), n_jogadores(1) {
-	fonteCarregada = fonte.loadFromFile("fonts/arial.ttf");
-	if (!fonteCarregada) {
-		std::cout << "Erro ao carregar a fonte arial.ttf" << std::endl;
-	}
+Menu::Menu(Jogo* pJ) : Ente(), titulo(), opcoes(), opcaoSelecionada(0), pressed(false), n_jogadores(1), pJogo(pJ) {
+	fonte.loadFromFile("fonts/arial.ttf");
 	titulo.setFont(fonte);
 	titulo.setString("Jogo");
 	titulo.setCharacterSize(48);
@@ -36,9 +33,9 @@ MenuInicial::MenuInicial(Jogo* pJ) : MenuBase(pJ), titulo(), opcoes(), opcaoSele
 	opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
 }
 
-MenuInicial::~MenuInicial() {}
+Menu::~Menu() {}
 
-void MenuInicial::executar() {
+void Menu::executar() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !pressed) {
 		if (opcaoSelecionada < 3) {
 			opcaoSelecionada++;
@@ -75,7 +72,7 @@ void MenuInicial::executar() {
 	}
 }
 
-void MenuInicial::desenhar() {
+void Menu::desenhar() {
 	getGerenciadorGrafico()->desenhar(titulo);
 	for (int i = 0; i < 4; ++i) {
 		getGerenciadorGrafico()->desenhar(opcoes[i]);

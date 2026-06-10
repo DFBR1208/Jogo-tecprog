@@ -5,8 +5,9 @@ class Figura {
 private:
     sf::Drawable* pDrawable;
 public:
-    Figura() : pDrawable(nullptr) {}
-    Figura(sf::Drawable* pd) : pDrawable(pd) {}
-    void           setDrawable(sf::Drawable* pd) { pDrawable = pd; }
-    sf::Drawable*  getDrawable() const           { return pDrawable; }
+    Figura();
+    Figura(sf::Drawable* pd);
+	~Figura();
+    void           setDrawable(sf::Drawable* pd);
+    sf::Drawable* getDrawable() const;
 };

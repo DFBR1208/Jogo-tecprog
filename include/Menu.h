@@ -1,10 +1,14 @@
 #pragma once
-#include "MenuBase.h"
+#include "Ente.h"
 #include <vector>
 #include <string>
 
-class MenuInicial : public MenuBase {
+class Jogo;
+
+class Menu : public Ente {
 private:
+    Jogo* pJogo;
+	sf::Font fonte;
     sf::Text titulo;
     std::vector<sf::Text> opcoes;
     int opcaoSelecionada;
@@ -12,8 +16,8 @@ private:
     int n_jogadores;
 
 public:
-    MenuInicial(Jogo* pJ);
-    ~MenuInicial();
+    Menu(Jogo* pJ);
+    ~Menu();
     void executar();
     void desenhar();
 };

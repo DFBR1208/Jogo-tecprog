@@ -1,9 +1,9 @@
 #include "Jogo.h"
-#include "MenuInicial.h"
+#include "Menu.h"
 #include "HUD.h"
 #include "Ente.h"
 
-Jogo::Jogo() : GG(new Gerenciador_Grafico()), pJog1(nullptr), pJog2(nullptr), pFase(nullptr), pMenuIni(new MenuInicial(this)), pHUD(new HUD(this)) {
+Jogo::Jogo() : GG(new Gerenciador_Grafico()), pJog1(nullptr), pJog2(nullptr), pFase(nullptr), pMenu(new Menu(this)), pHUD(nullptr) {
     Ente::setGerenciadorGrafico(GG);
 }
 
@@ -13,19 +13,17 @@ Jogo::~Jogo() {
     delete GG;
     delete pJog1;
     delete pJog2;
-    delete pMenuIni;
+    delete pMenu;
 }
 
-int Jogo::getVidas()  const { return pFase->getVidas(); }
-int Jogo::getPontos() const { return pFase->getPontos(); }
 
 void Jogo::executar() {
     while (GG->verificaJanelaAberta()) {
         GG->limpar();
 
-        pMenuIni->executar();
+        pMenu->executar();
 
-        pMenuIni->desenhar(); 
+        pMenu->desenhar(); 
 
         GG->mostrar();
     }
@@ -34,10 +32,13 @@ void Jogo::executar() {
 void Jogo::iniciarFase1(int n_jogs) {
 	if (n_jogs == 1) {
 		pJog1 = new Jogador(true);
+		pHUD = new HUD(pJog1);
 		pFase = new FasePrimeira(pJog1, nullptr);
+		
 	}
 	else if (n_jogs == 2) {
 		pJog1 = new Jogador(true);
+		pHUD = new HUD(pJog1);
 		pJog2 = new Jogador(false);
 		pFase = new FasePrimeira(pJog1, pJog2);
 	}

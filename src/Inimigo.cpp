@@ -4,9 +4,6 @@
 Inimigo::Inimigo() : Personagem() {
     nivel_maldade = 1;
     velocidadeX   = -2.0f;
-    velocidadeY   = 0.0f;
-    gravidade     = 1.0f;
-    noChao        = false;
     pPlataforma   = nullptr;
     frameAtual    = 0;
     temporizador  = 0;
@@ -18,9 +15,6 @@ Inimigo::Inimigo() : Personagem() {
 Inimigo::Inimigo(float px, float py) : Personagem() {
     nivel_maldade = 1;
     velocidadeX   = -1.5f;
-    velocidadeY   = 0.0f;
-    gravidade     = 1.0f;
-    noChao        = false;
     pPlataforma   = nullptr;
     frameAtual    = 0;
     temporizador  = 0;
@@ -43,7 +37,7 @@ void Inimigo::mover() {
     if (forma.getPosition().x <= 100.f || forma.getPosition().x >= 760.f)
         velocidadeX = -velocidadeX;
 
-    velocidadeY += gravidade;
+    gravitar();
     forma.move(0.f, velocidadeY);
 
     float chao_y = 700.f - forma.getSize().y;

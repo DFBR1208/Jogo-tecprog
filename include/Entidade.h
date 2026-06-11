@@ -3,8 +3,11 @@
 
 class Entidade : public Ente {
 protected:
-	int x;
-	int y;
+	int   x;
+	int   y;
+	float velocidadeY;
+	float gravidade;
+	bool  noChao;
 	void SalvarDataBuffer();
 public:
 	Entidade();
@@ -12,4 +15,5 @@ public:
 	virtual void executar() = 0;
 	virtual void salvar() = 0;
 	virtual sf::FloatRect getBounds() const = 0;
+	void gravitar();
 };

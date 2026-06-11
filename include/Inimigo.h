@@ -8,9 +8,6 @@ class Inimigo : public Personagem {
 protected:
     int   nivel_maldade;
     float velocidadeX;
-    float velocidadeY;
-    float gravidade;
-    bool  noChao;
 
     Plataforma* pPlataforma;
 

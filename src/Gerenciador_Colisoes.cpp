@@ -34,8 +34,23 @@ void Gerenciador_Colisoes::tratarColisoesJogsObstacs() {
     }
 }
 
+void Gerenciador_Colisoes::incluirProjetil(Projetil* pj) {
+    LPs.insert(pj);
+}
+
+void Gerenciador_Colisoes::tratarColisoesJogsProjeteis() {
+    for (Projetil* proj : LPs) {
+        if (!proj || !proj->isAtivo()) continue;
+        if (verificarColisao(pJog1, proj))
+            pJog1->tomarDano();
+        if (pJog2 && verificarColisao(pJog2, proj))
+            pJog2->tomarDano();
+    }
+}
+
 void Gerenciador_Colisoes::executar() {
     if (!pJog1) return;
     tratarColisoesJogsInimgs();
     tratarColisoesJogsObstacs();
+    tratarColisoesJogsProjeteis();
 }

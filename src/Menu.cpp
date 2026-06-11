@@ -66,7 +66,7 @@ void Menu::executar() {
 		pJogo->iniciarFase1(n_jogadores);
 	}
 	else if (opcaoSelecionada == 1 && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-
+		pJogo->iniciarFase2(n_jogadores);
 	}
 	else if (opcaoSelecionada == 2 && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
 	}

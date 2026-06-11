@@ -5,11 +5,8 @@ class Jogador : public Personagem {
 private:
     int pontos;
     float velocidadeX;
-    float velocidadeY;
-    float gravidade;
     float pulo;
-    bool noChao;
-	bool j1; // true para jogador 1, false para jogador 2
+    bool j1;
 
     sf::RectangleShape forma;
 

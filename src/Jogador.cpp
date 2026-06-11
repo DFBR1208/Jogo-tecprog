@@ -9,10 +9,7 @@ Jogador::Jogador(bool flag) : Personagem(), j1(flag) {
         forma.setPosition(50.f, 0.f);
 
         velocidadeX = 5.0f;
-        velocidadeY = 0.0f;
-        gravidade = 1.0f;
         pulo = -15.0f;
-        noChao = false;
 
         frameAtual = 0;
         totalFrames = 11;
@@ -32,14 +29,11 @@ Jogador::Jogador(bool flag) : Personagem(), j1(flag) {
     }
     else {
         forma.setSize(sf::Vector2f(30.f, 50.f));
-        forma.setFillColor(sf::Color::Transparent); // hitbox invisivel
+        forma.setFillColor(sf::Color::Transparent);
         forma.setPosition(75.f, 0.f);
 
         velocidadeX = 5.0f;
-        velocidadeY = 0.0f;
-        gravidade = 1.0f;
         pulo = -15.0f;
-        noChao = false;
 
         frameAtual = 0;
         totalFrames = 11;
@@ -113,7 +107,7 @@ void Jogador::mover() {
         }
     }
 
-    velocidadeY += gravidade;
+    gravitar();
     forma.move(0.f, velocidadeY);
 
     if (forma.getPosition().y >= 700.f) {

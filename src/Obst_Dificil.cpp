@@ -13,7 +13,7 @@ Obst_Dificil::Obst_Dificil(float px, float py, float lado) : Obstaculo() {
     forma.setSize(sf::Vector2f(lado, lado));
     forma.setFillColor(sf::Color(180, 0, 200));
     if (pGG)
-        forma.setTexture(&pGG->getTexObstaculo());
+        forma.setTexture(&pGG->getTexObstaculoD());
     forma.setPosition(px, py);
 }
 

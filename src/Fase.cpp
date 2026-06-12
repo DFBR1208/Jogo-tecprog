@@ -25,6 +25,7 @@ void Fase::criarInimFaceis() {
 
     addIniF(plats[1]);
     addIniF(plats[3]);
+    addIniF(plats[7]);
     if (rand()%10 == 1) {addIniF(plats[3]);}
 
 }
@@ -44,6 +45,10 @@ void Fase::criarPlataformas() {
     addPlat(4, 410.f, 270.f, 100.f);
     addPlat(5, 660.f, 270.f, 100.f);
     addPlat(6, 509.f, 170.f, 100.f);
+    addPlat(7, 1400.f, 530.f, 400.f);
+    addPlat(8, 1600.f, 400.f, 250.f);
+    addPlat(9, 1900.f, 330.f, 300.f);
+    addPlat(10, 2200.f, 230.f, 300.f);
 }
 
 void Fase::criarCenario() {}

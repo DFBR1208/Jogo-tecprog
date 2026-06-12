@@ -8,6 +8,7 @@ void Gerenciador_Grafico::carregarTexturas() {
     texPlataforma.setRepeated(true);
     texPlataforma.setSmooth(false);
     texObstaculo.loadFromFile("assests/Obstaculo/Idle.png");
+    texObstaculoD.loadFromFile("assests/Obstaculo/dificil.png");
 
     texPlayerIdle.loadFromFile("assests/player/Idle (32x32).png");
     texPlayerRun.loadFromFile("assests/player/Run (32x32).png");

@@ -8,8 +8,8 @@
 
 class FaseSegunda : public Fase {
 public:
-    static constexpr float MUNDO_LARGURA = 800.f;
-    static constexpr float MUNDO_ALTURA  = 750.f;
+    static constexpr float MUNDO_LARGURA = 3600.f;
+    static constexpr float MUNDO_ALTURA  = 2500.f;
 private:
     sf::Texture        texturaBg;
     sf::Sprite         spriteBg;

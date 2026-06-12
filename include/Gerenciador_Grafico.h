@@ -30,6 +30,7 @@ private:
     sf::Texture texObstaculo;
     sf::Texture texProjetil;
     sf::Texture texBoss;
+    sf::Texture texObstaculoD;
 
     void carregarTexturas();
 
@@ -72,4 +73,6 @@ public:
     
     const sf::Texture& getTexBoss()  const { return texBoss; }
     const sf::Texture& getTexProjetil()  const { return texProjetil; }
+    const sf::Texture& getTexObstaculoD()  const { return texObstaculoD; }
+    
 };

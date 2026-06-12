@@ -13,8 +13,8 @@ protected:
     ListaEntidades lista_enti;
     Gerenciador_Colisoes GC;
 
-    static const int maxInimFaceis = 6;
-    static const int NUM_PLATS     = 8;
+    static const int maxInimFaceis = 5;
+    static const int NUM_PLATS     = 11;
     Plataforma* plats[NUM_PLATS];
 
     void criarInimFaceis();

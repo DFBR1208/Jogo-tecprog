@@ -6,7 +6,7 @@
 #include "Plataforma.h"
 class FasePrimeira : public Fase {
 public:
-    static constexpr float MUNDO_LARGURA = 1600.f;
+    static constexpr float MUNDO_LARGURA = 2500.f;
     static constexpr float MUNDO_ALTURA  = 3200.f;
 private:
     sf::Texture texturaBg;

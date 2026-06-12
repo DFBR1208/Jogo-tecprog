@@ -32,6 +32,9 @@ void FasePrimeira::criarInimMedios() {
 
     
     addIniM(plats[2]);
+    addIniM(plats[7]);
+    addIniM(plats[9]);
+    if (rand()%10 == 1) {addIniM(plats[10]);}
 }
 
 
@@ -45,9 +48,10 @@ void FasePrimeira::criarObstMedios() {
         lista_enti.incluir(ob);
         GC.incluirObstaculo(ob);
     };
-    addObst(410.f, 230.f);
-    addObst(1300.f, 430.f);
-    if (rand() % 2) { addObst(790.f, 370.f); }
+    addObst(410.f, 250.f);
+    addObst(1300.f, 450.f);
+    addObst(690.f, 350.f);
+    if (rand()%10 == 1) {addObst(1700.f, 350.f);}
 }
 
 void FasePrimeira::executar() {

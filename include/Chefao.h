@@ -6,7 +6,6 @@ class Chefao : public Inimigo {
 protected:
     short int forca;
 private:
-    sf::RectangleShape texBoss;
     Projetil*   pProj;
     int         cooldownTiro;
     static const int INTERVALO_TIRO = 180; // 3s a 60fps

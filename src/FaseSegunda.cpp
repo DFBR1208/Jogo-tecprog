@@ -12,9 +12,9 @@ FaseSegunda::FaseSegunda(Jogador* pJog1, Jogador* pJog2) : Fase(pJog1, pJog2) {
     spriteBg.setTextureRect(sf::IntRect(0, 0, (int)MUNDO_LARGURA, (int)MUNDO_ALTURA));
     spriteBg.setColor(sf::Color(200, 160, 220));
 
-    chao.setSize(sf::Vector2f(MUNDO_LARGURA, 100.f));
+    chao.setSize(sf::Vector2f(MUNDO_LARGURA, 750.f));
     chao.setFillColor(sf::Color(60, 20, 80));
-    chao.setPosition(0.f, 700.f);
+    chao.setPosition(0.f, 750.f);
 }
 
 FaseSegunda::~FaseSegunda() {}
@@ -51,9 +51,10 @@ void FaseSegunda::criarObstMedios() {
         lista_enti.incluir(od);
         GC.incluirObstaculo(od);
     };
-    addOD(300.f, 220.f);
-    addOD(530.f, 320.f);
-    if (rand() % 2) addOD(660.f, 530.f);
+    addOD(410.f, 235.f);
+    addOD(1300.f, 435.f);
+    addOD(690.f, 335.f);
+    if (rand()%10 == 1) {addOD(1700.f, 335.f);}
 }
 
 void FaseSegunda::criarProjeteis() {

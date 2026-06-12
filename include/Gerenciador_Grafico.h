@@ -28,6 +28,8 @@ private:
     sf::Texture texEnemyRightHit;
 
     sf::Texture texObstaculo;
+    sf::Texture texProjetil;
+    sf::Texture texBoss;
 
     void carregarTexturas();
 
@@ -66,4 +68,8 @@ public:
     const sf::Texture& getTexEnemyBottomHit() const { return texEnemyBottomHit; }
     const sf::Texture& getTexEnemyLeftHit()   const { return texEnemyLeftHit; }
     const sf::Texture& getTexEnemyRightHit()  const { return texEnemyRightHit; }
+
+    
+    const sf::Texture& getTexBoss()  const { return texBoss; }
+    const sf::Texture& getTexProjetil()  const { return texProjetil; }
 };

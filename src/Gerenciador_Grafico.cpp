@@ -23,6 +23,9 @@ void Gerenciador_Grafico::carregarTexturas() {
     texEnemyBottomHit.loadFromFile("assests/enemy/Bottom Hit (42x42).png");
     texEnemyLeftHit.loadFromFile("assests/enemy/Left Hit (42x42).png");
     texEnemyRightHit.loadFromFile("assests/enemy/Right Hit (42x42).png");
+
+    texProjetil.loadFromFile("assests/projetil/projetil.png");
+    texBoss.loadFromFile("assests/chefao/Idle.png");
 }
 
 Gerenciador_Grafico::Gerenciador_Grafico() {

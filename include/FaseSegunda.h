@@ -15,7 +15,7 @@ private:
     sf::Sprite         spriteBg;
     sf::RectangleShape chao;
 
-    static const int maxChefoes = 2;
+    static const int maxChefoes = 4;
 
     void criarChefoes();
     void criarObstMedios();

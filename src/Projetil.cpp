@@ -1,17 +1,21 @@
 #include "Projetil.h"
 
 Projetil::Projetil() : Entidade(), ativo(false), velocidadeX(0.f) {
-    forma.setSize(sf::Vector2f(10.f, 5.f));
-    forma.setFillColor(sf::Color::Yellow);
+    forma.setSize(sf::Vector2f(20.f, 15.f));
     forma.setPosition(-100.f, -100.f);
+    if (pGG) {
+        forma.setTexture(&pGG->getTexProjetil());
+    }
     pFig = new Figura(&forma);
 }
 
 Projetil::Projetil(float px, float py, float vx)
     : Entidade(), ativo(true), velocidadeX(vx) {
-    forma.setSize(sf::Vector2f(10.f, 5.f));
-    forma.setFillColor(sf::Color::Yellow);
+    forma.setSize(sf::Vector2f(20.f, 15.f));
     forma.setPosition(px, py);
+    if (pGG) {
+        forma.setTexture(&pGG->getTexProjetil());
+    }
     pFig = new Figura(&forma);
 }
 

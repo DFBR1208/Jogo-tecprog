@@ -3,52 +3,31 @@
 Chefao::Chefao() : Inimigo(), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
     nivel_maldade = 3;
     velocidadeX   = -1.2f;
-    forma.setSize(sf::Vector2f(84.f, 84.f));
-    texBoss.loadFromFile("assests/enemy/Blink (42x42).png");
-    spriteAnim.setTexture(texBoss);
-    spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
-    spriteAnim.setColor(sf::Color::Red);
-    spriteAnim.setScale(2.f, 2.f);
-    pFig = new Figura(&spriteAnim);
+    forma.setSize(sf::Vector2f(64.f, 64.f));
+    forma.setFillColor(sf::Color::Red);
+    if (pGG) {
+        forma.setTexture(&pGG->getTexBoss());
+    }
+    pFig = new Figura(&forma);
 }
 
 Chefao::Chefao(float px, float py) : Inimigo(px, py), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
     nivel_maldade = 3;
     velocidadeX   = -1.2f;
-    forma.setSize(sf::Vector2f(84.f, 84.f));
-    texBoss.loadFromFile("assests/enemy/Blink (42x42).png");
-    spriteAnim.setTexture(texBoss);
-    spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
-    spriteAnim.setColor(sf::Color::Red);
-    spriteAnim.setScale(2.f, 2.f);
-    pFig = new Figura(&spriteAnim);
+    forma.setSize(sf::Vector2f(64.f, 64.f));
+    forma.setFillColor(sf::Color::Red);
+    if (pGG) {
+        forma.setTexture(&pGG->getTexBoss());
+    }
+    pFig = new Figura(&forma);
 }
 
 Chefao::~Chefao() {}
 
 void Chefao::executar() {
     Inimigo::executar();
-
-    // animacao
-    temporizador++;
-    if (temporizador >= DURACAO_FRAME) {
-        temporizador = 0;
-        frameAtual   = (frameAtual + 1) % TOTAL_FRAMES;
-    }
-    spriteAnim.setTextureRect(sf::IntRect(frameAtual * FRAME_SIZE, 0, FRAME_SIZE, FRAME_SIZE));
-
     sf::Vector2f pos  = forma.getPosition();
     sf::Vector2f size = forma.getSize();
-    float sx = size.x / FRAME_SIZE;
-    float sy = size.y / FRAME_SIZE;
-    if (velocidadeX > 0) {
-        spriteAnim.setScale(-sx, sy);
-        spriteAnim.setPosition(pos.x + size.x, pos.y);
-    } else {
-        spriteAnim.setScale(sx, sy);
-        spriteAnim.setPosition(pos.x, pos.y);
-    }
-
     // tiro
     if (pProj) {
         cooldownTiro--;

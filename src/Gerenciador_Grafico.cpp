@@ -1,6 +1,8 @@
 #include "Gerenciador_Grafico.h"
 #include "Ente.h"
 
+namespace Kawabanga::Gerenciadores {
+
 void Gerenciador_Grafico::carregarTexturas() {
     texBg.loadFromFile("assests/bg/Pink.png");
     texTerrain.loadFromFile("assests/bg/Terrain (16x16).png");
@@ -30,7 +32,7 @@ void Gerenciador_Grafico::carregarTexturas() {
 }
 
 Gerenciador_Grafico::Gerenciador_Grafico() {
-    window = new sf::RenderWindow(sf::VideoMode(800, 600), "Jogo");
+    window = new sf::RenderWindow(sf::VideoMode(800, 600), "Kawabanga");
     window->setFramerateLimit(60);
     camera = sf::View(sf::FloatRect(0.f, 0.f, 800.f, 600.f));
     carregarTexturas();
@@ -98,4 +100,5 @@ bool Gerenciador_Grafico::verificaJanelaAberta() {
         }
     }
     return window->isOpen();
+}
 }

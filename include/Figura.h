@@ -1,13 +1,15 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-class Figura {
-private:
-    sf::Drawable* pDrawable;
-public:
-    Figura();
-    Figura(sf::Drawable* pd);
-	~Figura();
-    void           setDrawable(sf::Drawable* pd);
-    sf::Drawable* getDrawable() const;
-};
+namespace Kawabanga {
+    class Figura {
+    private:
+        sf::Drawable* pDrawable;
+    public:
+        Figura();
+        Figura(sf::Drawable* pd);
+        ~Figura();
+        void           setDrawable(sf::Drawable* pd);
+        sf::Drawable* getDrawable() const;
+    };
+}

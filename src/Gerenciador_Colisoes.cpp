@@ -1,5 +1,10 @@
 #include "Gerenciador_Colisoes.h"
 
+namespace Kawabanga::Gerenciadores {
+    using namespace Entidades::Personagens;
+    using namespace Entidades::Obstaculos;
+    using namespace Entidades;
+
 Gerenciador_Colisoes::Gerenciador_Colisoes(Jogador* pJogo1, Jogador* pJogo2) : pJog1(pJogo1), pJog2(pJogo2) {}
 
 Gerenciador_Colisoes::~Gerenciador_Colisoes() {}
@@ -53,4 +58,5 @@ void Gerenciador_Colisoes::executar() {
     tratarColisoesJogsInimgs();
     tratarColisoesJogsObstacs();
     tratarColisoesJogsProjeteis();
+}
 }

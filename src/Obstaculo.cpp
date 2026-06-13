@@ -1,12 +1,14 @@
 #include "Obstaculo.h"
 
-Obstaculo::Obstaculo() : Entidade() {
-    danoso = false;
-    pFig = new Figura(&forma);
-}
+namespace Kawabanga::Entidades::Obstaculos {
+    Obstaculo::Obstaculo() : Entidade() {
+        danoso = false;
+        pFig = new Figura(&forma);
+    }
 
-Obstaculo::~Obstaculo() {}
+    Obstaculo::~Obstaculo() {}
 
-sf::FloatRect Obstaculo::getBounds() const {
-    return forma.getGlobalBounds();
+    sf::FloatRect Obstaculo::getBounds() const {
+        return forma.getGlobalBounds();
+    }
 }

@@ -2,16 +2,18 @@
 #include "Lista.h"
 #include "Entidade.h"
 
-class ListaEntidades
-{
-    private:
-    Lista<Entidade> LEs;
+namespace Kawabanga::Listas {
+    class ListaEntidades
+    {
+        private:
+        Lista<Entidades::Entidade> LEs;
 
-    public:
-    ListaEntidades();
-    ~ListaEntidades();
-    void incluir(Entidade* pe);
-    void percorrer();
-    void desenhar();
+        public:
+        ListaEntidades();
+        ~ListaEntidades();
+        void incluir(Entidades::Entidade* pe);
+        void percorrer();
+        void desenhar();
 
-};
+    };
+}

@@ -1,5 +1,6 @@
 #include "Inim_Medio.h"
 
+namespace Kawabanga::Entidades::Personagens {
 Inim_Medio::Inim_Medio() : Inimigo() {
     tamanho       = 52;
     nivel_maldade = 2;
@@ -58,3 +59,4 @@ void Inim_Medio::danificar(Jogador* p) {
 void Inim_Medio::salvar() {}
 void Inim_Medio::salvarDataBuffer() {}
 void Inim_Medio::salva() {}
+}

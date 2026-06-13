@@ -1,15 +1,17 @@
 #include "Figura.h"
 
-Figura::Figura() : pDrawable(nullptr) {}
+namespace Kawabanga {
+	Figura::Figura() : pDrawable(nullptr) {}
 
-Figura::Figura(sf::Drawable* pd) : pDrawable(pd) {}
+	Figura::Figura(sf::Drawable* pd) : pDrawable(pd) {}
 
-Figura::~Figura() {}
+	Figura::~Figura() {}
 
-void Figura::setDrawable(sf::Drawable* pd) {
-	pDrawable = pd;
-}
+	void Figura::setDrawable(sf::Drawable* pd) {
+		pDrawable = pd;
+	}
 
-sf::Drawable* Figura::getDrawable() const {
-	return pDrawable;
+	sf::Drawable* Figura::getDrawable() const {
+		return pDrawable;
+	}
 }

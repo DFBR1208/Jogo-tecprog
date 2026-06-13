@@ -4,35 +4,37 @@
 #include "Plataforma.h"
 #include <ostream>
 
-class Inimigo : public Personagem {
-protected:
-    int   nivel_maldade;
-    float velocidadeX;
+namespace Kawabanga::Entidades::Personagens {
+    class Inimigo : public Personagem {
+    protected:
+        int   nivel_maldade;
+        float velocidadeX;
 
-    Plataforma* pPlataforma;
+        Obstaculos::Plataforma* pPlataforma;
 
-    sf::RectangleShape forma;
-    int   frameAtual;
-    int   temporizador;
-    static const int FRAME_SIZE    = 42;
-    static const int TOTAL_FRAMES  = 4;
-    static const int DURACAO_FRAME = 10;
+        sf::RectangleShape forma;
+        int   frameAtual;
+        int   temporizador;
+        static const int FRAME_SIZE    = 42;
+        static const int TOTAL_FRAMES  = 4;
+        static const int DURACAO_FRAME = 10;
 
-public:
-    Inimigo();
-    Inimigo(float px, float py);
-    virtual ~Inimigo();
+    public:
+        Inimigo();
+        Inimigo(float px, float py);
+        virtual ~Inimigo();
 
-    void executar()                override;
-    void mover()                   override;
-    void mover(Plataforma* p);
-    sf::FloatRect getBounds() const override;
+        void executar()                override;
+        void mover()                   override;
+        void mover(Obstaculos::Plataforma* p);
+        sf::FloatRect getBounds() const override;
 
-    Inimigo& operator=(Plataforma* p);
-    void     setPlataforma(Plataforma* p);
-    friend std::ostream& operator<<(std::ostream& os, const Inimigo& ini);
+        Inimigo& operator=(Obstaculos::Plataforma* p);
+        void     setPlataforma(Obstaculos::Plataforma* p);
+        friend std::ostream& operator<<(std::ostream& os, const Inimigo& ini);
 
-    virtual void danificar(Jogador* p) = 0;
-    virtual void salvarDataBuffer() = 0;
-    virtual void salva()            = 0;
-};
+        virtual void danificar(Jogador* p) = 0;
+        virtual void salvarDataBuffer() = 0;
+        virtual void salva()            = 0;
+    };
+}

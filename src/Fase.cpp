@@ -3,32 +3,36 @@
 #include "Inim_Facil.h"
 #include <cstdlib>
 
-Fase::Fase(Jogador* pJo1, Jogador* pJo2) : Ente(), GC(pJo1, pJog2), pJog1(pJo1), pJog2(pJo2) {
-    for (int i = 0; i < NUM_PLATS; i++) plats[i] = nullptr;
-    criarPlataformas();
-    criarCenario();
-	if(pJog1)
-		lista_enti.incluir(pJog1);
-    if(pJog2)
-		lista_enti.incluir(pJog2);
-}
+namespace Kawabanga::Fases {
 
-Fase::~Fase() {}
+    using namespace Entidades::Personagens;
+    using namespace Entidades::Obstaculos;
+    Fase::Fase(Jogador* pJo1, Jogador* pJo2) : Ente(), GC(pJo1, pJog2), pJog1(pJo1), pJog2(pJo2) {
+        for (int i = 0; i < NUM_PLATS; i++) plats[i] = nullptr;
+        criarPlataformas();
+        criarCenario();
+        if(pJog1)
+            lista_enti.incluir(pJog1);
+        if(pJog2)
+            lista_enti.incluir(pJog2);
+    }
 
-void Fase::criarInimFaceis() {
-    auto addIniF = [&](Plataforma* plat) {
-        Inim_Facil* ini = new Inim_Facil(0.f, 0.f);
-        (*ini) = plat;
-        lista_enti.incluir(ini);
-        GC.incluirInimigo(ini);
-    };
+    Fase::~Fase() {}
 
-    addIniF(plats[1]);
-    addIniF(plats[3]);
-    addIniF(plats[7]);
-    if (rand()%10 == 1) {addIniF(plats[3]);}
+    void Fase::criarInimFaceis() {
+        auto addIniF = [&](Plataforma* plat) {
+            Inim_Facil* ini = new Inim_Facil(0.f, 0.f);
+            (*ini) = plat;
+            lista_enti.incluir(ini);
+            GC.incluirInimigo(ini);
+        };
 
-}
+        addIniF(plats[1]);
+        addIniF(plats[3]);
+        addIniF(plats[7]);
+        if (rand()%10 == 1) {addIniF(plats[3]);}
+
+    }
 
 
 void Fase::criarPlataformas() {
@@ -52,5 +56,5 @@ void Fase::criarPlataformas() {
 }
 
 void Fase::criarCenario() {}
-
+}
 

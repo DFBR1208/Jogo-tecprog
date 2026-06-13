@@ -1,23 +1,28 @@
 #include "Ente.h"
 
-Gerenciador_Grafico* Ente::pGG = nullptr;
+namespace Kawabanga {
 
-Ente::Ente() : id(0), pFig(nullptr) {}
+    using namespace Gerenciadores;
 
-Ente::~Ente() {
-    delete pFig;
-    pFig = nullptr;
-}
+    Gerenciador_Grafico* Ente::pGG = nullptr;
 
-void Ente::desenhar() {
-    if (pGG && pFig && pFig->getDrawable())
-        pGG->desenhar(*pFig->getDrawable());
-}
+    Ente::Ente() : id(0), pFig(nullptr) {}
 
-void Ente::setGerenciadorGrafico(Gerenciador_Grafico* pG) {
-    pGG = pG;
-}
+    Ente::~Ente() {
+        delete pFig;
+        pFig = nullptr;
+    }
 
-Gerenciador_Grafico* Ente::getGerenciadorGrafico() {
-    return pGG;
+    void Ente::desenhar() {
+        if (pGG && pFig && pFig->getDrawable())
+            pGG->desenhar(*pFig->getDrawable());
+    }
+
+    void Ente::setGerenciadorGrafico(Gerenciador_Grafico* pG) {
+        pGG = pG;
+    }
+
+    Gerenciador_Grafico* Ente::getGerenciadorGrafico() {
+        return pGG;
+    }
 }

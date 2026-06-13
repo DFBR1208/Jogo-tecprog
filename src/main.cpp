@@ -1,7 +1,7 @@
 #include "Jogo.h"
 
 int main() {
-	Jogo meujogo;
+	Kawabanga::Jogo meujogo;
 	meujogo.executar();
 	return 0;
 }

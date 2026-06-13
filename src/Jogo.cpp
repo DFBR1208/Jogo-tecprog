@@ -43,8 +43,8 @@ namespace Kawabanga {
 
         if (n_jogs >= 1) {
             pJog1  = new Jogador(true);
-            pHUD   = new HUD(pJog1);
             pFase1 = new FasePrimeira(pJog1, n_jogs == 2 ? (pJog2 = new Jogador(false)) : nullptr);
+            pHUD   = new HUD(pJog1, pJog2);
         }
 
         while (GG->verificaJanelaAberta()) {
@@ -65,8 +65,8 @@ namespace Kawabanga {
 
         if (n_jogs >= 1) {
             pJog1  = new Jogador(true);
-            pHUD   = new HUD(pJog1);
             pFase2 = new FaseSegunda(pJog1, n_jogs == 2 ? (pJog2 = new Jogador(false)) : nullptr);
+            pHUD   = new HUD(pJog1, pJog2);
         }
 
         while (GG->verificaJanelaAberta()) {

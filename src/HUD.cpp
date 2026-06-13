@@ -3,7 +3,7 @@
 
 namespace Kawabanga {
     using namespace Entidades::Personagens;
-    HUD::HUD(Jogador* pJo1) : Ente(), pJog1(pJo1), fonteCarregada(false) {
+    HUD::HUD(Jogador* pJo1, Jogador* pJo2) : Ente(), pJog1(pJo1), pJog2(pJo2), fonteCarregada(false) {
         fonteCarregada = fonte.loadFromFile("fonts/arial.ttf");
 
         if (fonteCarregada) {
@@ -16,10 +16,19 @@ namespace Kawabanga {
         }
 
         for (int i = 0; i < 3; i++) {
-            coracoes[i].setSize(sf::Vector2f(24.f, 24.f));
-            coracoes[i].setOutlineColor(sf::Color::White);
-            coracoes[i].setOutlineThickness(1.f);
-            coracoes[i].setPosition(10.f + i * 34.f, 40.f);
+            coracoes_p1[i].setSize(sf::Vector2f(24.f, 24.f));
+            coracoes_p1[i].setOutlineColor(sf::Color::White);
+            coracoes_p1[i].setOutlineThickness(1.f);
+            coracoes_p1[i].setPosition(10.f + i * 34.f, 40.f);
+        }
+
+        if (pJog2) {
+            for (int j = 0; j < 3; j++) {
+                coracoes_p2[j].setSize(sf::Vector2f(24.f, 24.f));
+                coracoes_p2[j].setOutlineColor(sf::Color::White);
+                coracoes_p2[j].setOutlineThickness(1.f);
+                coracoes_p2[j].setPosition(10.f + j * 34.f, 70.f);
+            }
         }
     }
 
@@ -35,8 +44,17 @@ namespace Kawabanga {
         int pontos = pJog1->getPontos();
 
         for (int i = 0; i < 3; i++) {
-            coracoes[i].setFillColor(i < vidas ? sf::Color::Red : sf::Color(60, 60, 60));
-            pGG->desenhar(coracoes[i]);
+            coracoes_p1[i].setFillColor(i < vidas ? sf::Color::Red : sf::Color(60, 60, 60));
+            pGG->desenhar(coracoes_p1[i]);
+        }
+
+        if (pJog2) {
+            int vidas_2 = pJog2->getNumVidas();
+
+        for (int j = 0; j < 3; j++) {
+            coracoes_p2[j].setFillColor(j < vidas_2 ? sf::Color::Red : sf::Color(60, 60, 60));
+            pGG->desenhar(coracoes_p2[j]);
+        }
         }
 
         if (fonteCarregada) {

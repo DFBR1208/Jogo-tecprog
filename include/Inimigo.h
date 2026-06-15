@@ -18,10 +18,13 @@ namespace Kawabanga::Entidades::Personagens {
         static const int FRAME_SIZE    = 42;
         static const int TOTAL_FRAMES  = 4;
         static const int DURACAO_FRAME = 10;
+        sf::Clock timerDano;
+        bool tomandoDano;
+        const float duracaoDano = 1.0f;
 
     public:
-        Inimigo();
-        Inimigo(float px, float py);
+        Inimigo(int n_vid);
+        Inimigo(float px, float py, int n_vid);
         virtual ~Inimigo();
 
         void executar()                override;
@@ -36,5 +39,8 @@ namespace Kawabanga::Entidades::Personagens {
         virtual void danificar(Jogador* p) = 0;
         virtual void salvarDataBuffer() = 0;
         virtual void salva()            = 0;
+        virtual void tomarDano();
+        bool getTomandoDano() const;
+        int getNumVidas() const;
     };
 }

@@ -1,7 +1,7 @@
 #include "Inim_Facil.h"
 
 namespace Kawabanga::Entidades::Personagens {
-    Inim_Facil::Inim_Facil() : Inimigo() {
+    Inim_Facil::Inim_Facil() : Inimigo(2) {
         raio = 0.f;
         texBlink.loadFromFile("assests/enemy/Blink (42x42).png");
         spriteAnim.setTexture(texBlink);
@@ -9,7 +9,7 @@ namespace Kawabanga::Entidades::Personagens {
         pFig = new Figura(&spriteAnim);
     }
 
-    Inim_Facil::Inim_Facil(float px, float py) : Inimigo(px, py) {
+    Inim_Facil::Inim_Facil(float px, float py, int n_vid) : Inimigo(px, py, n_vid) {
         raio = 0.f;
         texBlink.loadFromFile("assests/enemy/Blink (42x42).png");
         spriteAnim.setTexture(texBlink);

@@ -24,6 +24,7 @@ namespace Kawabanga::Fases {
     FaseSegunda::~FaseSegunda() {}
 
     void FaseSegunda::criarInimigos() {
+        criarInimFaceis();
         criarChefoes();
     }
 
@@ -68,7 +69,30 @@ namespace Kawabanga::Fases {
     void FaseSegunda::executar() {
         lista_enti.percorrer();
         GC.executar();
+                auto pAux = lista_enti.getPrimeiroElemento();
+        int inimigosVivos = 0;
+        while (pAux!=nullptr) {
+            Entidades::Entidade* ent = pAux->getDado();
+            auto pProx = pAux->getProx();
+            Inimigo* pIni = dynamic_cast<Inimigo*>(ent);
+            if (pIni && pIni->getNumVidas() <= 0) {
+                if(pJog1) {
+                    pJog1->adicionarPontos(100);
+                }
+
+                GC.removerInimigo(pIni);
+                lista_enti.remover(pIni);
+                delete pIni;
+            }
+            else if (pIni) {
+                inimigosVivos++;
+            }
+            pAux = pProx;
+        }
         pGG->atualizarCamera(pJog1->getPosicao(), MUNDO_LARGURA, MUNDO_ALTURA);
+        if(inimigosVivos == 0) {
+            faseConcluida = true;
+        }
     }
 
     void FaseSegunda::desenhar() {

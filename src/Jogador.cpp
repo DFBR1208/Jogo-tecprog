@@ -1,8 +1,9 @@
 #include "Jogador.h"
+#include "Inimigo.h"
 #include <SFML/Window/Keyboard.hpp>
 
 namespace Kawabanga::Entidades::Personagens {
-    Jogador::Jogador(bool flag) : Personagem(), j1(flag) {
+    Jogador::Jogador(bool flag) : Personagem(5), j1(flag), isPoderoso(false) {
         pontos = 0;
         if (j1) {
             forma.setSize(sf::Vector2f(30.f, 50.f));
@@ -58,6 +59,21 @@ namespace Kawabanga::Entidades::Personagens {
     Jogador::~Jogador() {}
 
     void Jogador::executar() {
+        if (!isPoderoso) {
+            if ((j1 && sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) || 
+                (!j1 && sf::Keyboard::isKeyPressed(sf::Keyboard::S))) {
+                
+                isPoderoso = true;
+                timerPoderoso.restart();
+                spriteAnim.setColor(sf::Color::Yellow); 
+            }
+        } else {
+            if (timerPoderoso.getElapsedTime().asSeconds() >= duracaoPoderoso) {
+                isPoderoso = false;
+                spriteAnim.setColor(j1 ? sf::Color::White : sf::Color(100, 100, 255));
+            }
+        }       
+        
         mover();
         atualizarAnimacao();
 
@@ -122,6 +138,10 @@ namespace Kawabanga::Entidades::Personagens {
         forma.setPosition(forma.getPosition().x, y_chao - forma.getSize().y);
         velocidadeY = 0.0f;
         noChao = true;
+    }
+
+    void Jogador::pararNaParede(float x_parede) {
+        forma.setPosition(x_parede, forma.getPosition().y);
     }
 
     void Jogador::tomarDano(bool knockback_direita) {
@@ -219,5 +239,18 @@ namespace Kawabanga::Entidades::Personagens {
 
     void Jogador::adicionarPontos(int n) {
         pontos += n;
+    }
+
+    void Jogador::atacar(Inimigo* pIni) {
+        if (pIni) {
+            pIni->tomarDano();
+        }
+    }
+
+    bool Jogador::getIsPoderoso() const {return isPoderoso;}
+
+    void Jogador::paraFase2() {
+        forma.setPosition(50.f, 0.f);
+        velocidadeY = 0.f;
     }
 }

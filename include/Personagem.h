@@ -5,8 +5,9 @@ namespace Kawabanga::Entidades::Personagens {
 class Personagem : public Entidade {
 	protected:
 		int num_vidas;
+		sf::Sprite  spriteAnim;
 	public:
-		Personagem();
+		Personagem(int n_vi);
 		virtual ~Personagem();
 		virtual void executar() = 0;
 		virtual void mover() = 0;

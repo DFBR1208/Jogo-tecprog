@@ -10,19 +10,31 @@ namespace Kawabanga::Listas {
     void ListaEntidades::incluir(Entidade* pe) { LEs.incluir(pe); }
 
     void ListaEntidades::percorrer() {
-        Lista<Entidade>::Iterador it = LEs.getIterador();
-        while (it.temProximo()) {
-            Entidade* ent = it.proximo();
+        Lista<Entidade>::Elemento<Entidade>* pAux = LEs.getPrimeiroElemento();
+        
+        while (pAux != nullptr) {
+            Entidade* ent = pAux->getDado();
             if (ent) ent->executar();
+            
+            pAux = pAux->getProx();
+        }
+    }
+    void ListaEntidades::desenhar() {
+        Gerenciador_Grafico* pGG = Ente::getGerenciadorGrafico();
+        Lista<Entidade>::Elemento<Entidade>* pAux = LEs.getPrimeiroElemento();
+        
+        while (pAux != nullptr) {
+            Entidade* ent = pAux->getDado();
+            if (ent && pGG) pGG->desenharEnte(ent);
+            
+            pAux = pAux->getProx();
         }
     }
 
-    void ListaEntidades::desenhar() {
-        Gerenciador_Grafico* pGG = Ente::getGerenciadorGrafico();
-        Lista<Entidade>::Iterador it = LEs.getIterador();
-        while (it.temProximo()) {
-            Entidade* ent = it.proximo();
-            if (ent && pGG) pGG->desenharEnte(ent);
-        }
+    void ListaEntidades::remover(Entidade* pe) {
+        LEs.limpar(pe);
+    }
+    Lista<Entidade>::Elemento<Entidade>* ListaEntidades::getPrimeiroElemento() const {
+        return LEs.getPrimeiroElemento();
     }
 }

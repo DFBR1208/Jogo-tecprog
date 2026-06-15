@@ -13,7 +13,7 @@ namespace Kawabanga::Entidades::Personagens {
     public:
         using Inimigo::operator=;
         Chefao();
-        Chefao(float px, float py);
+        Chefao(float px, float py, int n_vid=4);
         ~Chefao();
         void executar()            override;
         void danificar(Jogador* p) override;
@@ -21,5 +21,6 @@ namespace Kawabanga::Entidades::Personagens {
         void salva()               override;
         void salvar()              override;
         void setProjetil(Projetil* p) { pProj = p; }
+        void tomarDano()              override;
     };
 }

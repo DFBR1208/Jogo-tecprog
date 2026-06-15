@@ -1,7 +1,7 @@
 #include "Inim_Medio.h"
 
 namespace Kawabanga::Entidades::Personagens {
-Inim_Medio::Inim_Medio() : Inimigo() {
+Inim_Medio::Inim_Medio() : Inimigo(3) {
     tamanho       = 52;
     nivel_maldade = 2;
     velocidadeX   = -3.5f;
@@ -13,7 +13,7 @@ Inim_Medio::Inim_Medio() : Inimigo() {
     pFig = new Figura(&spriteAnim);
 }
 
-Inim_Medio::Inim_Medio(float px, float py) : Inimigo(px, py) {
+Inim_Medio::Inim_Medio(float px, float py, int n_vid) : Inimigo(px, py, n_vid) {
     tamanho       = 52;
     nivel_maldade = 2;
     velocidadeX   = -3.5f;

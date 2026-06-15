@@ -61,7 +61,40 @@ namespace Kawabanga::Fases {
     void FasePrimeira::executar() {
         lista_enti.percorrer();
         GC.executar();
-        pGG->atualizarCamera(pJog1->getPosicao(), MUNDO_LARGURA, MUNDO_ALTURA);
+        auto pAux = lista_enti.getPrimeiroElemento();
+        int inimigosVivos = 0;
+        while (pAux!=nullptr) {
+            Entidades::Entidade* ent = pAux->getDado();
+            auto pProx = pAux->getProx();
+            Inimigo* pIni = dynamic_cast<Inimigo*>(ent);
+            if (pIni && pIni->getNumVidas() <= 0) {
+                if(pJog1) {
+                    pJog1->adicionarPontos(100);
+                }
+
+                GC.removerInimigo(pIni);
+                lista_enti.remover(pIni);
+                delete pIni;
+            }
+            else if (pIni) {
+                inimigosVivos++;
+            }
+            pAux = pProx;
+        }
+
+        sf::Vector2f posJogador = pJog1 ? pJog1->getPosicao() : sf::Vector2f(0.f, 0.f);
+
+        if(pJog2) {
+            sf::Vector2f posJog2 = pJog2->getPosicao();
+            if (posJog2.x < posJogador.x) {
+                posJogador.x = (posJog2.x + posJogador.x) / 2.f;
+                posJogador.y = (posJog2.y + posJogador.y) / 2.f;
+            }
+        }
+        pGG->atualizarCamera(posJogador, MUNDO_LARGURA, MUNDO_ALTURA);
+        if(inimigosVivos == 0) {
+            faseConcluida = true;
+        }
     }
 
     void FasePrimeira::desenhar() {

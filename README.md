@@ -1,13 +1,12 @@
-# Jogo TecProg
+# Kawabanga
 
-Repositório básico do Jogo
+Repositório básico do Jogo "Kawabanga" desenvolvido pelos alunos Diogo Corrêa do Nascimento e Luis Augusto Silva para a disciplina de Técnicas de Programação, ministrada por Jean Marcelo Simão.
 
-Até o momento, o jogo é apenas um esqueleto, mas a ideia é ir implementando as funcionalidades aos poucos.
+O jogo tem como objetivo o aprendizado na linguagem C++ Orientada a Objetos
 
-## Atualização 25/05/2026
 
-* Implementação básica de POO com separação entre classes e heranças para a execução.
+## Atualização 14/06/2026
 
-* Jogo inicia em um cenário azul com chão verde, um jogador na cor azul, um inimigo na cor vermelha e uma plataforma branca.
+* Os requisitos 2 ao 9 estão completos e funcionais, possíveis de serem aprimorados, mas sem prioridade.
 
-* O jogador inicia com 3 "vidas" e perde quando for tocado pelo inimigo 3 vezes em que o jogo se encerra.
+* O que precisa: renomear as classes, arquivos e seus métodos para nomes significativos dos personagens, aplicação de salvemento e leaderboard para que o requisito 1 e 10 sejam completos.

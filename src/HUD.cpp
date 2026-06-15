@@ -15,7 +15,7 @@ namespace Kawabanga {
             textoPontos.setPosition(10.f, 10.f);
         }
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             coracoes_p1[i].setSize(sf::Vector2f(24.f, 24.f));
             coracoes_p1[i].setOutlineColor(sf::Color::White);
             coracoes_p1[i].setOutlineThickness(1.f);
@@ -23,7 +23,7 @@ namespace Kawabanga {
         }
 
         if (pJog2) {
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < 5; j++) {
                 coracoes_p2[j].setSize(sf::Vector2f(24.f, 24.f));
                 coracoes_p2[j].setOutlineColor(sf::Color::White);
                 coracoes_p2[j].setOutlineThickness(1.f);
@@ -43,7 +43,7 @@ namespace Kawabanga {
         int vidas = pJog1->getNumVidas();
         int pontos = pJog1->getPontos();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             coracoes_p1[i].setFillColor(i < vidas ? sf::Color::Red : sf::Color(60, 60, 60));
             pGG->desenhar(coracoes_p1[i]);
         }
@@ -51,7 +51,7 @@ namespace Kawabanga {
         if (pJog2) {
             int vidas_2 = pJog2->getNumVidas();
 
-        for (int j = 0; j < 3; j++) {
+        for (int j = 0; j < 5; j++) {
             coracoes_p2[j].setFillColor(j < vidas_2 ? sf::Color::Red : sf::Color(60, 60, 60));
             pGG->desenhar(coracoes_p2[j]);
         }

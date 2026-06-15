@@ -51,6 +51,10 @@ namespace Kawabanga {
             GG->limpar();
             pFase1->executar();
             pHUD->executar();
+            if (pFase1->isFaseConcluida()) {
+                iniciarFase2(n_jogs);
+                return;
+            }
             pFase1->desenhar();
             pHUD->desenhar();
             GG->mostrar();
@@ -59,20 +63,31 @@ namespace Kawabanga {
 
     void Jogo::iniciarFase2(int n_jogs) {
         delete pFase2; pFase2 = nullptr;
-        delete pJog1;  pJog1  = nullptr;
-        delete pJog2;  pJog2  = nullptr;
         delete pHUD;   pHUD   = nullptr;
-
-        if (n_jogs >= 1) {
-            pJog1  = new Jogador(true);
-            pFase2 = new FaseSegunda(pJog1, n_jogs == 2 ? (pJog2 = new Jogador(false)) : nullptr);
-            pHUD   = new HUD(pJog1, pJog2);
+        if(pJog1 == nullptr && n_jogs >= 1) {
+            pJog1 = new Jogador(true);
         }
+        else if (pJog1) {
+            pJog1->paraFase2();
+        }
+        if(pJog2 == nullptr && n_jogs == 2) {
+            pJog2 = new Jogador(false);
+        }
+        else if (pJog2){
+            pJog2->paraFase2();
+        }
+        
+
+        pFase2 = new FaseSegunda(pJog1, pJog2);
+        pHUD   = new HUD(pJog1, pJog2);
 
         while (GG->verificaJanelaAberta()) {
             GG->limpar();
             pFase2->executar();
             pHUD->executar();
+            if (pFase2->isFaseConcluida()) {
+                exit(0);
+            }
             pFase2->desenhar();
             pHUD->desenhar();
             GG->mostrar();

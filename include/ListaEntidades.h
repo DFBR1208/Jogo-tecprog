@@ -14,6 +14,8 @@ namespace Kawabanga::Listas {
         void incluir(Entidades::Entidade* pe);
         void percorrer();
         void desenhar();
+        Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* getPrimeiroElemento() const;
+        void remover(Entidades::Entidade* pe);
 
     };
 }

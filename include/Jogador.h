@@ -2,17 +2,23 @@
 #include "Personagem.h"
 
 namespace Kawabanga::Entidades::Personagens {
+    class Inimigo;
+}
+
+namespace Kawabanga::Entidades::Personagens {
     class Jogador : public Personagem {
     private:
         int pontos;
         float velocidadeX;
         float pulo;
         bool j1;
+        bool isPoderoso;
+        sf::Clock timerPoderoso;
+        const float duracaoPoderoso = 4.0f;
 
         sf::RectangleShape forma;
 
         sf::Texture texIdle, texRun, texJump, texFall;
-        sf::Sprite  spriteAnim;
         int   frameAtual;
         int   totalFrames;
         float temporizador;
@@ -28,6 +34,7 @@ namespace Kawabanga::Entidades::Personagens {
         void executar();
         void mover();
         void pararNoChao(float y_chao);
+        void pararNaParede(float x_parede);
         void tomarDano(bool knockback_direita = false);
         float getVelocidadeY() const;
         void baterCabeca(float base_plataforma);
@@ -38,5 +45,8 @@ namespace Kawabanga::Entidades::Personagens {
         int  getNumVidas()       const;
         int  getPontos()         const;
         void adicionarPontos(int n);
+        void atacar(Inimigo* pIni);
+        bool getIsPoderoso() const;
+        void paraFase2();
     };
 }

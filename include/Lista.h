@@ -67,22 +67,7 @@ namespace Kawabanga::Listas {
 
         TL* getPrimeiro() const { return pPrimeiro ? pPrimeiro->getDado() : nullptr; }
         TL* getUltimo()   const { return pUltimo   ? pUltimo->getDado()   : nullptr; }
+        Elemento<TL>* getPrimeiroElemento() const { return pPrimeiro; }
 
-        class Iterador {
-        private:
-            Elemento<TL>* pAtual;
-        public:
-            Iterador(Elemento<TL>* inicio) : pAtual(inicio) {}
-
-            bool temProximo() const { return pAtual != nullptr; }
-
-            TL* proximo() {
-                TL* dado = pAtual->getDado();
-                pAtual   = pAtual->getProx();
-                return dado;
-            }
-        };
-
-        Iterador getIterador() const { return Iterador(pPrimeiro); }
     };
 }

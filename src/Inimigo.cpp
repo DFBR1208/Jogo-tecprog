@@ -3,7 +3,7 @@
 
 namespace Kawabanga::Entidades::Personagens {
     using namespace Obstaculos;
-    Inimigo::Inimigo() : Personagem() {
+    Inimigo::Inimigo(int n_vid) : Personagem(n_vid) {
         nivel_maldade = 1;
         velocidadeX   = -2.0f;
         pPlataforma   = nullptr;
@@ -14,7 +14,7 @@ namespace Kawabanga::Entidades::Personagens {
         forma.setPosition(700.f, 508.f);
     }
 
-    Inimigo::Inimigo(float px, float py) : Personagem() {
+    Inimigo::Inimigo(float px, float py, int n_vid) : Personagem(n_vid) {
         nivel_maldade = 1;
         velocidadeX   = -1.5f;
         pPlataforma   = nullptr;
@@ -28,10 +28,23 @@ namespace Kawabanga::Entidades::Personagens {
     Inimigo::~Inimigo() {}
 
     void Inimigo::executar() {
-        if (pPlataforma)
-            mover(pPlataforma);
-        else
-            mover();
+        if (tomandoDano) {
+            if (timerDano.getElapsedTime().asSeconds() >= duracaoDano) {
+                tomandoDano = false;
+                if(nivel_maldade == 1)
+                    spriteAnim.setColor(sf::Color::White);
+                else if (nivel_maldade == 2)
+                    spriteAnim.setColor(sf::Color::Yellow);
+                else if (nivel_maldade == 3)
+                forma.setFillColor(sf::Color::Red);
+            }
+        }
+        else {
+            if (pPlataforma)
+                mover(pPlataforma);
+            else
+                mover();
+        }
     }
 
     void Inimigo::mover() {
@@ -97,4 +110,18 @@ namespace Kawabanga::Entidades::Personagens {
     sf::FloatRect Inimigo::getBounds() const {
         return forma.getGlobalBounds();
     }
+
+    void Inimigo::tomarDano() {
+    if (!tomandoDano) { 
+            num_vidas--;
+            tomandoDano = true;
+            timerDano.restart(); 
+            
+            spriteAnim.setColor(sf::Color::Red);
+        }
+    }
+
+    bool Inimigo::getTomandoDano() const {return tomandoDano;}
+
+    int Inimigo::getNumVidas() const { return num_vidas; }
 }

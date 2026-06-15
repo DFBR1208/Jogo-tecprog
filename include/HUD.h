@@ -8,8 +8,8 @@ namespace Kawabanga {
 class HUD : public Ente {
     private:
         sf::Text textoPontos;
-        sf::RectangleShape coracoes_p1[3];
-        sf::RectangleShape coracoes_p2[3];
+        sf::RectangleShape coracoes_p1[5];
+        sf::RectangleShape coracoes_p2[5];
         sf::Font fonte;
         bool fonteCarregada;
         Entidades::Personagens::Jogador* pJog1;

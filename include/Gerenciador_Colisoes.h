@@ -31,5 +31,6 @@ namespace Kawabanga::Gerenciadores {
         void incluirObstaculo(Entidades::Obstaculos::Obstaculo* po);
         void incluirProjetil(Entidades::Projetil* pj);
         void executar();
+        void removerInimigo(Entidades::Personagens::Inimigo* pIni);
     };
 }

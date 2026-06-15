@@ -1,7 +1,7 @@
 #include "Chefao.h"
 
 namespace Kawabanga::Entidades::Personagens {
-    Chefao::Chefao() : Inimigo(), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
+    Chefao::Chefao() : Inimigo(4), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
         nivel_maldade = 3;
         velocidadeX   = -1.2f;
         forma.setSize(sf::Vector2f(64.f, 64.f));
@@ -12,7 +12,7 @@ namespace Kawabanga::Entidades::Personagens {
         pFig = new Figura(&forma);
     }
 
-    Chefao::Chefao(float px, float py) : Inimigo(px, py), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
+    Chefao::Chefao(float px, float py, int n_vid) : Inimigo(px, py, n_vid), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
         nivel_maldade = 3;
         velocidadeX   = -1.2f;
         forma.setSize(sf::Vector2f(64.f, 64.f));
@@ -53,4 +53,13 @@ namespace Kawabanga::Entidades::Personagens {
     void Chefao::salvarDataBuffer() {}
     void Chefao::salva()            {}
     void Chefao::salvar()           {}
+
+    void Chefao::tomarDano() {
+        if (!tomandoDano) {
+            num_vidas--;
+            tomandoDano = true;
+            timerDano.restart();
+            forma.setFillColor(sf::Color::Blue);
+        }
+    }
 }

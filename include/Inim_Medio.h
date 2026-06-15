@@ -6,11 +6,10 @@ namespace Kawabanga::Entidades::Personagens {
     private:
         int tamanho;
         sf::Texture texBlink;
-        sf::Sprite  spriteAnim;
     public:
         using Inimigo::operator=;
         Inim_Medio();
-        Inim_Medio(float px, float py);
+        Inim_Medio(float px, float py, int n_vid = 3);
         ~Inim_Medio();
         void executar();
         void danificar(Jogador* p);

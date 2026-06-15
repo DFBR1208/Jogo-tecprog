@@ -46,5 +46,11 @@ namespace Kawabanga::Entidades::Obstaculos {
             else if (overlapBottom < overlapTop && p->getVelocidadeY() < 0.f)
                 p->baterCabeca(plBounds.top + plBounds.height);
         }
+        else {
+            if (overlapLeft < overlapRight)
+                p->pararNaParede(plBounds.left - pBounds.width);
+            else if (overlapRight < overlapLeft)
+                p->pararNaParede(plBounds.left + plBounds.width);
+        }
     }
 }

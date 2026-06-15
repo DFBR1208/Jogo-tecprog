@@ -19,6 +19,7 @@ namespace Kawabanga::Fases {
         static const int maxInimFaceis = 5;
         static const int NUM_PLATS     = 11;
         Entidades::Obstaculos::Plataforma* plats[NUM_PLATS];
+        bool faseConcluida;
 
         void criarInimFaceis();
         void criarPlataformas();
@@ -30,6 +31,6 @@ namespace Kawabanga::Fases {
         Fase(Entidades::Personagens::Jogador* pJo1, Entidades::Personagens::Jogador* pJo2);
         virtual ~Fase();
         virtual void executar() = 0;
-
+        bool isFaseConcluida() const;
     };
 }

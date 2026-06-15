@@ -1,7 +1,7 @@
 #pragma once
 #include "Personagem.h"
 #include "Jogador.h"
-#include "Plataforma.h"
+#include "Rosquinha.h"
 #include <ostream>
 
 namespace Kawabanga::Entidades::Personagens {
@@ -10,7 +10,7 @@ namespace Kawabanga::Entidades::Personagens {
         int   nivel_maldade;
         float velocidadeX;
 
-        Obstaculos::Plataforma* pPlataforma;
+        Obstaculos::Rosquinha* pRosquinha;
 
         sf::RectangleShape forma;
         int   frameAtual;
@@ -29,11 +29,11 @@ namespace Kawabanga::Entidades::Personagens {
 
         void executar()                override;
         void mover()                   override;
-        void mover(Obstaculos::Plataforma* p);
+        void mover(Obstaculos::Rosquinha* p);
         sf::FloatRect getBounds() const override;
 
-        Inimigo& operator=(Obstaculos::Plataforma* p);
-        void     setPlataforma(Obstaculos::Plataforma* p);
+        Inimigo& operator=(Obstaculos::Rosquinha* p);
+        void     setPlataforma(Obstaculos::Rosquinha* p);
         friend std::ostream& operator<<(std::ostream& os, const Inimigo& ini);
 
         virtual void danificar(Jogador* p) = 0;

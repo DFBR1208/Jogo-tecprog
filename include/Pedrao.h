@@ -3,7 +3,7 @@
 #include "Projetil.h"
 
 namespace Kawabanga::Entidades::Personagens {
-    class Chefao : public Inimigo {
+    class Pedrao : public Inimigo {
     protected:
         short int forca;
     private:
@@ -12,9 +12,9 @@ namespace Kawabanga::Entidades::Personagens {
         static const int INTERVALO_TIRO = 180; // 3s a 60fps
     public:
         using Inimigo::operator=;
-        Chefao();
-        Chefao(float px, float py, int n_vid=4);
-        ~Chefao();
+        Pedrao();
+        Pedrao(float px, float py, int n_vid=4);
+        ~Pedrao();
         void executar()            override;
         void danificar(Jogador* p) override;
         void salvarDataBuffer()    override;

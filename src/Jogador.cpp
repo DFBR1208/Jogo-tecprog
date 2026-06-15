@@ -20,10 +20,10 @@ namespace Kawabanga::Entidades::Personagens {
             viradoEsquerda = false;
             estadoAnim = IDLE;
 
-            texIdle.loadFromFile("assests/player/Idle (32x32).png");
-            texRun.loadFromFile("assests/player/Run (32x32).png");
-            texJump.loadFromFile("assests/player/Jump (32x32).png");
-            texFall.loadFromFile("assests/player/Fall (32x32).png");
+            texIdle.loadFromFile("assets/player/Idle (32x32).png");
+            texRun.loadFromFile("assets/player/Run (32x32).png");
+            texJump.loadFromFile("assets/player/Jump (32x32).png");
+            texFall.loadFromFile("assets/player/Fall (32x32).png");
 
             spriteAnim.setTexture(texIdle);
             spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
@@ -44,10 +44,10 @@ namespace Kawabanga::Entidades::Personagens {
             viradoEsquerda = false;
             estadoAnim = IDLE;
 
-            texIdle.loadFromFile("assests/player/Idle (32x32).png");
-            texRun.loadFromFile("assests/player/Run (32x32).png");
-            texJump.loadFromFile("assests/player/Jump (32x32).png");
-            texFall.loadFromFile("assests/player/Fall (32x32).png");
+            texIdle.loadFromFile("assets/player/Idle (32x32).png");
+            texRun.loadFromFile("assets/player/Run (32x32).png");
+            texJump.loadFromFile("assets/player/Jump (32x32).png");
+            texFall.loadFromFile("assets/player/Fall (32x32).png");
 
             spriteAnim.setTexture(texIdle);
             spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));

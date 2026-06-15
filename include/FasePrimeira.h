@@ -1,9 +1,9 @@
 #pragma once
 #include "Fase.h"
-#include "Inim_Facil.h"
-#include "Inim_Medio.h"
-#include "Obst_Medio.h"
-#include "Plataforma.h"
+#include "Pedroso.h"
+#include "Pedrado.h"
+#include "Espinhos.h"
+#include "Rosquinha.h"
 
 namespace Kawabanga::Fases {
     class FasePrimeira : public Fase {

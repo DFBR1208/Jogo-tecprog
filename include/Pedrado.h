@@ -2,15 +2,15 @@
 #include "Inimigo.h"
 
 namespace Kawabanga::Entidades::Personagens {
-    class Inim_Medio : public Inimigo {
+    class Pedrado : public Inimigo {
     private:
         int tamanho;
         sf::Texture texBlink;
     public:
         using Inimigo::operator=;
-        Inim_Medio();
-        Inim_Medio(float px, float py, int n_vid = 3);
-        ~Inim_Medio();
+        Pedrado();
+        Pedrado(float px, float py, int n_vid = 3);
+        ~Pedrado();
         void executar();
         void danificar(Jogador* p);
         void salvar();

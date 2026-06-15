@@ -1,9 +1,9 @@
-#include "Plataforma.h"
+#include "Rosquinha.h"
 #include <algorithm>
 
 namespace Kawabanga::Entidades::Obstaculos {
     using namespace Personagens;
-    Plataforma::Plataforma() : Obstaculo() {
+    Rosquinha::Rosquinha() : Obstaculo() {
         danoso = false;
 
         forma.setSize(sf::Vector2f(200.f, 30.f));
@@ -11,7 +11,7 @@ namespace Kawabanga::Entidades::Obstaculos {
         forma.setPosition(300.f, 450.f);
     }
 
-    Plataforma::Plataforma(float px, float py, float largura) : Obstaculo() {
+    Rosquinha::Rosquinha(float px, float py, float largura) : Obstaculo() {
         danoso = false;
         forma.setSize(sf::Vector2f(largura, 30.f));
         forma.setPosition(px, py);
@@ -21,12 +21,12 @@ namespace Kawabanga::Entidades::Obstaculos {
         }
     }
 
-    Plataforma::~Plataforma() {}
+    Rosquinha::~Rosquinha() {}
 
-    void Plataforma::executar() {}
-    void Plataforma::salvar() {}
+    void Rosquinha::executar() {}
+    void Rosquinha::salvar() {}
 
-    void Plataforma::obstaculizar(Jogador* p) {
+    void Rosquinha::obstaculizar(Jogador* p) {
         if (p == nullptr) return;
 
         sf::FloatRect pBounds  = p->getBounds();

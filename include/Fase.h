@@ -5,7 +5,7 @@
 #include "ListaEntidades.h"
 
 namespace Kawabanga::Entidades::Obstaculos {
-    class Plataforma;
+    class Rosquinha;
 }
 
 namespace Kawabanga::Fases {
@@ -18,7 +18,7 @@ namespace Kawabanga::Fases {
 
         static const int maxInimFaceis = 5;
         static const int NUM_PLATS     = 11;
-        Entidades::Obstaculos::Plataforma* plats[NUM_PLATS];
+        Entidades::Obstaculos::Rosquinha* plats[NUM_PLATS];
         bool faseConcluida;
 
         void criarInimFaceis();

@@ -9,7 +9,7 @@ namespace Kawabanga::Fases {
         criarInimigos();
         criarObstaculo();
 
-        texturaBg.loadFromFile("assests/bg/Pink.png");
+        texturaBg.loadFromFile("assets/bg/Pink.png");
         texturaBg.setRepeated(true);
         spriteBg.setTexture(texturaBg);
         spriteBg.setTextureRect(sf::IntRect(0, 0, (int)MUNDO_LARGURA, (int)MUNDO_ALTURA));
@@ -27,8 +27,8 @@ namespace Kawabanga::Fases {
     }
 
     void FasePrimeira::criarInimMedios() {
-        auto addIniM = [&](Plataforma* plat) {
-            Inim_Medio* im = new Inim_Medio(0.f, 0.f);
+        auto addIniM = [&](Rosquinha* plat) {
+            Pedrado* im = new Pedrado(0.f, 0.f);
             (*im) = plat;
             lista_enti.incluir(im);
             GC.incluirInimigo(im);
@@ -48,7 +48,7 @@ namespace Kawabanga::Fases {
 
     void FasePrimeira::criarObstMedios() {
         auto addObst = [&](float x, float y) {
-            Obst_Medio* ob = new Obst_Medio(x, y, 40.f);
+            Espinhos* ob = new Espinhos(x, y, 40.f);
             lista_enti.incluir(ob);
             GC.incluirObstaculo(ob);
         };

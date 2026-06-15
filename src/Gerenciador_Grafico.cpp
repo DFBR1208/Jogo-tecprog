@@ -4,31 +4,31 @@
 namespace Kawabanga::Gerenciadores {
 
 void Gerenciador_Grafico::carregarTexturas() {
-    texBg.loadFromFile("assests/bg/Pink.png");
-    texTerrain.loadFromFile("assests/bg/Terrain (16x16).png");
-    texPlataforma.loadFromFile("assests/plataforma/testePlataforma.png");
+    texBg.loadFromFile("assets/bg/Pink.png");
+    texTerrain.loadFromFile("assets/bg/Terrain (16x16).png");
+    texPlataforma.loadFromFile("assets/plataforma/testePlataforma.png");
     texPlataforma.setRepeated(true);
     texPlataforma.setSmooth(false);
-    texObstaculo.loadFromFile("assests/Obstaculo/Idle.png");
-    texObstaculoD.loadFromFile("assests/Obstaculo/dificil.png");
+    texObstaculo.loadFromFile("assets/Obstaculo/Idle.png");
+    texObstaculoD.loadFromFile("assets/Obstaculo/dificil.png");
 
-    texPlayerIdle.loadFromFile("assests/player/Idle (32x32).png");
-    texPlayerRun.loadFromFile("assests/player/Run (32x32).png");
-    texPlayerJump.loadFromFile("assests/player/Jump (32x32).png");
-    texPlayerFall.loadFromFile("assests/player/Fall (32x32).png");
-    texPlayerHit.loadFromFile("assests/player/Hit (32x32).png");
-    texPlayerDoubleJump.loadFromFile("assests/player/Double Jump (32x32).png");
-    texPlayerWallJump.loadFromFile("assests/player/Wall Jump (32x32).png");
+    texPlayerIdle.loadFromFile("assets/player/Idle (32x32).png");
+    texPlayerRun.loadFromFile("assets/player/Run (32x32).png");
+    texPlayerJump.loadFromFile("assets/player/Jump (32x32).png");
+    texPlayerFall.loadFromFile("assets/player/Fall (32x32).png");
+    texPlayerHit.loadFromFile("assets/player/Hit (32x32).png");
+    texPlayerDoubleJump.loadFromFile("assets/player/Double Jump (32x32).png");
+    texPlayerWallJump.loadFromFile("assets/player/Wall Jump (32x32).png");
 
-    texEnemyIdle.loadFromFile("assests/enemy/Idle.png");
-    texEnemyBlink.loadFromFile("assests/enemy/Blink (42x42).png");
-    texEnemyTopHit.loadFromFile("assests/enemy/Top Hit (42x42).png");
-    texEnemyBottomHit.loadFromFile("assests/enemy/Bottom Hit (42x42).png");
-    texEnemyLeftHit.loadFromFile("assests/enemy/Left Hit (42x42).png");
-    texEnemyRightHit.loadFromFile("assests/enemy/Right Hit (42x42).png");
+    texEnemyIdle.loadFromFile("assets/enemy/Idle.png");
+    texEnemyBlink.loadFromFile("assets/enemy/Blink (42x42).png");
+    texEnemyTopHit.loadFromFile("assets/enemy/Top Hit (42x42).png");
+    texEnemyBottomHit.loadFromFile("assets/enemy/Bottom Hit (42x42).png");
+    texEnemyLeftHit.loadFromFile("assets/enemy/Left Hit (42x42).png");
+    texEnemyRightHit.loadFromFile("assets/enemy/Right Hit (42x42).png");
 
-    texProjetil.loadFromFile("assests/projetil/projetil.png");
-    texBoss.loadFromFile("assests/chefao/Idle.png");
+    texProjetil.loadFromFile("assets/projetil/projetil.png");
+    texBoss.loadFromFile("assets/chefao/Idle.png");
 }
 
 Gerenciador_Grafico::Gerenciador_Grafico() {

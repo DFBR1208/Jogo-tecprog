@@ -1,25 +1,25 @@
-#include "Inim_Facil.h"
+#include "Pedroso.h"
 
 namespace Kawabanga::Entidades::Personagens {
-    Inim_Facil::Inim_Facil() : Inimigo(2) {
+    Pedroso::Pedroso() : Inimigo(2) {
         raio = 0.f;
-        texBlink.loadFromFile("assests/enemy/Blink (42x42).png");
+        texBlink.loadFromFile("assets/enemy/Blink (42x42).png");
         spriteAnim.setTexture(texBlink);
         spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
         pFig = new Figura(&spriteAnim);
     }
 
-    Inim_Facil::Inim_Facil(float px, float py, int n_vid) : Inimigo(px, py, n_vid) {
+    Pedroso::Pedroso(float px, float py, int n_vid) : Inimigo(px, py, n_vid) {
         raio = 0.f;
-        texBlink.loadFromFile("assests/enemy/Blink (42x42).png");
+        texBlink.loadFromFile("assets/enemy/Blink (42x42).png");
         spriteAnim.setTexture(texBlink);
         spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
         pFig = new Figura(&spriteAnim);
     }
 
-    Inim_Facil::~Inim_Facil() {}
+    Pedroso::~Pedroso() {}
 
-    void Inim_Facil::executar() {
+    void Pedroso::executar() {
         Inimigo::executar();
 
         temporizador++;
@@ -40,7 +40,7 @@ namespace Kawabanga::Entidades::Personagens {
         }
     }
 
-    void Inim_Facil::danificar(Jogador* p) {
+    void Pedroso::danificar(Jogador* p) {
         if (p) {
             float xJogador = p->getForma().getPosition().x;
             bool knockback_direita = (xJogador > forma.getPosition().x);
@@ -48,7 +48,7 @@ namespace Kawabanga::Entidades::Personagens {
         }
     }
 
-    void Inim_Facil::salvar() {}
-    void Inim_Facil::salvarDataBuffer() {}
-    void Inim_Facil::salva() {}
+    void Pedroso::salvar() {}
+    void Pedroso::salvarDataBuffer() {}
+    void Pedroso::salva() {}
 }

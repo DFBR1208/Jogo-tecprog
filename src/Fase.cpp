@@ -1,6 +1,6 @@
 #include "Fase.h"
-#include "Plataforma.h"
-#include "Inim_Facil.h"
+#include "Rosquinha.h"
+#include "Pedroso.h"
 #include <cstdlib>
 
 namespace Kawabanga::Fases {
@@ -20,8 +20,8 @@ namespace Kawabanga::Fases {
     Fase::~Fase() {}
 
     void Fase::criarInimFaceis() {
-        auto addIniF = [&](Plataforma* plat) {
-            Inim_Facil* ini = new Inim_Facil(0.f, 0.f);
+        auto addIniF = [&](Rosquinha* plat) {
+            Pedroso* ini = new Pedroso(0.f, 0.f);
             (*ini) = plat;
             lista_enti.incluir(ini);
             GC.incluirInimigo(ini);
@@ -37,7 +37,7 @@ namespace Kawabanga::Fases {
 
     void Fase::criarPlataformas() {
         auto addPlat = [&](int idx, float x, float y, float w) {
-            Plataforma* p = new Plataforma(x, y, w);
+            Rosquinha* p = new Rosquinha(x, y, w);
             plats[idx] = p;
             lista_enti.incluir(p);
             GC.incluirObstaculo(p);

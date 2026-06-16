@@ -1,33 +1,33 @@
-#include "Inim_Medio.h"
+#include "Pedrado.h"
 
 namespace Kawabanga::Entidades::Personagens {
-Inim_Medio::Inim_Medio() : Inimigo(3) {
+Pedrado::Pedrado() : Inimigo(3) {
     tamanho       = 52;
     nivel_maldade = 2;
     velocidadeX   = -3.5f;
     forma.setSize(sf::Vector2f((float)tamanho, (float)tamanho));
-    texBlink.loadFromFile("assests/enemy/Blink (42x42).png");
+    texBlink.loadFromFile("assets/enemy/Blink (42x42).png");
     spriteAnim.setTexture(texBlink);
     spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
     spriteAnim.setColor(sf::Color::Yellow);
     pFig = new Figura(&spriteAnim);
 }
 
-Inim_Medio::Inim_Medio(float px, float py, int n_vid) : Inimigo(px, py, n_vid) {
+Pedrado::Pedrado(float px, float py, int n_vid) : Inimigo(px, py, n_vid) {
     tamanho       = 52;
     nivel_maldade = 2;
     velocidadeX   = -3.5f;
     forma.setSize(sf::Vector2f((float)tamanho, (float)tamanho));
-    texBlink.loadFromFile("assests/enemy/Blink (42x42).png");
+    texBlink.loadFromFile("assets/enemy/Blink (42x42).png");
     spriteAnim.setTexture(texBlink);
     spriteAnim.setTextureRect(sf::IntRect(0, 0, FRAME_SIZE, FRAME_SIZE));
     spriteAnim.setColor(sf::Color::Yellow);
     pFig = new Figura(&spriteAnim);
 }
 
-Inim_Medio::~Inim_Medio() {}
+Pedrado::~Pedrado() {}
 
-void Inim_Medio::executar() {
+void Pedrado::executar() {
     Inimigo::executar();
 
     temporizador++;
@@ -50,13 +50,13 @@ void Inim_Medio::executar() {
     }
 }
 
-void Inim_Medio::danificar(Jogador* p) {
+void Pedrado::danificar(Jogador* p) {
     if (!p) return;
     p->tomarDano();
     p->tomarDano();
 }
 
-void Inim_Medio::salvar() {}
-void Inim_Medio::salvarDataBuffer() {}
-void Inim_Medio::salva() {}
+void Pedrado::salvar() {}
+void Pedrado::salvarDataBuffer() {}
+void Pedrado::salva() {}
 }

@@ -10,7 +10,7 @@ namespace Kawabanga::Fases {
         criarObstaculo();
         criarProjeteis();
 
-        texturaBg.loadFromFile("assests/bg/Pink.png");
+        texturaBg.loadFromFile("assets/bg/Pink.png");
         texturaBg.setRepeated(true);
         spriteBg.setTexture(texturaBg);
         spriteBg.setTextureRect(sf::IntRect(0, 0, (int)MUNDO_LARGURA, (int)MUNDO_ALTURA));
@@ -32,7 +32,7 @@ namespace Kawabanga::Fases {
         int criados = 0;
         for (int i = 1; i < NUM_PLATS && criados < maxChefoes; i += 2) {
             if (!plats[i]) continue;
-            Chefao* ch = new Chefao(0.f, 0.f);
+            Pedrao* ch = new Pedrao(0.f, 0.f);
             (*ch) = plats[i];
 
             Projetil* proj = new Projetil();
@@ -47,12 +47,12 @@ namespace Kawabanga::Fases {
     }
 
     void FaseSegunda::criarObstaculo() {
-        criarObstMedios();
+        criarObstDificil();
     }
 
-    void FaseSegunda::criarObstMedios() {
+    void FaseSegunda::criarObstDificil() {
         auto addOD = [&](float x, float y) {
-            Obst_Dificil* od = new Obst_Dificil(x, y, 35.f);
+            Bola_de_Espinhos* od = new Bola_de_Espinhos(x, y, 35.f);
             lista_enti.incluir(od);
             GC.incluirObstaculo(od);
         };

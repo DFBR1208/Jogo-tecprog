@@ -1,7 +1,7 @@
-#include "Chefao.h"
+#include "Pedrao.h"
 
 namespace Kawabanga::Entidades::Personagens {
-    Chefao::Chefao() : Inimigo(4), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
+    Pedrao::Pedrao() : Inimigo(4), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
         nivel_maldade = 3;
         velocidadeX   = -1.2f;
         forma.setSize(sf::Vector2f(64.f, 64.f));
@@ -12,7 +12,7 @@ namespace Kawabanga::Entidades::Personagens {
         pFig = new Figura(&forma);
     }
 
-    Chefao::Chefao(float px, float py, int n_vid) : Inimigo(px, py, n_vid), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
+    Pedrao::Pedrao(float px, float py, int n_vid) : Inimigo(px, py, n_vid), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
         nivel_maldade = 3;
         velocidadeX   = -1.2f;
         forma.setSize(sf::Vector2f(64.f, 64.f));
@@ -23,9 +23,9 @@ namespace Kawabanga::Entidades::Personagens {
         pFig = new Figura(&forma);
     }
 
-    Chefao::~Chefao() {}
+    Pedrao::~Pedrao() {}
 
-    void Chefao::executar() {
+    void Pedrao::executar() {
         Inimigo::executar();
         sf::Vector2f pos  = forma.getPosition();
         sf::Vector2f size = forma.getSize();
@@ -42,7 +42,7 @@ namespace Kawabanga::Entidades::Personagens {
         }
     }
 
-    void Chefao::danificar(Jogador* p) {
+    void Pedrao::danificar(Jogador* p) {
         if (!p) return;
         float xJogador = p->getForma().getPosition().x;
         bool knockback_direita = (xJogador > forma.getPosition().x);
@@ -50,16 +50,20 @@ namespace Kawabanga::Entidades::Personagens {
             p->tomarDano(knockback_direita);
     }
 
-    void Chefao::salvarDataBuffer() {}
-    void Chefao::salva()            {}
-    void Chefao::salvar()           {}
+    void Pedrao::salvarDataBuffer() {}
+    void Pedrao::salva()            {}
+    void Pedrao::salvar()           {}
 
-    void Chefao::tomarDano() {
+    void Pedrao::tomarDano() {
         if (!tomandoDano) {
             num_vidas--;
             tomandoDano = true;
             timerDano.restart();
             forma.setFillColor(sf::Color::Blue);
         }
+    }
+
+    void Pedrao::setProjetil(Projetil* p) {
+        pProj = p;
     }
 }

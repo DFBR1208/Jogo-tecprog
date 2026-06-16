@@ -1,16 +1,16 @@
-#include "Obst_Medio.h"
+#include "Espinhos.h"
 
 namespace Kawabanga::Entidades::Obstaculos {
     
     using namespace Personagens;
-    Obst_Medio::Obst_Medio() : Obstaculo() {
+    Espinhos::Espinhos() : Obstaculo() {
         largura = 60.f;
         danoso  = true;
         forma.setSize(sf::Vector2f(largura, 20.f));
         forma.setFillColor(sf::Color(220, 50, 50));
     }
 
-    Obst_Medio::Obst_Medio(float px, float py, float larg) : Obstaculo() {
+    Espinhos::Espinhos(float px, float py, float larg) : Obstaculo() {
         largura = larg;
         danoso  = true;
         forma.setSize(sf::Vector2f(largura, 20.f));
@@ -19,14 +19,14 @@ namespace Kawabanga::Entidades::Obstaculos {
         forma.setPosition(px, py);
     }
 
-    Obst_Medio::~Obst_Medio() {}
+    Espinhos::~Espinhos() {}
 
-    void Obst_Medio::executar() {}
+    void Espinhos::executar() {}
 
-    void Obst_Medio::obstaculizar(Jogador* p) {
+    void Espinhos::obstaculizar(Jogador* p) {
         if (p && danoso)
             p->tomarDano();
     }
 
-    void Obst_Medio::salvar() {}
+    void Espinhos::salvar() {}
 }

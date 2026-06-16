@@ -1,10 +1,10 @@
 #pragma once
 #include "Fase.h"
-#include "Chefao.h"
-#include "Obst_Medio.h"
-#include "Obst_Dificil.h"
+#include "Pedrao.h"
+#include "Espinhos.h"
+#include "Bola_de_Espinhos.h"
 #include "Projetil.h"
-#include "Plataforma.h"
+#include "Rosquinha.h"
 
 namespace Kawabanga::Fases {
     class FaseSegunda : public Fase {
@@ -19,7 +19,7 @@ namespace Kawabanga::Fases {
         static const int maxChefoes = 4;
 
         void criarChefoes();
-        void criarObstMedios();
+        void criarObstDificil();
         void criarProjeteis();
         void criarInimigos()   override;
         void criarObstaculo()  override;

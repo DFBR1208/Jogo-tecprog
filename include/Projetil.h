@@ -16,6 +16,6 @@ namespace Kawabanga::Entidades {
         void salvar()   override;
         sf::FloatRect getBounds() const override;
         void atirar(float px, float py, float vx);
-        bool isAtivo() const { return ativo; }
+        bool isAtivo() const;
     };
 }

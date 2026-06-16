@@ -44,4 +44,8 @@ namespace Kawabanga::Entidades {
         velocidadeY = 0.f;
         ativo = true;
     }
+
+    bool Projetil::isAtivo() const {
+        return ativo;
+    }
 }

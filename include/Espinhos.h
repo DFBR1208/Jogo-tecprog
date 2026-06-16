@@ -2,13 +2,13 @@
 #include "Obstaculo.h"
 
 namespace Kawabanga::Entidades::Obstaculos {
-    class Obst_Medio : public Obstaculo {
+    class Espinhos : public Obstaculo {
     private:
         float largura;
     public:
-        Obst_Medio();
-        Obst_Medio(float px, float py, float larg = 40.f);
-        ~Obst_Medio();
+        Espinhos();
+        Espinhos(float px, float py, float larg = 40.f);
+        ~Espinhos();
         void obstaculizar(Personagens::Jogador* p);
         void executar();
         void salvar();

@@ -6,7 +6,7 @@ namespace Kawabanga::Entidades::Personagens {
     Inimigo::Inimigo(int n_vid) : Personagem(n_vid) {
         nivel_maldade = 1;
         velocidadeX   = -2.0f;
-        pPlataforma   = nullptr;
+        pRosquinha   = nullptr;
         frameAtual    = 0;
         temporizador  = 0;
         forma.setSize(sf::Vector2f(42.f, 42.f));
@@ -17,7 +17,7 @@ namespace Kawabanga::Entidades::Personagens {
     Inimigo::Inimigo(float px, float py, int n_vid) : Personagem(n_vid) {
         nivel_maldade = 1;
         velocidadeX   = -1.5f;
-        pPlataforma   = nullptr;
+        pRosquinha   = nullptr;
         frameAtual    = 0;
         temporizador  = 0;
         forma.setSize(sf::Vector2f(42.f, 42.f));
@@ -40,8 +40,8 @@ namespace Kawabanga::Entidades::Personagens {
             }
         }
         else {
-            if (pPlataforma)
-                mover(pPlataforma);
+            if (pRosquinha)
+                mover(pRosquinha);
             else
                 mover();
         }
@@ -63,7 +63,7 @@ namespace Kawabanga::Entidades::Personagens {
         }
     }
 
-    void Inimigo::mover(Plataforma* p) {
+    void Inimigo::mover(Rosquinha* p) {
         sf::FloatRect b = p->getBounds();
         float limEsq = b.left;
         float limDir = b.left + b.width - forma.getSize().x;
@@ -77,8 +77,8 @@ namespace Kawabanga::Entidades::Personagens {
         forma.setPosition(forma.getPosition().x, b.top - forma.getSize().y);
     }
 
-    void Inimigo::setPlataforma(Plataforma* p) {
-        pPlataforma = p;
+    void Inimigo::setPlataforma(Obstaculos::Rosquinha* p) {
+        pRosquinha = p;
         if (p) {
             sf::FloatRect b = p->getBounds();
             float rangeX  = b.width - forma.getSize().x;
@@ -87,7 +87,7 @@ namespace Kawabanga::Entidades::Personagens {
         }
     }
 
-    Inimigo& Inimigo::operator=(Plataforma* p) {
+    Inimigo& Inimigo::operator=(Obstaculos::Rosquinha* p) {
         setPlataforma(p);
         return *this;
     }

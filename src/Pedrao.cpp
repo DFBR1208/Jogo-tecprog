@@ -62,4 +62,8 @@ namespace Kawabanga::Entidades::Personagens {
             forma.setFillColor(sf::Color::Blue);
         }
     }
+
+    void Pedrao::setProjetil(Projetil* p) {
+        pProj = p;
+    }
 }

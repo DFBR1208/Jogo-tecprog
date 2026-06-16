@@ -20,7 +20,7 @@ namespace Kawabanga::Entidades::Personagens {
         void salvarDataBuffer()    override;
         void salva()               override;
         void salvar()              override;
-        void setProjetil(Projetil* p) { pProj = p; }
+        void setProjetil(Projetil* p);
         void tomarDano()              override;
     };
 }

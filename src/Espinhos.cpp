@@ -21,7 +21,10 @@ namespace Kawabanga::Entidades::Obstaculos {
 
     Espinhos::~Espinhos() {}
 
-    void Espinhos::executar() {}
+    void Espinhos::executar() {
+        gravitar();
+        antiGravitar();
+    }
 
     void Espinhos::obstaculizar(Jogador* p) {
         if (p && danoso)

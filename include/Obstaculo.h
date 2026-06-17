@@ -14,5 +14,6 @@ namespace Kawabanga::Entidades::Obstaculos {
 		virtual void obstaculizar(Personagens::Jogador* p) = 0;
 		sf::FloatRect getBounds() const;
 		virtual void salvar() = 0;
+		void antiGravitar();
 	};
 }

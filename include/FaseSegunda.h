@@ -20,7 +20,7 @@ namespace Kawabanga::Fases {
 
         void criarChefoes();
         void criarObstDificil();
-        void criarProjeteis();
+        Kawabanga::Entidades::Projetil* criarProjeteis();
         void criarInimigos()   override;
         void criarObstaculo()  override;
     public:

@@ -11,4 +11,8 @@ namespace Kawabanga::Entidades::Obstaculos {
     sf::FloatRect Obstaculo::getBounds() const {
         return forma.getGlobalBounds();
     }
+
+    void Obstaculo::antiGravitar() {
+        velocidadeY -= gravidade;
+    }
 }

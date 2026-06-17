@@ -55,7 +55,7 @@ namespace Kawabanga::Fases {
         addObst(410.f, 250.f);
         addObst(1300.f, 450.f);
         addObst(690.f, 350.f);
-        if (rand()%10 == 1) {addObst(1700.f, 350.f);}
+        if (rand()%10 == 1) {addObst(1700.f, 410.f);}
     }
 
     void FasePrimeira::executar() {

@@ -23,7 +23,11 @@ namespace Kawabanga::Entidades::Obstaculos {
 
     Rosquinha::~Rosquinha() {}
 
-    void Rosquinha::executar() {}
+    void Rosquinha::executar() {
+        gravitar();
+        antiGravitar();
+    }
+    
     void Rosquinha::salvar() {}
 
     void Rosquinha::obstaculizar(Jogador* p) {

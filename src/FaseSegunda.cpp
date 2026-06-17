@@ -8,7 +8,6 @@ namespace Kawabanga::Fases {
     FaseSegunda::FaseSegunda(Jogador* pJog1, Jogador* pJog2) : Fase(pJog1, pJog2) {
         criarInimigos();
         criarObstaculo();
-        criarProjeteis();
 
         texturaBg.loadFromFile("assets/bg/Pink.png");
         texturaBg.setRepeated(true);
@@ -35,13 +34,11 @@ namespace Kawabanga::Fases {
             Pedrao* ch = new Pedrao(0.f, 0.f);
             (*ch) = plats[i];
 
-            Projetil* proj = new Projetil();
-            ch->setProjetil(proj);
+            Projetil* pProj = criarProjeteis();
+            ch->setProjetil(pProj);
 
             lista_enti.incluir(ch);
-            lista_enti.incluir(proj);
             GC.incluirInimigo(ch);
-            GC.incluirProjetil(proj);
             ++criados;
         }
     }
@@ -62,8 +59,11 @@ namespace Kawabanga::Fases {
         if (rand()%10 == 1) {addOD(1700.f, 335.f);}
     }
 
-    void FaseSegunda::criarProjeteis() {
-        // Projeteis ja criados e atribuidos em criarChefoes()
+    Projetil* FaseSegunda::criarProjeteis() {
+        Projetil* proj1 = new Projetil();
+        lista_enti.incluir(proj1);
+        GC.incluirProjetil(proj1);
+        return proj1;
     }
 
     void FaseSegunda::executar() {

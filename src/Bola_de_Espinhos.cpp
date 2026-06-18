@@ -22,6 +22,8 @@ namespace Kawabanga::Entidades::Obstaculos {
     Bola_de_Espinhos::~Bola_de_Espinhos() {}
 
     void Bola_de_Espinhos::executar() {
+        gravitar();
+        antiGravitar();
         float dy = forma.getPosition().y - yOrigem;
         velOscilacao += -FORCA_MOLA * dy;
         forma.move(0.f, velOscilacao);

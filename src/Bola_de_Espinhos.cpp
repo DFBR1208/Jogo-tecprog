@@ -9,7 +9,7 @@ namespace Kawabanga::Entidades::Obstaculos {
         forma.setFillColor(sf::Color(180, 0, 200));
     }
 
-    Bola_de_Espinhos::Bola_de_Espinhos(float px, float py, float lado) : Obstaculo() {
+    Bola_de_Espinhos::Bola_de_Espinhos(float px, float py, float lado) : Obstaculo(), yOrigem(py), velOscilacao(-2.f) {
         danosidade = 2;
         danoso = true;
         forma.setSize(sf::Vector2f(lado, lado));
@@ -22,8 +22,9 @@ namespace Kawabanga::Entidades::Obstaculos {
     Bola_de_Espinhos::~Bola_de_Espinhos() {}
 
     void Bola_de_Espinhos::executar() {
-        gravitar();
-        antiGravitar();
+        float dy = forma.getPosition().y - yOrigem;
+        velOscilacao += -FORCA_MOLA * dy;
+        forma.move(0.f, velOscilacao);
     }
 
     void Bola_de_Espinhos::obstaculizar(Jogador* p) {

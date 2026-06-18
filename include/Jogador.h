@@ -16,6 +16,10 @@ namespace Kawabanga::Entidades::Personagens {
         sf::Clock timerPoderoso;
         const float duracaoPoderoso = 4.0f;
 
+        bool lento;
+        sf::Clock timerLento;
+        const float duracaoLento = 3.0f;
+
         sf::RectangleShape forma;
 
         sf::Texture texIdle, texRun, texJump, texFall;
@@ -47,6 +51,7 @@ namespace Kawabanga::Entidades::Personagens {
         void adicionarPontos(int n);
         void atacar(Inimigo* pIni);
         bool getIsPoderoso() const;
+        void aplicarSlow();
         void paraFase2();
     };
 }

@@ -52,8 +52,9 @@ void Pedrado::executar() {
 
 void Pedrado::danificar(Jogador* p) {
     if (!p) return;
-    p->tomarDano();
-    p->tomarDano();
+    bool dir = (p->getForma().getPosition().x > forma.getPosition().x);
+    p->tomarDano(dir);
+    p->aplicarSlow();
 }
 
 void Pedrado::salvar() {}

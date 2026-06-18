@@ -1,7 +1,7 @@
 #include "Pedrao.h"
 
 namespace Kawabanga::Entidades::Personagens {
-    Pedrao::Pedrao() : Inimigo(4), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
+    Pedrao::Pedrao() : Inimigo(4), forca(2), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
         nivel_maldade = 3;
         velocidadeX   = -1.2f;
         forma.setSize(sf::Vector2f(64.f, 64.f));
@@ -12,7 +12,7 @@ namespace Kawabanga::Entidades::Personagens {
         pFig = new Figura(&forma);
     }
 
-    Pedrao::Pedrao(float px, float py, int n_vid) : Inimigo(px, py, n_vid), forca(1), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
+    Pedrao::Pedrao(float px, float py, int n_vid) : Inimigo(px, py, n_vid), forca(2), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
         nivel_maldade = 3;
         velocidadeX   = -1.2f;
         forma.setSize(sf::Vector2f(64.f, 64.f));
@@ -44,10 +44,10 @@ namespace Kawabanga::Entidades::Personagens {
 
     void Pedrao::danificar(Jogador* p) {
         if (!p) return;
-        float xJogador = p->getForma().getPosition().x;
-        bool knockback_direita = (xJogador > forma.getPosition().x);
+        bool dir = (p->getForma().getPosition().x > forma.getPosition().x);
         for (short i = 0; i <= forca; ++i)
-            p->tomarDano(knockback_direita);
+            p->tomarDano(dir);
+        p->adicionarPontos(-100);
     }
 
     void Pedrao::salvarDataBuffer() {}

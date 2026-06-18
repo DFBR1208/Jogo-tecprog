@@ -3,7 +3,7 @@
 #include <SFML/Window/Keyboard.hpp>
 
 namespace Kawabanga::Entidades::Personagens {
-    Jogador::Jogador(bool flag) : Personagem(5), j1(flag), isPoderoso(false) {
+    Jogador::Jogador(bool flag) : Personagem(5), j1(flag), isPoderoso(false), lento(false) {
         pontos = 0;
         if (j1) {
             forma.setSize(sf::Vector2f(30.f, 50.f));
@@ -72,8 +72,14 @@ namespace Kawabanga::Entidades::Personagens {
                 isPoderoso = false;
                 spriteAnim.setColor(j1 ? sf::Color::White : sf::Color(100, 100, 255));
             }
-        }       
-        
+        }
+
+        if (lento && timerLento.getElapsedTime().asSeconds() >= duracaoLento) {
+            lento = false;
+            if (!isPoderoso)
+                spriteAnim.setColor(j1 ? sf::Color::White : sf::Color(100, 100, 255));
+        }
+
         mover();
         atualizarAnimacao();
 
@@ -91,12 +97,13 @@ namespace Kawabanga::Entidades::Personagens {
     }
 
     void Jogador::mover() {
+        float vx = lento ? velocidadeX * 0.4f : velocidadeX;
         if (j1) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-                forma.move(velocidadeX, 0.f);
+                forma.move(vx, 0.f);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                forma.move(-velocidadeX, 0.f);
+                forma.move(-vx, 0.f);
             }
             float pos_x = forma.getPosition().x;
             if (pos_x < 0.f) {
@@ -109,10 +116,10 @@ namespace Kawabanga::Entidades::Personagens {
         }
         else {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-                forma.move(velocidadeX, 0.f);
+                forma.move(vx, 0.f);
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-                forma.move(-velocidadeX, 0.f);
+                forma.move(-vx, 0.f);
             }
             float pos_x = forma.getPosition().x;
             if (pos_x < 0.f) {
@@ -252,5 +259,11 @@ namespace Kawabanga::Entidades::Personagens {
     void Jogador::paraFase2() {
         forma.setPosition(50.f, 0.f);
         velocidadeY = 0.f;
+    }
+
+    void Jogador::aplicarSlow() {
+        lento = true;
+        timerLento.restart();
+        spriteAnim.setColor(sf::Color::Cyan);
     }
 }

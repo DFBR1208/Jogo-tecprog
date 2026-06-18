@@ -27,7 +27,7 @@ namespace Kawabanga::Entidades {
         gravitar();
         forma.move(velocidadeX, velocidadeY);
         sf::Vector2f pos = forma.getPosition();
-        if (pos.x < -50.f || pos.x > 2000.f || pos.y > 900.f)
+        if (pos.x < -50.f || pos.x > 3700.f || pos.y > 2600.f)
             ativo = false;
     }
 

@@ -9,7 +9,7 @@ namespace Kawabanga {
         Figura();
         Figura(sf::Drawable* pd);
         ~Figura();
-        void           setDrawable(sf::Drawable* pd);
+        void setDrawable(sf::Drawable* pd);
         sf::Drawable* getDrawable() const;
     };
 }

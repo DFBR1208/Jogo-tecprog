@@ -65,16 +65,8 @@ Gerenciador_Grafico::~Gerenciador_Grafico() {
 void Gerenciador_Grafico::limpar() {
     window->clear();
 }
-
-void Gerenciador_Grafico::desenhar(sf::RectangleShape forma) {
-    window->draw(forma);
-}
-
-void Gerenciador_Grafico::desenhar(const sf::Sprite& sprite) {
-    window->draw(sprite);
-}
-
 void Gerenciador_Grafico::desenhar(const sf::Drawable& drawable) {
+
     window->draw(drawable);
 }
 
@@ -102,27 +94,4 @@ bool Gerenciador_Grafico::verificaJanelaAberta() {
     return window->isOpen();
 }
 
-const sf::Texture& Gerenciador_Grafico::getTexBg()         const { return texBg; }
-const sf::Texture& Gerenciador_Grafico::getTexTerrain()    const { return texTerrain; }
-const sf::Texture& Gerenciador_Grafico::getTexPlataforma() const { return texPlataforma; }
-const sf::Texture& Gerenciador_Grafico::getTexObstaculo()  const { return texObstaculo; }
-
-const sf::Texture& Gerenciador_Grafico::getTexPlayerIdle()       const { return texPlayerIdle; }
-const sf::Texture& Gerenciador_Grafico::getTexPlayerRun()        const { return texPlayerRun; }
-const sf::Texture& Gerenciador_Grafico::getTexPlayerJump()       const { return texPlayerJump; }
-const sf::Texture& Gerenciador_Grafico::getTexPlayerFall()       const { return texPlayerFall; }
-const sf::Texture& Gerenciador_Grafico::getTexPlayerHit()        const { return texPlayerHit; }
-const sf::Texture& Gerenciador_Grafico::getTexPlayerDoubleJump() const { return texPlayerDoubleJump; }
-const sf::Texture& Gerenciador_Grafico::getTexPlayerWallJump()   const { return texPlayerWallJump; }
-
-const sf::Texture& Gerenciador_Grafico::getTexEnemyIdle()      const { return texEnemyIdle; }
-const sf::Texture& Gerenciador_Grafico::getTexEnemyBlink()     const { return texEnemyBlink; }
-const sf::Texture& Gerenciador_Grafico::getTexEnemyTopHit()    const { return texEnemyTopHit; }
-const sf::Texture& Gerenciador_Grafico::getTexEnemyBottomHit() const { return texEnemyBottomHit; }
-const sf::Texture& Gerenciador_Grafico::getTexEnemyLeftHit()   const { return texEnemyLeftHit; }
-const sf::Texture& Gerenciador_Grafico::getTexEnemyRightHit()  const { return texEnemyRightHit; }
-
-const sf::Texture& Gerenciador_Grafico::getTexBoss()       const { return texBoss; }
-const sf::Texture& Gerenciador_Grafico::getTexProjetil()   const { return texProjetil; }
-const sf::Texture& Gerenciador_Grafico::getTexObstaculoD() const { return texObstaculoD; }
 }

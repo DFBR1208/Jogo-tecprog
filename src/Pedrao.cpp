@@ -1,7 +1,7 @@
 #include "Pedrao.h"
 
 namespace Kawabanga::Entidades::Personagens {
-    Pedrao::Pedrao() : Inimigo(4), forca(2), pProj(nullptr), cooldownTiro(INTERVALO_TIRO) {
+    Pedrao::Pedrao() : Inimigo(4), forca(2), pProj(nullptr), cooldownTiro(INTERVALO_TIRO), curando(false) {
         nivel_maldade = 3;
         velocidadeX   = -1.2f;
         forma.setSize(sf::Vector2f(64.f, 64.f));
@@ -40,6 +40,12 @@ namespace Kawabanga::Entidades::Personagens {
                 pProj->atirar(projX, projY, projVX);
             }
         }
+        if(curando) {
+            if(timerCura.getElapsedTime().asSeconds() >= duracaoCura) {
+                forma.setFillColor(sf::Color::Red);
+                curando = false;
+            }
+        }
     }
 
     void Pedrao::danificar(Jogador* p) {
@@ -65,5 +71,14 @@ namespace Kawabanga::Entidades::Personagens {
 
     void Pedrao::setProjetil(Projetil* p) {
         pProj = p;
+    }
+
+    void Pedrao::projetilAtingiu() {
+        if (pProj) {
+            num_vidas++;
+            curando = true;
+            timerCura.restart();
+            forma.setFillColor(sf::Color::Green);
+        }
     }
 }

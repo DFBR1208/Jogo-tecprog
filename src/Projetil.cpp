@@ -1,6 +1,8 @@
 #include "Projetil.h"
+#include "Pedrao.h"
 
 namespace Kawabanga::Entidades {
+    using namespace Personagens;
     Projetil::Projetil() : Entidade(), ativo(false), velocidadeX(0.f) {
         forma.setSize(sf::Vector2f(20.f, 15.f));
         forma.setPosition(-100.f, -100.f);
@@ -47,5 +49,13 @@ namespace Kawabanga::Entidades {
 
     bool Projetil::isAtivo() const {
         return ativo;
+    }
+
+    void Projetil::setChefao(Pedrao* ch) {
+        pChefao = ch;
+    }
+
+    Pedrao* Projetil::getChefao() const {
+        return pChefao;
     }
 }

@@ -108,8 +108,10 @@ namespace Kawabanga::Gerenciadores {
     void Gerenciador_Colisoes::tratarColisoesJogsProjeteis() {
         for (Projetil* proj : LPs) {
             if (!proj || !proj->isAtivo()) continue;
-            if (verificarColisao(pJog1, proj))
+            if (verificarColisao(pJog1, proj)) {
                 pJog1->tomarDano();
+                proj->getChefao()->projetilAtingiu();
+            }
             if (pJog2 && verificarColisao(pJog2, proj))
                 pJog2->tomarDano();
         }

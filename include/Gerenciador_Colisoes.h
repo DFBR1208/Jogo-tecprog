@@ -4,6 +4,7 @@
 #include "Jogador.h"
 #include "Inimigo.h"
 #include "Obstaculo.h"
+#include "Pedrao.h"
 #include "Projetil.h"
 #include "Entidade.h"
 #include <vector>

@@ -10,6 +10,9 @@ namespace Kawabanga::Entidades::Personagens {
         Projetil*   pProj;
         int         cooldownTiro;
         static const int INTERVALO_TIRO = 180; // 3s a 60fps
+        bool curando;
+        sf::Clock timerCura;
+        const float duracaoCura = 0.5f;
     public:
         using Inimigo::operator=;
         Pedrao();
@@ -22,5 +25,6 @@ namespace Kawabanga::Entidades::Personagens {
         void salvar()              override;
         void setProjetil(Projetil* p);
         void tomarDano()              override;
+        void projetilAtingiu();
     };
 }

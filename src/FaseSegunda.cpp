@@ -36,6 +36,7 @@ namespace Kawabanga::Fases {
 
             Projetil* pProj = criarProjeteis();
             ch->setProjetil(pProj);
+            pProj->setChefao(ch);
 
             lista_enti.incluir(ch);
             GC.incluirInimigo(ch);

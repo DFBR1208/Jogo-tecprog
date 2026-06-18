@@ -52,30 +52,30 @@ namespace Kawabanga::Gerenciadores {
         void atualizarCamera(sf::Vector2f posJogador, float mundoLargura, float mundoAltura);
         void resetarViewUI();
 
-        const sf::Texture& getTexBg()         const { return texBg; }
-        const sf::Texture& getTexTerrain()    const { return texTerrain; }
-        const sf::Texture& getTexPlataforma() const { return texPlataforma; }
-        const sf::Texture& getTexObstaculo() const { return texObstaculo; }
+        const sf::Texture& getTexBg()         const;
+        const sf::Texture& getTexTerrain()    const;
+        const sf::Texture& getTexPlataforma() const;
+        const sf::Texture& getTexObstaculo() const;
 
-        const sf::Texture& getTexPlayerIdle()       const { return texPlayerIdle; }
-        const sf::Texture& getTexPlayerRun()        const { return texPlayerRun; }
-        const sf::Texture& getTexPlayerJump()       const { return texPlayerJump; }
-        const sf::Texture& getTexPlayerFall()       const { return texPlayerFall; }
-        const sf::Texture& getTexPlayerHit()        const { return texPlayerHit; }
-        const sf::Texture& getTexPlayerDoubleJump() const { return texPlayerDoubleJump; }
-        const sf::Texture& getTexPlayerWallJump()   const { return texPlayerWallJump; }
+        const sf::Texture& getTexPlayerIdle()       const;
+        const sf::Texture& getTexPlayerRun()        const;
+        const sf::Texture& getTexPlayerJump()       const;
+        const sf::Texture& getTexPlayerFall()       const;
+        const sf::Texture& getTexPlayerHit()        const;
+        const sf::Texture& getTexPlayerDoubleJump() const;
+        const sf::Texture& getTexPlayerWallJump()   const;
 
-        const sf::Texture& getTexEnemyIdle()      const { return texEnemyIdle; }
-        const sf::Texture& getTexEnemyBlink()     const { return texEnemyBlink; }
-        const sf::Texture& getTexEnemyTopHit()    const { return texEnemyTopHit; }
-        const sf::Texture& getTexEnemyBottomHit() const { return texEnemyBottomHit; }
-        const sf::Texture& getTexEnemyLeftHit()   const { return texEnemyLeftHit; }
-        const sf::Texture& getTexEnemyRightHit()  const { return texEnemyRightHit; }
+        const sf::Texture& getTexEnemyIdle()      const;
+        const sf::Texture& getTexEnemyBlink()     const;
+        const sf::Texture& getTexEnemyTopHit()    const;
+        const sf::Texture& getTexEnemyBottomHit() const;
+        const sf::Texture& getTexEnemyLeftHit()   const;
+        const sf::Texture& getTexEnemyRightHit()  const;
 
         
-        const sf::Texture& getTexBoss()  const { return texBoss; }
-        const sf::Texture& getTexProjetil()  const { return texProjetil; }
-        const sf::Texture& getTexObstaculoD()  const { return texObstaculoD; }
+        const sf::Texture& getTexBoss()  const;
+        const sf::Texture& getTexProjetil()  const;
+        const sf::Texture& getTexObstaculoD()  const;
         
     };
 }

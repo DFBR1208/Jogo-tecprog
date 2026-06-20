@@ -23,18 +23,18 @@ namespace Kawabanga::Fases {
     FaseSegunda::~FaseSegunda() {}
 
     void FaseSegunda::criarInimigos() {
-        criarInimFaceis();
-        criarChefoes();
+        criarPedrosos();
+        criarPedraos();
     }
 
-    void FaseSegunda::criarChefoes() {
+    void FaseSegunda::criarPedraos() {
         int criados = 0;
         for (int i = 1; i < NUM_PLATS && criados < maxChefoes; i += 2) {
             if (!plats[i]) continue;
             Pedrao* ch = new Pedrao(0.f, 0.f);
             (*ch) = plats[i];
 
-            Projetil* pProj = criarProjeteis();
+            Projetil* pProj = criarProjetil();
             ch->setProjetil(pProj);
             pProj->setChefao(ch);
 
@@ -45,10 +45,10 @@ namespace Kawabanga::Fases {
     }
 
     void FaseSegunda::criarObstaculo() {
-        criarObstDificil();
+        criarBolas();
     }
 
-    void FaseSegunda::criarObstDificil() {
+    void FaseSegunda::criarBolas() {
         auto addOD = [&](float x, float y) {
             Bola_de_Espinhos* od = new Bola_de_Espinhos(x, y, 35.f);
             lista_enti.incluir(od);
@@ -60,7 +60,7 @@ namespace Kawabanga::Fases {
         if (rand()%10 == 1) {addOD(1700.f, 335.f);}
     }
 
-    Projetil* FaseSegunda::criarProjeteis() {
+    Projetil* FaseSegunda::criarProjetil() {
         Projetil* proj1 = new Projetil();
         lista_enti.incluir(proj1);
         GC.incluirProjetil(proj1);
@@ -90,7 +90,15 @@ namespace Kawabanga::Fases {
             }
             pAux = pProx;
         }
-        pGG->atualizarCamera(pJog1->getPosicao(), MUNDO_LARGURA, MUNDO_ALTURA);
+
+        sf::Vector2f posJogador = pJog1 ? pJog1->getPosicao() : sf::Vector2f(0.f, 0.f);
+
+        if(pJog2) {
+            sf::Vector2f posJog2 = pJog2->getPosicao();
+            posJogador.x = (posJog2.x + posJogador.x) / 2.f;
+            posJogador.y = (posJog2.y + posJogador.y) / 2.f;
+        }        
+        pGG->atualizarCamera(posJogador, MUNDO_LARGURA, MUNDO_ALTURA);
         if(inimigosVivos == 0) {
             faseConcluida = true;
         }

@@ -17,8 +17,8 @@ namespace Kawabanga::Fases {
 
         static const int maxInimMedios = 5;
 
-        void criarInimMedios();
-        void criarObstMedios();
+        void criarPedrados();
+        void criarEspinhos();
         void criarInimigos()  override;
         void criarObstaculo() override;
     public:

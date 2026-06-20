@@ -18,9 +18,9 @@ namespace Kawabanga::Fases {
 
         static const int maxChefoes = 4;
 
-        void criarChefoes();
-        void criarObstDificil();
-        Kawabanga::Entidades::Projetil* criarProjeteis();
+        void criarPedraos();
+        void criarBolas();
+        Kawabanga::Entidades::Projetil* criarProjetil();
         void criarInimigos()   override;
         void criarObstaculo()  override;
     public:

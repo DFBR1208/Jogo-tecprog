@@ -94,6 +94,10 @@ bool Gerenciador_Grafico::verificaJanelaAberta() {
     return window->isOpen();
 }
 
+void Gerenciador_Grafico::focarCameraJogo() {
+    window->setView(camera);
+}
+
 const sf::Texture& Gerenciador_Grafico::getTexBg() const { return texBg; }
 const sf::Texture& Gerenciador_Grafico::getTexTerrain() const { return texTerrain; }
 const sf::Texture& Gerenciador_Grafico::getTexPlataforma() const { return texPlataforma; }

@@ -21,8 +21,8 @@ namespace Kawabanga::Fases {
         Entidades::Obstaculos::Rosquinha* plats[NUM_PLATS];
         bool faseConcluida;
 
-        void criarInimFaceis();
-        void criarPlataformas();
+        void criarPedrosos();
+        void criarRosquinhas();
         virtual void criarInimigos() = 0;
         virtual void criarObstaculo() = 0;
         void criarCenario();

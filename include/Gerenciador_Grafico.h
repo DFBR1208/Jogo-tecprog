@@ -51,6 +51,7 @@ namespace Kawabanga::Gerenciadores {
 
         void atualizarCamera(sf::Vector2f posJogador, float mundoLargura, float mundoAltura);
         void resetarViewUI();
+        void focarCameraJogo();
 
         const sf::Texture& getTexBg()         const;
         const sf::Texture& getTexTerrain()    const;

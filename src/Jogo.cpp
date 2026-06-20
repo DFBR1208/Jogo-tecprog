@@ -14,6 +14,8 @@ namespace Kawabanga {
         pFase1(nullptr), pFase2(nullptr),
         pMenu(new Menu(this)), pHUD(nullptr) {
         Ente::setGerenciadorGrafico(GG);
+        estadoAtual = JOGO_INICIO;
+        faseAtual = JOGO_INICIO; //apenas para ter uma inicialização válida
     }
 
     Jogo::~Jogo() {
@@ -29,8 +31,67 @@ namespace Kawabanga {
     void Jogo::executar() {
         while (GG->verificaJanelaAberta()) {
             GG->limpar();
-            pMenu->executar();
-            pMenu->desenhar();
+            switch (estadoAtual) {
+            case JOGO_INICIO:
+                pMenu->executar();
+                pMenu->desenhar();
+                break;
+            case JOGO_FASE1:
+                pFase1->executar();
+                pHUD->executar();
+                if (pFase1->isFaseConcluida()) {
+                    int n_jogadores = (pJog2!=nullptr) ? 2:1;
+                    iniciarFase2(n_jogadores);
+                }
+                if((pJog1&&pJog1->getNumVidas()<=0)||(pJog2&&pJog2->getNumVidas()<=0)) {
+                    faseAtual=estadoAtual;
+                    estadoAtual=JOGO_MENUGERAL;
+                    pMenu->setEstado(MENU_GAMEOVER);
+                }    
+                else {
+                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+                        faseAtual=estadoAtual;
+                        estadoAtual=JOGO_MENUGERAL;
+                        pMenu->setEstado(MENU_PAUSE);
+                    }
+                    pFase1->desenhar();
+                    pHUD->desenhar();
+                }
+                break;
+            
+            case JOGO_FASE2:
+                pFase2->executar();
+                pHUD->executar();
+                if(pFase2->isFaseConcluida()) {
+                    estadoAtual=JOGO_MENUGERAL;
+                    pMenu->setEstado(MENU_VITORIA);
+                }
+                if((pJog1&&pJog1->getNumVidas()<=0)||(pJog2&&pJog2->getNumVidas()<=0)) {
+                    faseAtual=estadoAtual;
+                    estadoAtual=JOGO_MENUGERAL;
+                    pMenu->setEstado(MENU_GAMEOVER);
+                }    
+                else {
+                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+                        faseAtual=estadoAtual;
+                        estadoAtual=JOGO_MENUGERAL;
+                        pMenu->setEstado(MENU_PAUSE);
+                    }                    
+                    pFase2->desenhar();
+                    pHUD->desenhar();
+                }
+                break;
+                case JOGO_MENUGERAL:
+                    GG->focarCameraJogo();
+                    if (faseAtual == JOGO_FASE1) {
+                        pFase1->desenhar();
+                    } else if (faseAtual == JOGO_FASE2) {
+                        pFase2->desenhar();
+                    }
+                    pHUD->desenhar();
+                    pMenu->executar();
+                    pMenu->desenhar();
+            }
             GG->mostrar();
         }
     }
@@ -45,25 +106,21 @@ namespace Kawabanga {
             pJog1  = new Jogador(true);
             pFase1 = new FasePrimeira(pJog1, n_jogs == 2 ? (pJog2 = new Jogador(false)) : nullptr);
             pHUD   = new HUD(pJog1, pJog2);
-        }
-
-        while (GG->verificaJanelaAberta()) {
-            GG->limpar();
-            pFase1->executar();
-            pHUD->executar();
-            if (pFase1->isFaseConcluida()) {
-                iniciarFase2(n_jogs);
-                return;
-            }
-            pFase1->desenhar();
-            pHUD->desenhar();
-            GG->mostrar();
+            estadoAtual = JOGO_FASE1;
         }
     }
 
     void Jogo::iniciarFase2(int n_jogs) {
         delete pFase2; pFase2 = nullptr;
         delete pHUD;   pHUD   = nullptr;
+        if (pJog1!=nullptr&&pJog1->getNumVidas()<=0) {
+            delete pJog1;
+            pJog1=nullptr;
+        }
+        if (pJog2!=nullptr&&pJog2->getNumVidas()<=0) {
+            delete pJog2;
+            pJog2=nullptr;
+        }
         if(pJog1 == nullptr && n_jogs >= 1) {
             pJog1 = new Jogador(true);
         }
@@ -80,17 +137,15 @@ namespace Kawabanga {
 
         pFase2 = new FaseSegunda(pJog1, pJog2);
         pHUD   = new HUD(pJog1, pJog2);
+        estadoAtual = JOGO_FASE2;
 
-        while (GG->verificaJanelaAberta()) {
-            GG->limpar();
-            pFase2->executar();
-            pHUD->executar();
-            if (pFase2->isFaseConcluida()) {
-                exit(0);
-            }
-            pFase2->desenhar();
-            pHUD->desenhar();
-            GG->mostrar();
-        }
+    }
+
+    void Jogo::setEstado(EstadoJogo novoEstado) {
+        estadoAtual = novoEstado;
+    }
+
+    EstadoJogo Jogo::getFaseAtual() {
+        return faseAtual;
     }
 }

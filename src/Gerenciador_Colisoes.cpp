@@ -112,8 +112,10 @@ namespace Kawabanga::Gerenciadores {
                 pJog1->tomarDano();
                 proj->getChefao()->projetilAtingiu();
             }
-            if (pJog2 && verificarColisao(pJog2, proj))
+            if (pJog2 && verificarColisao(pJog2, proj)) {
                 pJog2->tomarDano();
+                proj->getChefao()->projetilAtingiu();
+            }
         }
     }
 

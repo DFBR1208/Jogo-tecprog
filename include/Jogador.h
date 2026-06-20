@@ -11,7 +11,8 @@ namespace Kawabanga::Entidades::Personagens {
         int pontos;
         float velocidadeX;
         float pulo;
-        bool j1;
+        bool j1; /*Lógica booleana baseada no projeto de Deborah Feijó e Rafael 
+                   Fernandes conforme está no reltório*/
         bool isPoderoso;
         sf::Clock timerPoderoso;
         const float duracaoPoderoso = 4.0f;

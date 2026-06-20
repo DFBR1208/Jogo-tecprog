@@ -9,7 +9,7 @@ namespace Kawabanga::Fases {
     using namespace Entidades::Obstaculos;
     Fase::Fase(Jogador* pJo1, Jogador* pJo2) : Ente(), GC(pJo1, pJog2), pJog1(pJo1), pJog2(pJo2), faseConcluida(false) {
         for (int i = 0; i < NUM_PLATS; i++) plats[i] = nullptr;
-        criarPlataformas();
+        criarRosquinhas();
         criarCenario();
         if(pJog1)
             lista_enti.incluir(pJog1);
@@ -19,7 +19,7 @@ namespace Kawabanga::Fases {
 
     Fase::~Fase() {}
 
-    void Fase::criarInimFaceis() {
+    void Fase::criarPedrosos() {
         auto addIniF = [&](Rosquinha* plat) {
             Pedroso* ini = new Pedroso(0.f, 0.f);
             (*ini) = plat;
@@ -35,7 +35,7 @@ namespace Kawabanga::Fases {
     }
 
 
-    void Fase::criarPlataformas() {
+    void Fase::criarRosquinhas() {
         auto addPlat = [&](int idx, float x, float y, float w) {
             Rosquinha* p = new Rosquinha(x, y, w);
             plats[idx] = p;
@@ -47,7 +47,7 @@ namespace Kawabanga::Fases {
         addPlat(2, 880.f, 470.f, 500.f);
         addPlat(3, 410.f, 370.f, 600.f);
         addPlat(4, 410.f, 270.f, 100.f);
-        if (rand() % 10 == 1) {
+        if (rand() % 10 <5) {
             addPlat(5, 660.f, 270.f, 100.f);
         }
         addPlat(6, 509.f, 170.f, 100.f);

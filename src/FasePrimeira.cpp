@@ -22,11 +22,11 @@ namespace Kawabanga::Fases {
     FasePrimeira::~FasePrimeira() {}
 
     void FasePrimeira::criarInimigos() {
-        criarInimFaceis();
-        criarInimMedios();
+        criarPedrosos();
+        criarPedrados();
     }
 
-    void FasePrimeira::criarInimMedios() {
+    void FasePrimeira::criarPedrados() {
         auto addIniM = [&](Rosquinha* plat) {
             Pedrado* im = new Pedrado(0.f, 0.f);
             (*im) = plat;
@@ -43,10 +43,10 @@ namespace Kawabanga::Fases {
 
 
     void FasePrimeira::criarObstaculo() {
-        criarObstMedios();
+        criarEspinhos();
     }
 
-    void FasePrimeira::criarObstMedios() {
+    void FasePrimeira::criarEspinhos() {
         auto addObst = [&](float x, float y) {
             Espinhos* ob = new Espinhos(x, y, 40.f);
             lista_enti.incluir(ob);
@@ -86,10 +86,8 @@ namespace Kawabanga::Fases {
 
         if(pJog2) {
             sf::Vector2f posJog2 = pJog2->getPosicao();
-            if (posJog2.x < posJogador.x) {
-                posJogador.x = (posJog2.x + posJogador.x) / 2.f;
-                posJogador.y = (posJog2.y + posJogador.y) / 2.f;
-            }
+            posJogador.x = (posJog2.x + posJogador.x) / 2.f;
+            posJogador.y = (posJog2.y + posJogador.y) / 2.f;
         }
         pGG->atualizarCamera(posJogador, MUNDO_LARGURA, MUNDO_ALTURA);
         if(inimigosVivos == 0) {

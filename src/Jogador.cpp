@@ -154,15 +154,11 @@ namespace Kawabanga::Entidades::Personagens {
     void Jogador::tomarDano(bool knockback_direita) {
         num_vidas--;
 
-        if (num_vidas <= 0) {
-            exit(0);
-        }
-        else {
-            if (knockback_direita)
-                forma.move(50.f, -50.f);
-            else
-                forma.move(-50.f, -50.f);
-        }
+
+        if (knockback_direita)
+            forma.move(50.f, -50.f);
+        else
+            forma.move(-50.f, -50.f);
     }
 
     float Jogador::getVelocidadeY() const {

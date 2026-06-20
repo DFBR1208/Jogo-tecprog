@@ -100,7 +100,7 @@ namespace Kawabanga {
 					int pontuacao=pJogo->getpJog1()->getPontos();
 					std::ofstream arquivo("saves/leaderboard.txt", std::ios::app);
 					if(arquivo.is_open()) {
-						arquivo<<nome<<"\t\t"<<pontuacao<<"\n";
+						arquivo<<nome<<"\t\t"<<pontuacao<<std::endl;
 						arquivo.close();
 					}
 					setEstado(MENU_INICIO);
@@ -272,7 +272,7 @@ namespace Kawabanga {
 							std::string leaderboard = "";
 							for (int i=0; i<limite;i++) {
 								leaderboard+=std::to_string(i+1)+"."+pontuacao[i].second+"\t\t"
-								+std::to_string(pontuacao[i].first) +"\n\n";
+								+std::to_string(pontuacao[i].first) +"\n";
 							}
 							conteudo.setString(leaderboard);
 						}

@@ -47,7 +47,7 @@ namespace Kawabanga::Fases {
         addPlat(2, 880.f, 470.f, 500.f);
         addPlat(3, 410.f, 370.f, 600.f);
         addPlat(4, 410.f, 270.f, 100.f);
-        if (rand() % 10 <5) {
+        if (rand() % 10 < 5) {
             addPlat(5, 660.f, 270.f, 100.f);
         }
         addPlat(6, 509.f, 170.f, 100.f);

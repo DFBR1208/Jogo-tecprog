@@ -37,6 +37,8 @@ namespace Kawabanga::Gerenciadores {
 
         void carregarTexturas();
 
+        std::string textoDigitado;
+
     public:
         Gerenciador_Grafico();
         ~Gerenciador_Grafico();
@@ -52,6 +54,8 @@ namespace Kawabanga::Gerenciadores {
         void atualizarCamera(sf::Vector2f posJogador, float mundoLargura, float mundoAltura);
         void resetarViewUI();
         void focarCameraJogo();
+        void resetarTextoDigitado();
+        const std::string& getTextoDigitado(); 
 
         const sf::Texture& getTexBg()         const;
         const sf::Texture& getTexTerrain()    const;

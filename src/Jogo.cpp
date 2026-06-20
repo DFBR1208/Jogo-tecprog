@@ -63,6 +63,7 @@ namespace Kawabanga {
                 pFase2->executar();
                 pHUD->executar();
                 if(pFase2->isFaseConcluida()) {
+                    faseAtual=estadoAtual;
                     estadoAtual=JOGO_MENUGERAL;
                     pMenu->setEstado(MENU_VITORIA);
                 }
@@ -147,5 +148,13 @@ namespace Kawabanga {
 
     EstadoJogo Jogo::getFaseAtual() {
         return faseAtual;
+    }
+
+    Jogador* Jogo::getpJog1() {
+        return pJog1;
+    }
+
+    Jogador* Jogo::getpJog2() {
+        return pJog2;
     }
 }

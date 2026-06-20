@@ -29,5 +29,7 @@ namespace Kawabanga {
         void iniciarFase2(int n_jogs);
         void setEstado(EstadoJogo novoEstado);
         EstadoJogo getFaseAtual();
+        Entidades::Personagens::Jogador* getpJog1();
+        Entidades::Personagens::Jogador* getpJog2();
     };
 }

@@ -90,12 +90,31 @@ bool Gerenciador_Grafico::verificaJanelaAberta() {
         if (event.type == sf::Event::Closed) {
             window->close();
         }
+        if (event.type == sf::Event::TextEntered) {
+            if (event.text.unicode == 8) {
+                if(!textoDigitado.empty())
+                    textoDigitado.pop_back();
+            }
+            else if (event.text.unicode != 13 && event.text.unicode < 128) {
+                if (textoDigitado.length() < 10) {
+                    textoDigitado+=static_cast<char>(event.text.unicode);
+                }
+            }
+        }
     }
     return window->isOpen();
 }
 
 void Gerenciador_Grafico::focarCameraJogo() {
     window->setView(camera);
+}
+
+const std::string& Gerenciador_Grafico::getTextoDigitado() {
+    return textoDigitado;
+}
+
+void Gerenciador_Grafico::resetarTextoDigitado() {
+    textoDigitado.clear();
 }
 
 const sf::Texture& Gerenciador_Grafico::getTexBg() const { return texBg; }

@@ -1,6 +1,8 @@
 #include "Menu.h"
 #include "Jogo.h"
 #include <iostream>
+#include <algorithm>
+#include <utility> //Uso para ordenar o lederboard
 
 namespace Kawabanga {
 	Menu::Menu(Jogo* pJ) : Ente(), titulo(), opcoes(), opcaoSelecionada(0), pressed(false), n_jogadores(1), pJogo(pJ) {
@@ -17,31 +19,33 @@ namespace Kawabanga {
 	Menu::~Menu() {}
 
 	void Menu::executar() {
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !pressed) {
-			if (opcaoSelecionada < opcoes.size()-1) {
-				opcaoSelecionada++;
-				opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
-				opcoes[opcaoSelecionada - 1].setFillColor(sf::Color::White);
+		if(opcoes.size()>1) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !pressed) {
+				if (opcaoSelecionada < opcoes.size()-1) {
+					opcaoSelecionada++;
+					opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
+					opcoes[opcaoSelecionada - 1].setFillColor(sf::Color::White);
+				}
+				else if (opcaoSelecionada==opcoes.size()-1) {
+					opcaoSelecionada=0;
+					opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
+					opcoes[opcoes.size()-1].setFillColor(sf::Color::White);
+				}
+				pressed = true;
 			}
-			else if (opcaoSelecionada==opcoes.size()-1) {
-				opcaoSelecionada=0;
-				opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
-				opcoes[opcoes.size()-1].setFillColor(sf::Color::White);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !pressed) {
+				if (opcaoSelecionada > 0) {
+					opcaoSelecionada--;
+					opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
+					opcoes[opcaoSelecionada + 1].setFillColor(sf::Color::White);
+				}
+				else if (opcaoSelecionada==0) {
+					opcaoSelecionada=opcoes.size()-1;
+					opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
+					opcoes[0].setFillColor(sf::Color::White);				
+				}
+				pressed = true;
 			}
-			pressed = true;
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !pressed) {
-			if (opcaoSelecionada > 0) {
-				opcaoSelecionada--;
-				opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
-				opcoes[opcaoSelecionada + 1].setFillColor(sf::Color::White);
-			}
-			else if (opcaoSelecionada==0) {
-				opcaoSelecionada=opcoes.size()-1;
-				opcoes[opcaoSelecionada].setFillColor(sf::Color::Red);
-				opcoes[0].setFillColor(sf::Color::White);				
-			}
-			pressed = true;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !pressed) {
 			pressed = true;
@@ -56,7 +60,9 @@ namespace Kawabanga {
 					n_jogadores = (n_jogadores % 2) + 1; // Alterna entre 1 e 2 jogadores
 					opcoes[2].setString("Numero de Jogadores: " + std::to_string(n_jogadores));
 				}
-				else if (opcaoSelecionada==3) {}
+				else if (opcaoSelecionada==3) {
+					setEstado(MENU_LEADERBOARD);
+				}
 				else if (opcaoSelecionada==4) {}
 				else if (opcaoSelecionada==5) {exit(0);}
 			}
@@ -77,16 +83,38 @@ namespace Kawabanga {
 				}
 			}
 			else if (estadoMenu==MENU_VITORIA) {
-				if(opcaoSelecionada==0) {}
+				if(opcaoSelecionada==0) {
+					setEstado(MENU_DIGITAR);
+				}
 				else if (opcaoSelecionada==1) {
 					setEstado(MENU_INICIO);
 
+				}
+			}
+			else if (estadoMenu==MENU_LEADERBOARD) {
+				setEstado(MENU_INICIO);
+			}
+			else if (estadoMenu==MENU_DIGITAR) {
+				std::string nome = getGerenciadorGrafico()->getTextoDigitado();
+				if (!nome.empty()){
+					int pontuacao=pJogo->getpJog1()->getPontos();
+					std::ofstream arquivo("saves/leaderboard.txt", std::ios::app);
+					if(arquivo.is_open()) {
+						arquivo<<nome<<"\t\t"<<pontuacao<<"\n";
+						arquivo.close();
+					}
+					setEstado(MENU_INICIO);
 				}
 			}
 		}
 
 		if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
 			pressed = false;
+		}
+
+		if (estadoMenu==MENU_DIGITAR) {
+			std::string nome = getGerenciadorGrafico()->getTextoDigitado();
+			opcoes[0].setString(nome+"_");
 		}
 	}
 
@@ -97,6 +125,9 @@ namespace Kawabanga {
 		getGerenciadorGrafico()->desenhar(titulo);
 		for (int i = 0; i < opcoes.size(); ++i) {
 			getGerenciadorGrafico()->desenhar(opcoes[i]);
+		}
+		if(estadoMenu==MENU_LEADERBOARD) {
+			getGerenciadorGrafico()->desenhar(conteudo);
 		}
 		getGerenciadorGrafico()->getWindow()->setView(viewdojogo);
 	}
@@ -198,7 +229,70 @@ namespace Kawabanga {
 				opcoes[1].setCharacterSize(24);
 				opcoes[1].setFillColor(sf::Color::White);
 				opcoes[1].setPosition(250.f, 250.f);
-				fundo.setFillColor(sf::Color(0,0,0,150));				
+				fundo.setFillColor(sf::Color(0,0,0,150));
+				break;
+				
+			case MENU_LEADERBOARD:
+				titulo.setString("LEADERBOARD - TOP 5");
+                titulo.setPosition(150.f, 50.f);
+
+                opcoes.resize(1); 
+                opcoes[0].setFont(fonte);
+                opcoes[0].setString("Voltar ao Menu");
+                opcoes[0].setCharacterSize(24);
+                opcoes[0].setFillColor(sf::Color::Red);
+                opcoes[0].setPosition(250.f, 500.f);
+                
+                fundo.setFillColor(sf::Color(0,0,0,255));
+				
+				conteudo.setFont(fonte);
+				conteudo.setCharacterSize(24);
+				conteudo.setFillColor(sf::Color::Yellow);
+				conteudo.setPosition(250.f, 150.f);
+				{
+                    std::ifstream arquivo("saves/leaderboard.txt");
+					std::vector<std::pair<int, std::string>> pontuacao;
+					std::string nome;
+					int pontos;
+
+                    if (arquivo.is_open()) {
+						while(arquivo>>nome>>pontos) {
+							pontuacao.push_back(std::make_pair(pontos, nome));
+						}
+						arquivo.close();
+
+						if(pontuacao.empty()) {
+							conteudo.setString("Nenhuma pontuacao salva");
+						}
+						else {
+						//ordenação do leaderboard
+							std::sort(pontuacao.begin(),pontuacao.end(), std::greater<std::pair<int, std::string>>());
+							//limite para top 10
+							int limite = pontuacao.size()>5?5:pontuacao.size();
+							std::string leaderboard = "";
+							for (int i=0; i<limite;i++) {
+								leaderboard+=std::to_string(i+1)+"."+pontuacao[i].second+"\t\t"
+								+std::to_string(pontuacao[i].first) +"\n\n";
+							}
+							conteudo.setString(leaderboard);
+						}
+					}
+					else {
+						conteudo.setString("Arquivo nao encontrado");
+					}
+                }
+                break;
+			case MENU_DIGITAR:
+				titulo.setString("DIGITE SEU NOME");
+				titulo.setPosition(250.f, 100.f);
+				getGerenciadorGrafico()->resetarTextoDigitado();
+				opcoes.resize(1);
+				opcoes[0].setFont(fonte);
+				opcoes[0].setCharacterSize(48);
+				opcoes[0].setFillColor(sf::Color::Yellow);
+				opcoes[0].setPosition(250.f,250.f);
+				opcoes[0].setString("_");
+				break;
 		}
 
 		if(!opcoes.empty()){

@@ -28,8 +28,9 @@ namespace Kawabanga::Fases {
     }
 
     void FaseSegunda::criarPedraos() {
+        int sorteio = (rand() % (maxChefoes-2)) + 3; //garante ao menos 3 instancias
         int criados = 0;
-        for (int i = 1; i < NUM_PLATS && criados < maxChefoes; i += 2) {
+        for (int i = 1; i < NUM_PLATS && criados < sorteio; i += 2) {
             if (!plats[i]) continue;
             Pedrao* ch = new Pedrao(0.f, 0.f);
             (*ch) = plats[i];

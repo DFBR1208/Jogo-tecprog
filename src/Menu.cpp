@@ -267,12 +267,12 @@ namespace Kawabanga {
 						else {
 						//ordenação do leaderboard
 							std::sort(pontuacao.begin(),pontuacao.end(), std::greater<std::pair<int, std::string>>());
-							//limite para top 10
+							//limite para top 5
 							int limite = pontuacao.size()>5?5:pontuacao.size();
 							std::string leaderboard = "";
 							for (int i=0; i<limite;i++) {
 								leaderboard+=std::to_string(i+1)+"."+pontuacao[i].second+"\t\t"
-								+std::to_string(pontuacao[i].first) +"\n";
+								+std::to_string(pontuacao[i].first) +"\n\n";
 							}
 							conteudo.setString(leaderboard);
 						}

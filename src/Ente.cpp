@@ -6,7 +6,7 @@ namespace Kawabanga {
 
     Gerenciador_Grafico* Ente::pGG = nullptr;
 
-    Ente::Ente() : id(0), pFig(nullptr) {}
+    Ente::Ente() : id(contadorId++), pFig(nullptr) {}
 
     Ente::~Ente() {
         delete pFig;
@@ -25,4 +25,7 @@ namespace Kawabanga {
     Gerenciador_Grafico* Ente::getGerenciadorGrafico() {
         return pGG;
     }
+
+    int Ente::getId() {return id;}
 }
+int Kawabanga::Ente::contadorId=0;

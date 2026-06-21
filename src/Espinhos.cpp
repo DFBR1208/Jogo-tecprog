@@ -1,4 +1,5 @@
 #include "Espinhos.h"
+#include <fstream>
 
 namespace Kawabanga::Entidades::Obstaculos {
     
@@ -31,5 +32,14 @@ namespace Kawabanga::Entidades::Obstaculos {
             p->tomarDano();
     }
 
-    void Espinhos::salvar() {}
+    void Espinhos::salvar() {
+        x=forma.getPosition().x;
+        y=forma.getPosition().y;
+        Obstaculo::salvarDataBuffer();
+        buffer<<largura<<" ";
+        std::ofstream arquivo("saves/save_jogo.txt", std::ios::app);
+        if(arquivo.is_open()){
+            arquivo<<"ESPINHOS "<<buffer.str()<<std::endl;
+        }
+    }
 }

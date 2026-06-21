@@ -1,4 +1,5 @@
 #include "Pedroso.h"
+#include <fstream>
 
 namespace Kawabanga::Entidades::Personagens {
     Pedroso::Pedroso() : Inimigo(2) {
@@ -48,7 +49,16 @@ namespace Kawabanga::Entidades::Personagens {
         }
     }
 
-    void Pedroso::salvar() {}
-    void Pedroso::salvarDataBuffer() {}
-    void Pedroso::salva() {}
+    void Pedroso::salvar() {
+        x=forma.getPosition().x;
+        y=forma.getPosition().y;
+        Inimigo::salvarDataBuffer();
+        buffer<<raio<<" ";
+        std::ofstream arquivo("saves/save_jogo.txt", std::ios::app);
+        if(arquivo.is_open()){
+            arquivo<<"PEDROSO "<<buffer.str()<<std::endl;
+            arquivo.close();
+        }
+
+    }
 }

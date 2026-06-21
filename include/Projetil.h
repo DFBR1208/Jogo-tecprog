@@ -18,7 +18,7 @@ namespace Kawabanga::Entidades {
         Projetil(float px, float py, float vx);
         ~Projetil();
         void executar() override;
-        void salvar()   override;
+        void salvar();
         sf::FloatRect getBounds() const override;
         void atirar(float px, float py, float vx);
         bool isAtivo() const;

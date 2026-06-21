@@ -6,6 +6,7 @@ namespace Kawabanga::Fases {
     using namespace Entidades::Obstaculos;
     using namespace Entidades::Personagens;
     FasePrimeira::FasePrimeira(Jogador* pJog1, Jogador* pJog2) : Fase(pJog1, pJog2) {
+        qualfase=1;
         criarInimigos();
         criarObstaculo();
 

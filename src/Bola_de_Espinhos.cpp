@@ -1,4 +1,5 @@
 #include "Bola_de_Espinhos.h"
+#include <fstream>
 
 namespace Kawabanga::Entidades::Obstaculos {
     using namespace Personagens;
@@ -35,6 +36,15 @@ namespace Kawabanga::Entidades::Obstaculos {
             p->tomarDano();
     }
 
-    void Bola_de_Espinhos::salvar() {}
-    void Bola_de_Espinhos::salvarDataBuffer() {}
+    void Bola_de_Espinhos::salvar() {
+        x=forma.getPosition().x;
+        y=forma.getPosition().y;
+        Obstaculo::salvarDataBuffer();
+        buffer<<danosidade<<" "<<yOrigem<<" "<<velOscilacao<<" ";
+        std::ofstream arquivo("saves/save_jogo.txt", std::ios::app);
+        if(arquivo.is_open()){
+            arquivo<<"BOLA "<<buffer.str()<<std::endl;
+            arquivo.close();
+        }
+    }
 }

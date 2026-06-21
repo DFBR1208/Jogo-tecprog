@@ -31,5 +31,7 @@ namespace Kawabanga {
         EstadoJogo getFaseAtual();
         Entidades::Personagens::Jogador* getpJog1();
         Entidades::Personagens::Jogador* getpJog2();
+        Fases::FasePrimeira* getpFase1();
+        Fases::FaseSegunda* getpFase2();
     };
 }

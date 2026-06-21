@@ -20,6 +20,7 @@ namespace Kawabanga::Fases {
         static const int NUM_PLATS     = 11;
         Entidades::Obstaculos::Rosquinha* plats[NUM_PLATS];
         bool faseConcluida;
+        int qualfase;
 
         void criarPedrosos();
         void criarRosquinhas();
@@ -32,5 +33,6 @@ namespace Kawabanga::Fases {
         virtual ~Fase();
         virtual void executar() = 0;
         bool isFaseConcluida() const;
+        void salvarFase();
     };
 }

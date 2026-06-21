@@ -157,4 +157,7 @@ namespace Kawabanga {
     Jogador* Jogo::getpJog2() {
         return pJog2;
     }
+
+    FasePrimeira* Jogo::getpFase1() {return pFase1;}
+    FaseSegunda* Jogo::getpFase2() {return pFase2;}
 }

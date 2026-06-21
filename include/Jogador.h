@@ -16,10 +16,12 @@ namespace Kawabanga::Entidades::Personagens {
         bool isPoderoso;
         sf::Clock timerPoderoso;
         const float duracaoPoderoso = 4.0f;
+        float tempoPoderosoAcumulado; //Uso para adicionar ao sf::Clock quando carregar um jogo anterior
 
         bool lento;
         sf::Clock timerLento;
         const float duracaoLento = 3.0f;
+        float tempoLentoAcumulado;
 
         sf::RectangleShape forma;
 
@@ -54,5 +56,6 @@ namespace Kawabanga::Entidades::Personagens {
         bool getIsPoderoso() const;
         void aplicarSlow();
         void paraFase2();
+        void carregarDataBuffer(std::stringstream& ss);
     };
 }

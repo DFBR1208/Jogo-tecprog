@@ -6,6 +6,7 @@ namespace Kawabanga::Entidades::Personagens {
     Inimigo::Inimigo(int n_vid) : Personagem(n_vid) {
         nivel_maldade = 1;
         velocidadeX   = -2.0f;
+        tempoDanoAcumulado = 0.0f;
         pRosquinha   = nullptr;
         frameAtual    = 0;
         temporizador  = 0;
@@ -124,4 +125,18 @@ namespace Kawabanga::Entidades::Personagens {
     bool Inimigo::getTomandoDano() const {return tomandoDano;}
 
     int Inimigo::getNumVidas() const { return num_vidas; }
+
+    void Inimigo::salvarDataBuffer() {
+        Entidade::salvarDataBuffer();
+        float tempoDano = timerDano.getElapsedTime().asSeconds();
+        buffer<<nivel_maldade<<" "<<velocidadeX<<" "<<(tomandoDano?1:0)<<" "
+        <<tempoDano<<" ";
+
+        if(pRosquinha)
+            buffer<<pRosquinha->getId()<<" ";
+        else
+            buffer<<-1<<" ";
+    }
+
+    void Inimigo::carregarDataBuffer(std::stringstream& ss) {}
 }

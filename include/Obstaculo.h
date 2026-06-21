@@ -15,5 +15,7 @@ namespace Kawabanga::Entidades::Obstaculos {
 		sf::FloatRect getBounds() const;
 		virtual void salvar() = 0;
 		void antiGravitar();
+		void salvarDataBuffer();
+		virtual void carregarDataBuffer(std::stringstream& ss);
 	};
 }

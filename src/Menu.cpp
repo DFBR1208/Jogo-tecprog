@@ -70,7 +70,14 @@ namespace Kawabanga {
 				if(opcaoSelecionada==0) {
 					pJogo->setEstado(pJogo->getFaseAtual());
 				}
-				else if (opcaoSelecionada==1) {}
+				else if (opcaoSelecionada==1) {
+					if(pJogo->getFaseAtual()==JOGO_FASE1){
+						pJogo->getpFase1()->salvarFase();
+					}
+					else if(pJogo->getFaseAtual()==JOGO_FASE2)
+						pJogo->getpFase2()->salvarFase();
+
+				}
 				else if (opcaoSelecionada==2) {
 					setEstado(MENU_INICIO);
 				}

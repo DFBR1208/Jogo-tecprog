@@ -1,4 +1,5 @@
 #include "Pedrao.h"
+#include <fstream>
 
 namespace Kawabanga::Entidades::Personagens {
     Pedrao::Pedrao() : Inimigo(4), forca(2), pProj(nullptr), cooldownTiro(INTERVALO_TIRO), curando(false) {
@@ -56,9 +57,18 @@ namespace Kawabanga::Entidades::Personagens {
         p->adicionarPontos(-100);
     }
 
-    void Pedrao::salvarDataBuffer() {}
-    void Pedrao::salva()            {}
-    void Pedrao::salvar()           {}
+    void Pedrao::salvar() {
+        x=forma.getPosition().x;
+        y=forma.getPosition().y;
+        Inimigo::salvarDataBuffer();
+        float tempoCura = timerCura.getElapsedTime().asSeconds();
+        buffer<<forca<<" "<<(curando?1:0)<<" "<<tempoCura<<" ";
+        std::ofstream arquivo("saves/save_jogo.txt", std::ios::app);
+        if(arquivo.is_open()){
+            arquivo<<"PEDRAO "<<buffer.str()<<std::endl;
+            arquivo.close();
+        }
+    }
 
     void Pedrao::tomarDano() {
         if (!tomandoDano) {

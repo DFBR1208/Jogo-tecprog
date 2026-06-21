@@ -1,9 +1,12 @@
 #include "Jogador.h"
 #include "Inimigo.h"
 #include <SFML/Window/Keyboard.hpp>
+#include <fstream>
 
 namespace Kawabanga::Entidades::Personagens {
     Jogador::Jogador(bool flag) : Personagem(5), j1(flag), isPoderoso(false), lento(false) {
+        tempoLentoAcumulado = 0.0f;
+        tempoPoderosoAcumulado = 0.0f;
         pontos = 0;
         if (j1) {
             forma.setSize(sf::Vector2f(30.f, 50.f));
@@ -68,14 +71,16 @@ namespace Kawabanga::Entidades::Personagens {
                 spriteAnim.setColor(sf::Color::Yellow); 
             }
         } else {
-            if (timerPoderoso.getElapsedTime().asSeconds() >= duracaoPoderoso) {
+            if (timerPoderoso.getElapsedTime().asSeconds()+tempoPoderosoAcumulado >= duracaoPoderoso) {
                 isPoderoso = false;
+                tempoPoderosoAcumulado=0.0f; //zerando após único uso ao voltar do save
                 spriteAnim.setColor(j1 ? sf::Color::White : sf::Color(100, 100, 255));
             }
         }
 
-        if (lento && timerLento.getElapsedTime().asSeconds() >= duracaoLento) {
+        if (lento && timerLento.getElapsedTime().asSeconds()+tempoLentoAcumulado >= duracaoLento) {
             lento = false;
+            tempoLentoAcumulado=0.0f;
             if (!isPoderoso)
                 spriteAnim.setColor(j1 ? sf::Color::White : sf::Color(100, 100, 255));
         }
@@ -218,7 +223,6 @@ namespace Kawabanga::Entidades::Personagens {
         }
     }
 
-    void Jogador::salvar() {}
 
     sf::FloatRect Jogador::getBounds() const {
         return spriteAnim.getGlobalBounds();
@@ -261,5 +265,50 @@ namespace Kawabanga::Entidades::Personagens {
         lento = true;
         timerLento.restart();
         spriteAnim.setColor(sf::Color::Cyan);
+    }
+
+    void Jogador::salvar() {
+        x=forma.getPosition().x;
+        y=forma.getPosition().y;
+        salvarDataBuffer();
+        float tempoPoderoso = timerPoderoso.getElapsedTime().asSeconds();
+        float tempoLento = timerLento.getElapsedTime().asSeconds();
+        buffer<<pontos<<" "<<velocidadeX<<" "<<(isPoderoso?1:0)<<" "<<tempoPoderoso<<" "<<
+        (lento?1:0)<<" "<<tempoLento<<" ";
+        std::ofstream arquivo("saves/save_jogo.txt", std::ios::app);
+        if (arquivo.is_open()){
+            if(j1){
+                arquivo<<"JOGADOR1 "<<buffer.str()<<std::endl;
+            }
+            else {
+                arquivo<<"JOGADOR2 "<<buffer.str()<<std::endl;
+            }
+            arquivo.close();
+        }
+
+    }
+
+    void Jogador::carregarDataBuffer(std::stringstream& ss) {
+        Personagem::carregarDataBuffer(ss);
+        int leuPoderoso, leuLento;
+        float leuTempoPoderoso, leuTempoLento;
+        ss>>pontos>>velocidadeX>>leuPoderoso>>leuTempoPoderoso>>
+        leuLento>>leuTempoLento;
+        isPoderoso=(bool)leuPoderoso;
+        lento=(bool)leuLento;
+        forma.setPosition(x,y);
+        if(isPoderoso){
+            spriteAnim.setColor(sf::Color::Yellow);
+            tempoPoderosoAcumulado=leuTempoPoderoso;
+            timerPoderoso.restart();
+        }
+        if(lento) {
+            spriteAnim.setColor(sf::Color::Cyan);
+            tempoLentoAcumulado=leuTempoLento;
+            timerLento.restart();
+        }
+        else if(!isPoderoso) {
+            spriteAnim.setColor(j1?sf::Color::White:sf::Color(100,100,255));
+        }
     }
 }

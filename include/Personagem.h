@@ -13,5 +13,6 @@ class Personagem : public Entidade {
 		virtual void mover() = 0;
 		virtual void salvar() = 0;
 		void salvarDataBuffer();
+		virtual void carregarDataBuffer(std::stringstream& ss);
 	};
 }

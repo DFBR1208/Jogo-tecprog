@@ -1,5 +1,6 @@
 #include "Rosquinha.h"
 #include <algorithm>
+#include <fstream>
 
 namespace Kawabanga::Entidades::Obstaculos {
     using namespace Personagens;
@@ -28,7 +29,17 @@ namespace Kawabanga::Entidades::Obstaculos {
         antiGravitar();
     }
     
-    void Rosquinha::salvar() {}
+    void Rosquinha::salvar() {
+        x=forma.getPosition().x;
+        y=forma.getPosition().y;
+        Obstaculo::salvarDataBuffer();
+        buffer<<forma.getSize().x<<" ";
+        std::ofstream arquivo("saves/save_jogo.txt", std::ios::app);
+        if(arquivo.is_open()){
+            arquivo<<"ROSQUINHA "<<buffer.str()<<std::endl;
+            arquivo.close();
+        }
+    }
 
     void Rosquinha::obstaculizar(Jogador* p) {
         if (p == nullptr) return;

@@ -1,5 +1,6 @@
 #include "Projetil.h"
 #include "Pedrao.h"
+#include <fstream>
 
 namespace Kawabanga::Entidades {
     using namespace Personagens;
@@ -33,7 +34,6 @@ namespace Kawabanga::Entidades {
             ativo = false;
     }
 
-    void Projetil::salvar() {}
 
     sf::FloatRect Projetil::getBounds() const {
         if (!ativo) return sf::FloatRect(-1000.f, -1000.f, 0.f, 0.f);
@@ -57,5 +57,18 @@ namespace Kawabanga::Entidades {
 
     Pedrao* Projetil::getChefao() const {
         return pChefao;
+    }
+
+    void Projetil::salvar() {
+        x=forma.getPosition().x;
+        y=forma.getPosition().y;
+        Entidade::salvarDataBuffer();
+        int idPedrao=(pChefao!=nullptr)?pChefao->getId():-1;
+        buffer<<velocidadeX<<" "<<(ativo?1:0)<<" "<<idPedrao<<" ";
+        std::ofstream arquivo("saves/save_jogo.txt", std::ios::app);
+        if (arquivo.is_open()){
+            arquivo << "PROJETIL " << buffer.str() << std::endl;
+            arquivo.close();
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace Kawabanga::Entidades::Personagens {
         sf::Clock timerDano;
         bool tomandoDano;
         const float duracaoDano = 1.0f;
+        float tempoDanoAcumulado;
 
     public:
         Inimigo(int n_vid);
@@ -37,8 +38,9 @@ namespace Kawabanga::Entidades::Personagens {
         friend std::ostream& operator<<(std::ostream& os, const Inimigo& ini);
 
         virtual void danificar(Jogador* p) = 0;
-        virtual void salvarDataBuffer() = 0;
-        virtual void salva()            = 0;
+        void salvarDataBuffer();
+        virtual void carregarDataBuffer(std::stringstream& ss);
+        virtual void salvar()            = 0;
         virtual void tomarDano();
         bool getTomandoDano() const;
         int getNumVidas() const;

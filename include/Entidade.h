@@ -1,5 +1,6 @@
 #pragma once
 #include "Ente.h"
+#include <sstream>
 
 namespace Kawabanga::Entidades {
 	class Entidade : public Ente {
@@ -9,7 +10,8 @@ namespace Kawabanga::Entidades {
 		float velocidadeY;
 		float gravidade;
 		bool  noChao;
-		void SalvarDataBuffer();
+		std::ostringstream buffer; //ostream é inacessível para criar um objeto diretamente
+		void salvarDataBuffer();
 	public:
 		Entidade();
 		virtual ~Entidade();
@@ -17,5 +19,6 @@ namespace Kawabanga::Entidades {
 		virtual void salvar() = 0;
 		virtual sf::FloatRect getBounds() const = 0;
 		void gravitar();
+		virtual void carregarDataBuffer(std::stringstream& ss);
 	};
 }

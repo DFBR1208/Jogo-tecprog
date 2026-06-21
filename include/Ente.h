@@ -7,6 +7,7 @@ namespace Kawabanga {
 	protected:
 		int id;
 		static Gerenciadores::Gerenciador_Grafico* pGG;
+		static int contadorId;
 		Figura* pFig;
 	public:
 		Ente();
@@ -15,5 +16,6 @@ namespace Kawabanga {
 		void desenhar();
 		static void setGerenciadorGrafico(Gerenciadores::Gerenciador_Grafico* pG);
 		static Gerenciadores::Gerenciador_Grafico* getGerenciadorGrafico();
+		int getId();
 	};
 }

@@ -2,12 +2,13 @@
 #include "Rosquinha.h"
 #include "Pedroso.h"
 #include <cstdlib>
+#include <fstream>
 
 namespace Kawabanga::Fases {
 
     using namespace Entidades::Personagens;
     using namespace Entidades::Obstaculos;
-    Fase::Fase(Jogador* pJo1, Jogador* pJo2) : Ente(), GC(pJo1, pJog2), pJog1(pJo1), pJog2(pJo2), faseConcluida(false) {
+    Fase::Fase(Jogador* pJo1, Jogador* pJo2) : Ente(), GC(pJo1, pJo2), pJog1(pJo1), pJog2(pJo2), faseConcluida(false) {
         for (int i = 0; i < NUM_PLATS; i++) plats[i] = nullptr;
         criarRosquinhas();
         criarCenario();
@@ -60,5 +61,22 @@ namespace Kawabanga::Fases {
     void Fase::criarCenario() {}
 
     bool Fase::isFaseConcluida() const { return faseConcluida; }
+
+    void Fase::salvarFase() {
+        std::ofstream arquivo("saves/save_jogo.txt", std::ios::trunc);
+        if(!arquivo.is_open()){
+            return;
+        }
+        arquivo<<"FASE "<<qualfase<<std::endl;
+        arquivo.close();
+        auto pAux = lista_enti.getPrimeiroElemento();
+        while(pAux!=nullptr){
+            Entidades::Entidade* pEnt=pAux->getDado();
+
+            if(pEnt!=nullptr)
+                pEnt->salvar();
+            pAux=pAux->getProx();
+        }
+    }
 }
 

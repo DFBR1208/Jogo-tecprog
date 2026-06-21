@@ -13,6 +13,7 @@ namespace Kawabanga::Entidades::Personagens {
         bool curando;
         sf::Clock timerCura;
         const float duracaoCura = 0.5f;
+        float tempoCuraAcumulado;
     public:
         using Inimigo::operator=;
         Pedrao();
@@ -20,9 +21,7 @@ namespace Kawabanga::Entidades::Personagens {
         ~Pedrao();
         void executar()            override;
         void danificar(Jogador* p) override;
-        void salvarDataBuffer()    override;
-        void salva()               override;
-        void salvar()              override;
+        void salvar();
         void setProjetil(Projetil* p);
         void tomarDano()              override;
         void projetilAtingiu();

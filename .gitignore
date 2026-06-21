@@ -17,3 +17,5 @@ build/
 *.filters
 *.user
 jogo_tecprog/
+saves/save_jogo.txt
+saves/leaderboard.txt

@@ -7,7 +7,7 @@ namespace Kawabanga::Entidades::Obstaculos {
         short int danosidade;
         float     yOrigem;
         float     velOscilacao;
-        static constexpr float FORCA_MOLA = 0.07f;
+        static float FORCA_MOLA;
     public:
         Bola_de_Espinhos();
         Bola_de_Espinhos(float px, float py, float lado = 30.f);

@@ -1,6 +1,6 @@
 #include "Bola_de_Espinhos.h"
 #include <fstream>
-
+float Kawabanga::Entidades::Obstaculos::Bola_de_Espinhos::FORCA_MOLA = 0.07f;
 namespace Kawabanga::Entidades::Obstaculos {
     using namespace Personagens;
     Bola_de_Espinhos::Bola_de_Espinhos() : Obstaculo() {

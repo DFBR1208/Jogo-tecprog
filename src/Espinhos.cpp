@@ -8,7 +8,6 @@ namespace Kawabanga::Entidades::Obstaculos {
         largura = 60.f;
         danoso  = true;
         forma.setSize(sf::Vector2f(largura, 20.f));
-        forma.setFillColor(sf::Color(220, 50, 50));
     }
 
     Espinhos::Espinhos(float px, float py, float larg) : Obstaculo() {

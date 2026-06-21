@@ -61,8 +61,7 @@ namespace Kawabanga::Entidades::Personagens {
         x=forma.getPosition().x;
         y=forma.getPosition().y;
         Inimigo::salvarDataBuffer();
-        float tempoCura = timerCura.getElapsedTime().asSeconds();
-        buffer<<forca<<" "<<(curando?1:0)<<" "<<tempoCura<<" ";
+        buffer<<forca<<" "<<(curando?1:0)<<" ";
         std::ofstream arquivo("saves/save_jogo.txt", std::ios::app);
         if(arquivo.is_open()){
             arquivo<<"PEDRAO "<<buffer.str()<<std::endl;
@@ -73,12 +72,14 @@ namespace Kawabanga::Entidades::Personagens {
     void Pedrao::carregarDataBuffer(std::stringstream& ss) {
         Inimigo::carregarDataBuffer(ss);
         int leuCurando;
-        float tempoCura;
-        ss >> forca >> leuCurando >> tempoCura;
+        ss >> forca >> leuCurando;
         curando = (bool)leuCurando;
         if (curando) {
             timerCura.restart();
             forma.setFillColor(sf::Color::Green);
+        }
+        if(tomandoDano) {
+            forma.setFillColor(sf::Color::Blue);
         }
     }
 

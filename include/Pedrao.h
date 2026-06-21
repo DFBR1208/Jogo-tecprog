@@ -13,7 +13,6 @@ namespace Kawabanga::Entidades::Personagens {
         bool curando;
         sf::Clock timerCura;
         const float duracaoCura = 0.5f;
-        float tempoCuraAcumulado;
     public:
         using Inimigo::operator=;
         Pedrao();

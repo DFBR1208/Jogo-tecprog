@@ -21,7 +21,6 @@ namespace Kawabanga::Entidades::Personagens {
         sf::Clock timerDano;
         bool tomandoDano;
         const float duracaoDano = 1.0f;
-        float tempoDanoAcumulado;
         int idPlataformaCarregada;
 
     public:

@@ -6,7 +6,6 @@ namespace Kawabanga::Entidades::Personagens {
     Inimigo::Inimigo(int n_vid) : Personagem(n_vid) {
         nivel_maldade = 1;
         velocidadeX   = -2.0f;
-        tempoDanoAcumulado = 0.0f;
         idPlataformaCarregada = -1;
         pRosquinha   = nullptr;
         frameAtual    = 0;
@@ -129,10 +128,8 @@ namespace Kawabanga::Entidades::Personagens {
     int Inimigo::getNumVidas() const { return num_vidas; }
 
     void Inimigo::salvarDataBuffer() {
-        Entidade::salvarDataBuffer();
-        float tempoDano = timerDano.getElapsedTime().asSeconds();
-        buffer<<nivel_maldade<<" "<<velocidadeX<<" "<<(tomandoDano?1:0)<<" "
-        <<tempoDano<<" ";
+        Personagem::salvarDataBuffer();
+        buffer<<nivel_maldade<<" "<<velocidadeX<<" "<<(tomandoDano?1:0)<<" ";
 
         if(pRosquinha)
             buffer<<pRosquinha->getId()<<" ";
@@ -141,11 +138,14 @@ namespace Kawabanga::Entidades::Personagens {
     }
 
     void Inimigo::carregarDataBuffer(std::stringstream& ss) {
-        Entidade::carregarDataBuffer(ss);
+        Personagem::carregarDataBuffer(ss);
         int leuTomandoDano;
-        ss >> nivel_maldade >> velocidadeX >> leuTomandoDano >> tempoDanoAcumulado >> idPlataformaCarregada;
+        ss >> nivel_maldade >> velocidadeX >> leuTomandoDano >> idPlataformaCarregada;
         tomandoDano = (bool)leuTomandoDano;
         forma.setPosition(x, y);
+
+        if(tomandoDano)
+            spriteAnim.setColor(sf::Color::Red);
     }
 
     void Inimigo::setPlataformaPtr(Obstaculos::Rosquinha* p) {

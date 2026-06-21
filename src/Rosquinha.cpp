@@ -41,6 +41,18 @@ namespace Kawabanga::Entidades::Obstaculos {
         }
     }
 
+    void Rosquinha::carregarDataBuffer(std::stringstream& ss) {
+        Obstaculo::carregarDataBuffer(ss);
+        float largura;
+        ss >> largura;
+        forma.setSize(sf::Vector2f(largura, 30.f));
+        forma.setPosition(x, y);
+        if (pGG) {
+            forma.setTexture(&pGG->getTexPlataforma());
+            forma.setTextureRect(sf::IntRect(0, 0, (int)largura, 30));
+        }
+    }
+
     void Rosquinha::obstaculizar(Jogador* p) {
         if (p == nullptr) return;
 

@@ -65,17 +65,18 @@ Gerenciador_Grafico::~Gerenciador_Grafico() {
 void Gerenciador_Grafico::limpar() {
     window->clear();
 }
-void Gerenciador_Grafico::desenhar(const sf::Drawable& drawable) {
-
-    window->draw(drawable);
-}
 
 sf::RenderWindow* Gerenciador_Grafico::getWindow() {
     return window;
 }
 
 void Gerenciador_Grafico::desenharEnte(Ente* pe) {
-    if (pe) pe->desenhar();
+    if (pe && pe->getFigura() && pe->getFigura()->getDrawable())
+        window->draw(*pe->getFigura()->getDrawable());
+}
+
+void Gerenciador_Grafico::desenharEnte(const sf::Drawable& d) {
+    window->draw(d);
 }
 
 void Gerenciador_Grafico::mostrar() {

@@ -22,6 +22,7 @@ namespace Kawabanga::Entidades::Personagens {
         void executar()            override;
         void danificar(Jogador* p) override;
         void salvar();
+        void carregarDataBuffer(std::stringstream& ss) override;
         void setProjetil(Projetil* p);
         void tomarDano()              override;
         void projetilAtingiu();

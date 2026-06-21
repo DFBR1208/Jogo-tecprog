@@ -14,6 +14,7 @@ namespace Kawabanga {
 		virtual ~Ente();
 		virtual void executar() = 0;
 		void desenhar();
+		Figura* getFigura() const;
 		static void setGerenciadorGrafico(Gerenciadores::Gerenciador_Grafico* pG);
 		static Gerenciadores::Gerenciador_Grafico* getGerenciadorGrafico();
 		int getId();

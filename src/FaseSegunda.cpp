@@ -5,10 +5,12 @@ namespace Kawabanga::Fases {
     using namespace Entidades::Personagens;
     using namespace Entidades::Obstaculos;
     using namespace Entidades;
-    FaseSegunda::FaseSegunda(Jogador* pJog1, Jogador* pJog2) : Fase(pJog1, pJog2) {
+    FaseSegunda::FaseSegunda(Jogador* pJog1, Jogador* pJog2, bool fromSave) : Fase(pJog1, pJog2, fromSave) {
         qualfase=2;
-        criarInimigos();
-        criarObstaculo();
+        if (!fromSave) {
+            criarInimigos();
+            criarObstaculo();
+        }
 
         texturaBg.loadFromFile("assets/bg/Pink.png");
         texturaBg.setRepeated(true);
@@ -107,8 +109,8 @@ namespace Kawabanga::Fases {
     }
 
     void FaseSegunda::desenhar() {
-        pGG->desenhar(spriteBg);
-        pGG->desenhar(chao);
+        pGG->desenharEnte(spriteBg);
+        pGG->desenharEnte(chao);
         lista_enti.desenhar();
     }
 }

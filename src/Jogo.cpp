@@ -2,6 +2,8 @@
 #include "Menu.h"
 #include "HUD.h"
 #include "Ente.h"
+#include <fstream>
+#include <string>
 
 namespace Kawabanga {
     using namespace Gerenciadores;
@@ -140,6 +142,37 @@ namespace Kawabanga {
         pHUD   = new HUD(pJog1, pJog2);
         estadoAtual = JOGO_FASE2;
 
+    }
+
+    void Jogo::carregarJogo(int n_jogs) {
+        std::ifstream arquivo("saves/save_jogo.txt");
+        if (!arquivo.is_open()) return;
+
+        std::string tok;
+        int qualFase = 1;
+        arquivo >> tok >> qualFase;
+        arquivo.close();
+
+        delete pFase1; pFase1 = nullptr;
+        delete pFase2; pFase2 = nullptr;
+        delete pJog1;  pJog1  = nullptr;
+        delete pJog2;  pJog2  = nullptr;
+        delete pHUD;   pHUD   = nullptr;
+
+        pJog1 = new Jogador(true);
+        if (n_jogs == 2) pJog2 = new Jogador(false);
+
+        if (qualFase == 1) {
+            pFase1 = new FasePrimeira(pJog1, pJog2, true);
+            pFase1->carregarFase();
+            estadoAtual = JOGO_FASE1;
+        } else if (qualFase == 2) {
+            pFase2 = new FaseSegunda(pJog1, pJog2, true);
+            pFase2->carregarFase();
+            estadoAtual = JOGO_FASE2;
+        }
+
+        pHUD = new HUD(pJog1, pJog2);
     }
 
     void Jogo::setEstado(EstadoJogo novoEstado) {

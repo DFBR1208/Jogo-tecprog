@@ -11,6 +11,7 @@ namespace Kawabanga::Entidades {
         bool  ativo;
         float velocidadeX;
         Kawabanga::Entidades::Personagens::Pedrao* pChefao;
+        int idChefaoCarregado;
     private:
         sf::RectangleShape forma;
     public:
@@ -19,6 +20,8 @@ namespace Kawabanga::Entidades {
         ~Projetil();
         void executar() override;
         void salvar();
+        void carregarDataBuffer(std::stringstream& ss) override;
+        int  getIdChefaoCarregado() const;
         sf::FloatRect getBounds() const override;
         void atirar(float px, float py, float vx);
         bool isAtivo() const;

@@ -63,7 +63,9 @@ namespace Kawabanga {
 				else if (opcaoSelecionada==3) {
 					setEstado(MENU_LEADERBOARD);
 				}
-				else if (opcaoSelecionada==4) {}
+				else if (opcaoSelecionada==4) {
+						pJogo->carregarJogo(n_jogadores);
+					}
 				else if (opcaoSelecionada==5) {exit(0);}
 			}
 			else if (estadoMenu==MENU_PAUSE) {
@@ -83,10 +85,8 @@ namespace Kawabanga {
 				}
 			}
 			else if (estadoMenu==MENU_GAMEOVER) {
-				if(opcaoSelecionada==0) {}
-				else if (opcaoSelecionada==1) {
+				if(opcaoSelecionada==0) {
 					setEstado(MENU_INICIO);
-
 				}
 			}
 			else if (estadoMenu==MENU_VITORIA) {
@@ -128,13 +128,13 @@ namespace Kawabanga {
 	void Menu::desenhar() {
 		sf::View viewdojogo = getGerenciadorGrafico()->getWindow()->getView();
 		getGerenciadorGrafico()->resetarViewUI();
-		getGerenciadorGrafico()->desenhar(fundo);
-		getGerenciadorGrafico()->desenhar(titulo);
+		getGerenciadorGrafico()->desenharEnte(fundo);
+		getGerenciadorGrafico()->desenharEnte(titulo);
 		for (int i = 0; i < opcoes.size(); ++i) {
-			getGerenciadorGrafico()->desenhar(opcoes[i]);
+			getGerenciadorGrafico()->desenharEnte(opcoes[i]);
 		}
 		if(estadoMenu==MENU_LEADERBOARD) {
-			getGerenciadorGrafico()->desenhar(conteudo);
+			getGerenciadorGrafico()->desenharEnte(conteudo);
 		}
 		getGerenciadorGrafico()->getWindow()->setView(viewdojogo);
 	}
@@ -209,17 +209,12 @@ namespace Kawabanga {
 			case MENU_GAMEOVER:
 				titulo.setString("MORREU!!");
 				titulo.setPosition(250.f, 100.f);
-				opcoes.resize(2);
+				opcoes.resize(1);
 				opcoes[0].setFont(fonte);
-				opcoes[0].setString("Salvar e Sair");
+				opcoes[0].setString("Voltar ao Menu");
 				opcoes[0].setCharacterSize(24);
 				opcoes[0].setFillColor(sf::Color::White);
 				opcoes[0].setPosition(250.f, 200.f);
-				opcoes[1].setFont(fonte);
-				opcoes[1].setString("Sair sem Salvar");
-				opcoes[1].setCharacterSize(24);
-				opcoes[1].setFillColor(sf::Color::White);
-				opcoes[1].setPosition(250.f, 250.f);
 				fundo.setFillColor(sf::Color(0,0,0,150));
 				break;
 			case MENU_VITORIA:

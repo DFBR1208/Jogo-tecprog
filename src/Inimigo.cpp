@@ -7,6 +7,7 @@ namespace Kawabanga::Entidades::Personagens {
         nivel_maldade = 1;
         velocidadeX   = -2.0f;
         tempoDanoAcumulado = 0.0f;
+        idPlataformaCarregada = -1;
         pRosquinha   = nullptr;
         frameAtual    = 0;
         temporizador  = 0;
@@ -18,6 +19,7 @@ namespace Kawabanga::Entidades::Personagens {
     Inimigo::Inimigo(float px, float py, int n_vid) : Personagem(n_vid) {
         nivel_maldade = 1;
         velocidadeX   = -1.5f;
+        idPlataformaCarregada = -1;
         pRosquinha   = nullptr;
         frameAtual    = 0;
         temporizador  = 0;
@@ -138,5 +140,17 @@ namespace Kawabanga::Entidades::Personagens {
             buffer<<-1<<" ";
     }
 
-    void Inimigo::carregarDataBuffer(std::stringstream& ss) {}
+    void Inimigo::carregarDataBuffer(std::stringstream& ss) {
+        Entidade::carregarDataBuffer(ss);
+        int leuTomandoDano;
+        ss >> nivel_maldade >> velocidadeX >> leuTomandoDano >> tempoDanoAcumulado >> idPlataformaCarregada;
+        tomandoDano = (bool)leuTomandoDano;
+        forma.setPosition(x, y);
+    }
+
+    void Inimigo::setPlataformaPtr(Obstaculos::Rosquinha* p) {
+        pRosquinha = p;
+    }
+
+    int Inimigo::getIdPlataformaCarregada() const { return idPlataformaCarregada; }
 }

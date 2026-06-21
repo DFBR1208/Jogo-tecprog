@@ -30,6 +30,15 @@ namespace Kawabanga::Entidades::Obstaculos {
         forma.move(0.f, velOscilacao);
     }
 
+    void Bola_de_Espinhos::carregarDataBuffer(std::stringstream& ss) {
+        Obstaculo::carregarDataBuffer(ss);
+        int leuDanosidade;
+        ss >> leuDanosidade >> yOrigem >> velOscilacao;
+        danosidade = (short int)leuDanosidade;
+        forma.setPosition(x, y);
+        if (pGG) forma.setTexture(&pGG->getTexObstaculoD());
+    }
+
     void Bola_de_Espinhos::obstaculizar(Jogador* p) {
         if (!p || !danoso) return;
         for (short i = 0; i < danosidade; ++i)

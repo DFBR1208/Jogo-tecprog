@@ -12,5 +12,6 @@ namespace Kawabanga::Entidades::Obstaculos {
         void obstaculizar(Personagens::Jogador* p);
         void executar();
         void salvar();
+        void carregarDataBuffer(std::stringstream& ss) override;
     };
 }

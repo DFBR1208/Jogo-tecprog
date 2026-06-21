@@ -12,6 +12,7 @@ namespace Kawabanga::Entidades::Obstaculos {
 		~Rosquinha();
 		void executar();
 		void salvar();
+		void carregarDataBuffer(std::stringstream& ss) override;
 		void obstaculizar(Personagens::Jogador* p);
 	};
 }

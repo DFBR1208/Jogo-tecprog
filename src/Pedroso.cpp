@@ -49,6 +49,11 @@ namespace Kawabanga::Entidades::Personagens {
         }
     }
 
+    void Pedroso::carregarDataBuffer(std::stringstream& ss) {
+        Inimigo::carregarDataBuffer(ss);
+        ss >> raio;
+    }
+
     void Pedroso::salvar() {
         x=forma.getPosition().x;
         y=forma.getPosition().y;

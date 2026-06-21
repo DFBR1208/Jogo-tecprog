@@ -12,8 +12,8 @@ namespace Kawabanga::Fases {
         static constexpr float MUNDO_LARGURA = 3600.f;
         static constexpr float MUNDO_ALTURA  = 2500.f;
     private:
-        sf::Texture        texturaBg;
-        sf::Sprite         spriteBg;
+        sf::Texture texturaBg;
+        sf::Sprite  spriteBg;
         sf::RectangleShape chao;
 
         static const int maxChefoes = 4;
@@ -24,7 +24,7 @@ namespace Kawabanga::Fases {
         void criarInimigos()   override;
         void criarObstaculo()  override;
     public:
-        FaseSegunda(Entidades::Personagens::Jogador* pJog1, Entidades::Personagens::Jogador* pJog2);
+        FaseSegunda(Entidades::Personagens::Jogador* pJog1, Entidades::Personagens::Jogador* pJog2, bool fromSave = false);
         ~FaseSegunda();
         void executar() override;
         void desenhar();

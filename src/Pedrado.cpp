@@ -58,6 +58,12 @@ namespace Kawabanga::Entidades::Personagens {
         p->aplicarSlow();
     }
 
+    void Pedrado::carregarDataBuffer(std::stringstream& ss) {
+        Inimigo::carregarDataBuffer(ss);
+        ss >> tamanho;
+        forma.setSize(sf::Vector2f((float)tamanho, (float)tamanho));
+    }
+
     void Pedrado::salvar() {
         x=forma.getPosition().x;
         y=forma.getPosition().y;

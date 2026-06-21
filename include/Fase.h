@@ -29,10 +29,11 @@ namespace Kawabanga::Fases {
         void criarCenario();
 
     public:
-        Fase(Entidades::Personagens::Jogador* pJo1, Entidades::Personagens::Jogador* pJo2);
+        Fase(Entidades::Personagens::Jogador* pJo1, Entidades::Personagens::Jogador* pJo2, bool fromSave = false);
         virtual ~Fase();
         virtual void executar() = 0;
         bool isFaseConcluida() const;
         void salvarFase();
+        void carregarFase();
     };
 }

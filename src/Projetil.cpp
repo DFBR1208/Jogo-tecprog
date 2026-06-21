@@ -4,7 +4,7 @@
 
 namespace Kawabanga::Entidades {
     using namespace Personagens;
-    Projetil::Projetil() : Entidade(), ativo(false), velocidadeX(0.f) {
+    Projetil::Projetil() : Entidade(), ativo(false), velocidadeX(0.f), idChefaoCarregado(-1) {
         forma.setSize(sf::Vector2f(20.f, 15.f));
         forma.setPosition(-100.f, -100.f);
         if (pGG) {
@@ -58,6 +58,16 @@ namespace Kawabanga::Entidades {
     Pedrao* Projetil::getChefao() const {
         return pChefao;
     }
+
+    void Projetil::carregarDataBuffer(std::stringstream& ss) {
+        Entidade::carregarDataBuffer(ss);
+        int leuAtivo;
+        ss >> velocidadeX >> leuAtivo >> idChefaoCarregado;
+        ativo = (bool)leuAtivo;
+        forma.setPosition(x, y);
+    }
+
+    int Projetil::getIdChefaoCarregado() const { return idChefaoCarregado; }
 
     void Projetil::salvar() {
         x=forma.getPosition().x;

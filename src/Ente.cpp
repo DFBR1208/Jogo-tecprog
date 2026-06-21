@@ -13,10 +13,9 @@ namespace Kawabanga {
         pFig = nullptr;
     }
 
-    void Ente::desenhar() {
-        if (pGG && pFig && pFig->getDrawable())
-            pGG->desenhar(*pFig->getDrawable());
-    }
+    void Ente::desenhar() {}
+
+    Figura* Ente::getFigura() const { return pFig; }
 
     void Ente::setGerenciadorGrafico(Gerenciador_Grafico* pG) {
         pGG = pG;

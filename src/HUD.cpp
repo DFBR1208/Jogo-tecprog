@@ -45,7 +45,7 @@ namespace Kawabanga {
 
         for (int i = 0; i < 5; i++) {
             coracoes_p1[i].setFillColor(i < vidas ? sf::Color::Red : sf::Color(60, 60, 60));
-            pGG->desenhar(coracoes_p1[i]);
+            pGG->desenharEnte(coracoes_p1[i]);
         }
 
         if (pJog2) {
@@ -53,13 +53,13 @@ namespace Kawabanga {
 
         for (int j = 0; j < 5; j++) {
             coracoes_p2[j].setFillColor(j < vidas_2 ? sf::Color::Red : sf::Color(60, 60, 60));
-            pGG->desenhar(coracoes_p2[j]);
+            pGG->desenharEnte(coracoes_p2[j]);
         }
         }
 
         if (fonteCarregada) {
             textoPontos.setString("Pontos: " + std::to_string(pontos));
-            pGG->desenhar(textoPontos);
+            pGG->desenharEnte(textoPontos);
         }
     }
 }

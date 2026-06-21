@@ -44,9 +44,8 @@ namespace Kawabanga::Gerenciadores {
         ~Gerenciador_Grafico();
 
         void limpar();
-        
-        void desenhar(const sf::Drawable& drawable);
         void desenharEnte(Ente* pe);
+        void desenharEnte(const sf::Drawable& d);
         void mostrar();
         bool verificaJanelaAberta();
         sf::RenderWindow* getWindow();

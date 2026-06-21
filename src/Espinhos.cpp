@@ -27,6 +27,14 @@ namespace Kawabanga::Entidades::Obstaculos {
         antiGravitar();
     }
 
+    void Espinhos::carregarDataBuffer(std::stringstream& ss) {
+        Obstaculo::carregarDataBuffer(ss);
+        ss >> largura;
+        forma.setSize(sf::Vector2f(largura, 20.f));
+        forma.setPosition(x, y);
+        if (pGG) forma.setTexture(&pGG->getTexObstaculo());
+    }
+
     void Espinhos::obstaculizar(Jogador* p) {
         if (p && danoso)
             p->tomarDano();

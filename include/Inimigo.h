@@ -22,6 +22,7 @@ namespace Kawabanga::Entidades::Personagens {
         bool tomandoDano;
         const float duracaoDano = 1.0f;
         float tempoDanoAcumulado;
+        int idPlataformaCarregada;
 
     public:
         Inimigo(int n_vid);
@@ -35,11 +36,13 @@ namespace Kawabanga::Entidades::Personagens {
 
         Inimigo& operator=(Obstaculos::Rosquinha* p);
         void     setPlataforma(Obstaculos::Rosquinha* p);
+        void     setPlataformaPtr(Obstaculos::Rosquinha* p);
+        int      getIdPlataformaCarregada() const;
         friend std::ostream& operator<<(std::ostream& os, const Inimigo& ini);
 
         virtual void danificar(Jogador* p) = 0;
         void salvarDataBuffer();
-        virtual void carregarDataBuffer(std::stringstream& ss);
+        virtual void carregarDataBuffer(std::stringstream& ss) override;
         virtual void salvar()            = 0;
         virtual void tomarDano();
         bool getTomandoDano() const;

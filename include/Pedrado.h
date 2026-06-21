@@ -14,5 +14,6 @@ namespace Kawabanga::Entidades::Personagens {
         void executar();
         void danificar(Jogador* p);
         void salvar();
+        void carregarDataBuffer(std::stringstream& ss) override;
     };
 }

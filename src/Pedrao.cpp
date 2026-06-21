@@ -70,6 +70,18 @@ namespace Kawabanga::Entidades::Personagens {
         }
     }
 
+    void Pedrao::carregarDataBuffer(std::stringstream& ss) {
+        Inimigo::carregarDataBuffer(ss);
+        int leuCurando;
+        float tempoCura;
+        ss >> forca >> leuCurando >> tempoCura;
+        curando = (bool)leuCurando;
+        if (curando) {
+            timerCura.restart();
+            forma.setFillColor(sf::Color::Green);
+        }
+    }
+
     void Pedrao::tomarDano() {
         if (!tomandoDano) {
             num_vidas--;

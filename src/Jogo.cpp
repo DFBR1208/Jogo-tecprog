@@ -116,13 +116,19 @@ namespace Kawabanga {
     void Jogo::iniciarFase2(int n_jogs) {
         delete pFase2; pFase2 = nullptr;
         delete pHUD;   pHUD   = nullptr;
-        if (pJog1!=nullptr&&pJog1->getNumVidas()<=0) {
-            delete pJog1;
-            pJog1=nullptr;
+        if(estadoAtual!=JOGO_FASE1){
+            delete pJog1; pJog1=nullptr;
+            delete pJog2; pJog2=nullptr;
         }
-        if (pJog2!=nullptr&&pJog2->getNumVidas()<=0) {
-            delete pJog2;
-            pJog2=nullptr;
+        else{
+            if (pJog1!=nullptr&&pJog1->getNumVidas()<=0) {
+                delete pJog1;
+                pJog1=nullptr;
+            }
+            if (pJog2!=nullptr&&pJog2->getNumVidas()<=0) {
+                delete pJog2;
+                pJog2=nullptr;
+            }
         }
         if(pJog1 == nullptr && n_jogs >= 1) {
             pJog1 = new Jogador(true);
@@ -193,4 +199,5 @@ namespace Kawabanga {
 
     FasePrimeira* Jogo::getpFase1() {return pFase1;}
     FaseSegunda* Jogo::getpFase2() {return pFase2;}
+
 }

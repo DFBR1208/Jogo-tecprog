@@ -24,6 +24,11 @@ namespace Kawabanga::Entidades::Obstaculos {
     void Espinhos::executar() {
         gravitar();
         antiGravitar();
+        if (timerPulso.getElapsedTime().asSeconds() > 0.4f) {
+            pulsoAtivo = !pulsoAtivo;
+            forma.setFillColor(pulsoAtivo ? sf::Color(255, 200, 0) : sf::Color(220, 50, 50));
+            timerPulso.restart();
+        }
     }
 
     void Espinhos::carregarDataBuffer(std::stringstream& ss) {

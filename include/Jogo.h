@@ -9,7 +9,7 @@
 namespace Kawabanga {
     class Menu;
     enum EstadoJogo { JOGO_INICIO, JOGO_FASE1, JOGO_FASE2, JOGO_MENUGERAL};
-    //Uso de enum para controle de estado do jogo baseado no vídeo de "The Cherno" e "BRO CODE", conforme dito no relatório 
+    //Uso de enum para controle de estado do jogo baseado no vídeo de "The Cherno" e "BRO CODE", conforme referenciado no relatório 
     class Jogo {
     private:
         Gerenciadores::Gerenciador_Grafico* GG;

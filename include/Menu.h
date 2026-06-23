@@ -2,9 +2,11 @@
 #include "Ente.h"
 #include <vector>
 #include <string>
-#include <fstream>
+#include <fstream> 
 
-namespace Kawabanga {
+//Lógica do menu baseada no seguinte vídeo "https://www.youtube.com/watch?v=h8-Q4eu3Qt4" conforme referenciado no relatório
+
+namespace Kawabanga { 
     class Jogo;
     enum EstadoMenu { MENU_INICIO, MENU_LEADERBOARD, MENU_PAUSE, MENU_GAMEOVER, MENU_VITORIA, MENU_DIGITAR };
     class Menu : public Ente {

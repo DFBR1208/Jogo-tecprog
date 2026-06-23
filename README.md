@@ -15,8 +15,10 @@ Diogo utilizou em maioria o Microsoft Visual Studio Code for Linux 1.125.1 com c
 Com uso esporádico do Microsoft Visual Studio Community para Windows 18.7.1 com compilador Microsoft (R) C/C++ Optimizing Compiler Version 19.51.36248
 Uso da biblioteca SFML na versão 2.6.2
 
-Luis utilizou o Microsoft Visual Studio Code com compilador
-Uso da biblioteca SFML na versão 2.6.2
+Luis utilizou em maioria o Microsoft Visual Studio Code para Windows com compilador g++ versão: 7.3.0 (MinGW-W64).
+Com uso da biblioteca SFML na versão 2.5.1.
+
+(Recomendado uso da 2.6.2 para evitar conflitos, mas qualquer uma funcionará)
 
 O jogo executa tanto em ambientes Linux quanto Windows. Sendo, pór óbvio, necessário sua configuração prévia conforme estabelece 
 a documentação da biblioteca SFML
